@@ -1,0 +1,373 @@
+SHELL=/bin/bash
+MAILDIR=/home/$LOGNAME/Mail/
+DEFAULT=$MAILDIR
+LOGFILE=$MAILDIR/procmail.log
+VERBOSE=yes
+LOGABSTRACT=all
+
+# Local ##########################################################
+:0:
+* ^From: .*homeserver.mom.hanavi.info.*
+.Local/
+
+################################################################
+
+# Job Recruiters #################################################
+
+:0:
+* ^From: .*workinghub.net.*
+.Jobs/
+
+:0:
+* ^From: .*Koch Davis.*
+.Jobs/
+
+:0:
+* ^From: .*brightcrowd.com.*
+.Jobs/
+
+:0:
+* ^From: .*monster.com.*
+.Jobs/
+
+:0:
+* ^From: .*ZipRecruiter.*
+.Jobs/
+
+:0:
+* ^From: .*David Careers.*
+.Jobs/
+
+:0:
+* ^From: .*Indeed.*
+.Jobs/
+
+:0:
+* ^From:.*AngelList.*
+.Jobs/
+
+:0:
+* ^From:.*Lockheed.*
+.Jobs/
+
+:0:
+* ^From:.*@lensa\.com.*
+.Jobs/
+
+:0:
+* ^From:.*careerbuilder\.com.*
+.Jobs/
+
+##################################################################
+
+# IceCube  #######################################################
+
+:0:
+* ^Subject: \[icecube-c\] South Pole On-Ice.*
+.WO\ Pole\ Reports/
+
+:0:
+* ^Subject: .*icecube-c.*
+.Lists.IceCube-C/
+
+:0:
+* ^Subject: .*Icecube-p.*
+.Lists.IceCube-P/
+
+:0:
+* ^Subject: .*Run_coordination.*
+.Lists.Run\ Coordination/
+
+:0:
+* ^To: .*jcasey4@wisc.edu.*
+.Lists.UW/
+
+:0:
+* ^Subject:.*\[everyone\].*
+.Lists.Everyone/
+
+:0:
+* ^Subject: .*\[Transients\].*
+.Lists.GRBAWG/
+
+:0:
+* ^Subject: .*\[Nu-sources\].*
+.Lists.GRBAWG/
+
+##################################################################
+
+# Hobby Groups  ##################################################
+
+:0:
+* ^From: .*AOPA.*
+.Misc.AOPA/
+
+:0:
+* ^From: .*ARRL.*
+.Misc.ARRL/
+
+:0:
+* ^Subject: .*w4aql-.*
+.Lists.W4AQL/
+
+:0:
+* ^Subject: .*yjfc-.*
+.Lists.YJFC/
+
+:0:
+* ^From:.*SDI.*
+.ScubaDiving/
+
+:0:
+* ^Subject:.*\[gtac_general\].*
+.Lists.GTAC/
+
+##################################################################
+
+# Old Antarcitca Lists  ##########################################
+
+:0:
+* ^From: .*chc-intercontinental-flight-group@listserv.usap.gov
+.AntarcticaFlights/
+
+:0:
+* ^From: .*mcm-intracontinental-flights@listserv.usap.gov
+.AntarcticaFlights/
+
+##################################################################
+
+# Social Emails  ###############################################
+
+:0:
+* ^From: Facebook.*
+.Misc.Social/
+
+:0:
+* ^From:.*Tinder.*
+.Misc.Social/
+
+:0:
+* ^From:.*Instagram.*
+.Misc.Social/
+
+:0:
+* ^From:.*Mensa.*
+.Misc.Social/
+
+:0:
+* ^From: OkCupid.*
+.Misc.Social/
+
+:0:
+* ^From:.*OkCupid.*
+.Misc.Social/
+
+:0:
+* ^From:.*Twitter.*
+.Misc.Social/
+
+:0:
+* ^From:.*Goodreads.*
+.Misc.Social/
+
+################################################################
+
+# Spam-ish  ####################################################
+#
+:0:
+* ^From:.*microsoft.com.*
+.Misc.Crap/
+
+:0:
+* ^From: .*HP\.com.*
+.Misc.Crap/
+
+:0:
+* ^From: .*Sencha.*
+.Misc.Crap/
+
+:0:
+* ^From: .*Best Buy.*
+.Misc.Crap/
+
+:0:
+* ^From: .*Promotive.*
+.Misc.Crap/
+
+:0:
+* ^From: .*Experticity.*
+.Misc.Crap/
+
+:0:
+* ^From: Grab.*
+.Misc.Crap/
+
+:0:
+* ^From:.*eBay.*
+.Misc.Crap/
+
+:0:
+* ^From:.*Grubhub.*
+.Misc.Crap/
+
+:0:
+* ^From:.*Domino\'s.*
+.Misc.Crap/
+
+:0:
+* ^From: Alabama Power.*
+.Misc.Crap/
+
+:0:
+* ^From:.*Brilliant.*
+.Misc.Crap/
+
+:0:
+* ^From:.*PayPal.*
+.Misc.Crap/
+
+:0:
+* ^From:.*landrysselect.*
+.Misc.Crap/
+
+################################################################
+
+# Travel Stuff  ################################################
+#
+:0:
+* ^From:.*Hutton Hotel.*
+.TravelDocs/
+
+:0:
+* ^From:.*MileagePlus.*
+.TravelDocs/
+
+:0:
+* ^From:.*[Bb]ooking\.com.*
+.TravelDocs/
+
+:0:
+* ^From:.*[Ee]xpedia.*
+.TravelDocs/
+
+:0:
+* ^From:.*OneTravel.*
+.TravelDocs/
+
+:0:
+* ^From:.*Uber.*
+.TravelDocs/
+
+:0:
+* ^From:.*Travelocity.*
+.TravelDocs/
+
+:0:
+* ^From:.*Kiwi\.com.*
+.TravelDocs/
+
+:0:
+* ^From:.*Hilton Honors.*
+.TravelDocs/
+
+:0:
+* ^From:.*American Airlines.*
+.TravelDocs/
+
+:0:
+* ^From:.*CheapTickets.*
+.TravelDocs/
+
+:0:
+* ^From:.*AirAsia.*
+.TravelDocs/
+
+:0:
+* ^From:.*KAYAK.*
+.TravelDocs/
+
+:0:
+* ^From:.*Emerates.*
+.TravelDocs/
+
+:0:
+* ^From:.*TripAdvisor.*
+.TravelDocs/
+
+################################################################
+
+# Georgia Tech  ################################################
+
+#:0:
+#* ^Subject: \[pace-discuss\].*
+#.GaTech.Pace/
+
+:0:
+* ^Subject: \[pace-.*
+.GaTech.Pace/
+
+:0:
+* ^Subject:.*\[Georgia Tech\].*
+.GaTech/
+
+:0:
+* ^From:.*Georgia Tech.*
+.GaTech/
+
+:0:
+* ^From:.*Georgia=20Tech.*
+.GaTech/
+
+:0:
+* ^From:.*gatech@csm.symplicity.com.*
+.GaTech/
+
+################################################################
+
+# Bills  #######################################################
+
+:0:
+* ^From:.*Capital One.*
+.Bills/
+
+:0:
+* ^From:.*Navient.*
+.Bills/
+
+:0:
+* ^From:.*Amazon.com.*
+.Misc.Amazon/
+
+################################################################
+
+# Science ######################################################
+
+:0:
+* ^From:.*Physics Today.*
+.Science/
+
+:0:
+* ^From:.*Sigma Pi Sigma.*
+.Science/
+
+:0:
+* ^From:.*Vox Charta.*
+.Science/
+
+:0:
+* ^From:.*@aps.org.*
+.Science/
+
+################################################################
+
+# Misc  ########################################################
+
+:0:
+* ^From:.*The Juice Box.*
+.Misc.Crap/
+
+:0:
+* ^From:.*@artofmanliness.com.*
+.Misc.AoM/
+
+################################################################
