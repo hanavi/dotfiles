@@ -1,0 +1,227 @@
+" Python interpreter setup
+" These dunder strings will be replaced by fresh with the
+" paths to the active interpreters when fresh is run.  This
+" makes it work even when different pyenvs are set up.
+let g:python_host_prog = '__PYTHON2__'
+let g:python3_host_prog = '__PYTHON3__'
+
+" Set up a better encoding
+set encoding=utf-8
+
+"------------------------------------------------------------------------------
+" Plugins
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+
+call plug#begin()
+" Lightweight Markup Languages
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'christoomey/vim-quicklink'
+Plug 'mattn/webapi-vim'
+Plug 'christoomey/vim-quicklink'
+
+" This helps deal with some syntax stuff
+Plug 'vim-syntastic/syntastic'
+
+" Fancy Bar at the bottom of the screen
+Plug 'vim-airline/vim-airline'
+
+" Python
+Plug 'davidhalter/jedi-vim'
+Plug 'tmhedberg/SimpylFold'
+" Plug 'vim-scripts/indentpython.vim'
+Plug 'hynek/vim-python-pep8-indent'
+"Plug 'nvie/vim-flake8' " Not installed...
+
+" Javascript
+Plug 'jelera/vim-javascript-syntax'
+
+" Puppet (Why do I have puppet?)
+Plug 'rodjek/vim-puppet'
+
+" Tab formatting stuff
+Plug 'godlygeek/tabular'
+
+" LaTeX
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+
+" Go
+Plug 'fatih/vim-go'
+
+" Git I think
+Plug 'tpope/vim-fugitive'
+
+" Searching
+Plug 'kien/ctrlp.vim'
+Plug 'rking/ag.vim'
+
+" Generic
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+
+" Add stuff around blocks of text
+Plug 'tpope/vim-surround'
+
+" Fancy colors
+Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
+Plug 'jnurmine/Zenburn'
+
+" I don't know what this does but some kind of highlighting
+Plug 'octol/vim-cpp-enhanced-highlight'
+
+" Extra panels to improve productivity
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+
+" Hardmode... just for the fun of it...
+Plug 'wikitopian/hardmode'
+
+call plug#end()
+"------------------------------------------------------------------------------
+
+
+"--Color Scheme----------------------------------------------------------------
+let g:solarized_diffmode="high"
+let g:solarized_termcolors=256
+"let g:solarized_degraded=0
+if has('gui_running')
+    set lines=50 columns=100
+    colorscheme solarized
+    set background=dark
+else
+    "colorscheme zenburn
+    colorscheme gruvbox
+    "colorscheme solarized
+    set background=dark
+endif
+
+" Set that fancy color lign at the end of 80 char
+"set colorcolumn=+1
+set colorcolumn=80
+hi ColorColumn guibg=darkred ctermbg=darkred
+"------------------------------------------------------------------------------
+
+" I don't remember what this does...
+set hidden
+
+" Enable the mouse
+set mouse=a
+
+" Set up the line numbering
+"set number
+set rnu
+
+" Cursor placement
+set scrolloff=5
+
+set backspace=indent,eol,start
+set fillchars=vert:│
+set list listchars=tab:→\ ,trail:·,precedes:«,extends:»
+set wildmenu wildmode=longest,list,full
+set completeopt=menuone,longest
+"let mapleader = "\<Space>"
+
+" Toggle paste mode
+nmap <unique> <silent> <leader>p :set paste!<CR>
+
+" Strip trailing whitespace (and save cursor position) when saving files
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+au BufNewFile *.py 0r ~/.vim/templates/skeleton.py
+au BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+au BufNewFile *.sh :norm 2j
+
+" Split line at cursor
+"imap <C-c> <CR><Esc>O
+
+" Location list
+"nmap <unique> <silent> <leader>lo :lopen<CR>
+"nmap <unique> <silent> <leader>lc :lclose<CR>
+"nmap <unique> <silent> <leader>ll :ll<CR>
+"nmap <unique> <silent> <leader>ln :lnext<CR>
+"nmap <unique> <silent> <leader>lp :lprev<CR>
+"nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+
+" Original
+" set textwidth=79
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set cursorline
+set fileformat=unix
+set autoindent
+set hlsearch
+
+syntax on
+
+"set tags=./tags;/
+
+"airline
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+"let g:netrw_browsex_viewer = 'firefox'
+
+" Enable folding
+"set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+let g:SimpylFold_docstring_preview=1
+
+" NERDTree Settings
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" This is much faster than the default on OSX (and better?)
+let g:syntastic_python_checkers = ['pylama']
+
+call togglebg#map("<F5>")
+
+let python_highlight_all=1
+
+function FixCommas()
+  %s/,/, /g
+  %s/, */, /g
+endfunction
+nmap <leader>fc :call FixCommas()<CR>
+
+nnoremap <leader>ns :r ~/.vim/templates/beamer/slide.txt<CR>
+function Lipsum()
+  :r! lipsum
+endfunction
+
+nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
+
+imap <leader>' ''<ESC>i
+imap <leader>" ""<ESC>i
+imap <leader>( ()<ESC>i
+imap <leader>{ {}<ESC>i
+imap <leader>[ []<ESC>i
+
+" allows cursor change in tmux mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+inoremap jk <esc>

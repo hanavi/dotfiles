@@ -1,0 +1,18 @@
+function n()
+{
+    fname="Dropbox/logs/log_$(date "+%Y_%m_%d").md"
+    vim $fname
+}
+
+function wb()
+{
+    fname="Dropbox/logs/walking.md"
+    now=$(date "+%Y_%m_%d")
+    echo "* $now Evening Walk Around the Neighborhood (with Buddy)" >> $fname
+    echo "Updated exercise log"
+}
+
+function cf()
+{
+    echo "Bash Functions loaded"
+}

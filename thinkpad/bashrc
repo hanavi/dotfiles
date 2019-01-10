@@ -1,0 +1,25 @@
+# .bashrc
+
+# OLD
+# I3_SVN="http://code.icecube.wisc.edu/svn"
+# export I3_SVN
+
+## Set up the virtual environment for python on Mac
+VIRTUAL_ENV_DISABLE_PROMPT=1
+. ~/.virtualenv/python3/bin/activate
+
+## I don't remember what this is for
+export ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future
+
+## Show and hide files in finder
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+## Start the octave commandline in OSX
+alias octave='/usr/local/octave/3.8.0/bin/octave-cli'
+
+## Common aliases
+alias pylab='ipython --pylab'
+alias ls='ls -G'
+alias gfull='gvim "+NERDTree" "+set columns=165" "+TagbarToggle"'
+alias tmux='tmux -2'

@@ -1,0 +1,11 @@
+[merge]
+	tool = vimdiff
+[push]
+	default = simple
+[user]
+	email = hanavi@gmail.com
+[diff]
+	tool = vimdiff
+[core]
+    excludesfile = ~/.gitignore
+	editor = /usr/bin/vim

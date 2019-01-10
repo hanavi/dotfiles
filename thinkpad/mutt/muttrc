@@ -1,0 +1,92 @@
+#### Reading Email ####
+# Caching
+set header_cache = "~/.cache/mutt"
+#set message_cachedir = "~/.cache/mutt"
+
+# Account info nd settings
+set folder     = "imaps://imap.gmail.com/"
+set imap_user  = "hanavi@gmail.com"
+set spoolfile  = +INBOX
+mailboxes      = +INBOX
+set postponed  = "~/.postponed"
+set record = "~/.mutt/sent"
+unset imap_passive
+set imap_keepalive = 300
+set mail_check = 120
+
+# Inbox sorting and grouping
+set sort_aux=reverse-last-date-received
+set sort=threads
+
+# Vim keybindings... ish
+bind pager j next-page
+bind pager k previous-page
+bind index G first-entry
+set pager_stop
+
+
+#### Sending Email ####
+set from="hanavi@gmail.com"
+set envelope_from=yes
+set sendmail="/usr/bin/msmtp"
+set editor="/usr/bin/vim"
+set edit_headers
+alternates "jcasey8@gatech.edu|james.casey@gatech.edu"
+#set metoo=yes
+
+# Email aliases
+set alias_file="~/.mutt/aliases"
+set sort_alias= alias
+set reverse_alias=yes
+source $alias_file
+
+# Fix some stupid keybindings...
+bind compose \ef edit-fcc
+bind compose f edit-from
+
+# Fix multiple email address on reply
+reply-hook . "unmy_hdr From:"
+reply-hook '~t jcasey8@gatech.edu'     'my_hdr From: jcasey8@gatech.edu'
+reply-hook '~t james.casey@gatech.edu' 'my_hdr From: james.casey@gatech.edu'
+reply-hook '~t gatech.edu' 'my_hdr From: james.casey@gatech.edu'
+
+# Set my default sending address
+send-hook '!~Q' 'my_hdr From: hanavi@gmail.com'
+
+#General
+source "gpg -d ~/.mutt/passwords.gpg |"  # Retrieve Encrypted Passwords
+source '~/.mutt/gpgrc'                   # Load PGP/GPG settings
+
+# Color Scheme
+color indicator  black green
+color hdrdefault red black
+color quoted     yellow black
+color signature  red black
+color error      red black
+color status     brightcyan blue
+color tree       yellow black
+color normal     green black
+color attachment brightblue black
+
+color index brightwhite black "~N"
+color index brightcyan black "~N ~g"
+color index brightcyan black "~N ~G"
+color index brightwhite black "~U"
+color index brightcyan black "~U ~g"
+color index brightcyan black "~U ~G"
+color index green black "~R"
+color index cyan black "~R ~g"
+color index cyan black "~R ~G"
+
+color body brightcyan default "(finger|ftp|https?|news|telnet):[^ >)\"\t]+"
+color body brightcyan default "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body brightcyan default "[-a-z_0-9.+]+@[-a-z_0-9.]+"
+
+color header cyan black '^Date:'
+color header cyan black '^From:'
+color header cyan black '^To:'
+color header cyan black '^Subject:'
+
+hdr_order Date To From Subject
+
+
