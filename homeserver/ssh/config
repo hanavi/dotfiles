@@ -68,7 +68,3 @@ Host tor_freeshell_2
     User hanavi
     HostName nsdf.sdf.org
     ProxyCommand socat - SOCKS4A:localhost:%h:%p,socksport=9150
-
-Host torhome
-    User james
-    Hostname t2lixfd5qmmlyxx2.onion
