@@ -1,0 +1,300 @@
+" Python interpreter setup
+" These dunder strings will be replaced by fresh with the
+" paths to the active interpreters when fresh is run.  This
+" makes it work even when different pyenvs are set up.
+
+"let g:python_host_prog = '__PYTHON2__'
+"let g:python3_host_prog = '__PYTHON3__'
+
+" Set up a better encoding
+set encoding=utf-8
+
+let &pythonthreedll = 'C:\Users\t70995\PycharmProjects\tetration\venv\Scripts\python36.dll'
+
+"------------------------------------------------------------------------------
+" Plugins
+"if empty(glob('~/.vim/autoload/plug.vim'))
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  autocmd VimEnter * PlugInstall
+"endif
+"
+call plug#begin()
+" Lightweight Markup Languages
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+"Plug 'christoomey/vim-quicklink'
+"Plug 'mattn/webapi-vim'
+"
+" This helps deal with some syntax stuff
+Plug 'vim-syntastic/syntastic'
+"
+"" Fancy Bar at the bottom of the screen
+Plug 'vim-airline/vim-airline'
+"
+"" Python
+Plug 'davidhalter/jedi-vim'
+Plug 'tmhedberg/SimpylFold'
+Plug 'nvie/vim-flake8'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'hynek/vim-python-pep8-indent'
+"
+"" Javascript
+"Plug 'jelera/vim-javascript-syntax'
+"
+"" Puppet (Why do I have puppet?)
+"Plug 'rodjek/vim-puppet'
+"
+"" Tab formatting stuff
+Plug 'godlygeek/tabular'
+"
+"" LaTeX
+"Plug 'LaTeX-Box-Team/LaTeX-Box'
+"
+"" Go
+"Plug 'fatih/vim-go'
+"
+"" Git I think
+"Plug 'tpope/vim-fugitive'
+"
+"" Searching
+Plug 'kien/ctrlp.vim'
+"Plug 'rking/ag.vim'
+"
+"" Generic
+Plug 'ervandew/supertab'
+"Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+"
+"" Add stuff around blocks of text
+Plug 'tpope/vim-surround'
+"
+"" Fancy colors
+Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
+Plug 'jnurmine/Zenburn'
+"
+"" I don't know what this does but some kind of highlighting
+"Plug 'octol/vim-cpp-enhanced-highlight'
+"
+"" Extra panels to improve productivity
+Plug 'scrooloose/nerdtree'
+"Plug 'majutsushi/tagbar'
+"
+"" Harmode... just for the fun of it...
+"Plug 'wikitopian/hardmode'
+Plug 'takac/vim-hardtime'
+"
+"
+"" Return to last edit position
+Plug 'farmergreg/vim-lastplace'
+"
+call plug#end()
+"------------------------------------------------------------------------------
+"
+let g:SuperTabMappingForward = '<s-tab>'
+let g:SuperTabMappingBackward = '<tab>'
+
+"--Color Scheme----------------------------------------------------------------
+"let g:solarized_diffmode="high"
+"let g:solarized_termcolors=256
+"let g:solarized_degraded=0
+if has('gui_running')
+    set lines=50 columns=100
+    colorscheme gruvbox
+    "colorscheme ron
+    "colorscheme solarized
+    set background=dark
+else
+    "colorscheme zenburn
+    colorscheme gruvbox
+    "colorscheme ron
+    "colorscheme solarized
+    set background=dark
+endif
+
+" Set that fancy color lign at the end of 80 char
+"set colorcolumn=+1
+set colorcolumn=80
+hi ColorColumn guibg=darkred ctermbg=darkred
+"------------------------------------------------------------------------------
+
+
+" Enable the mouse
+" set mouse=a
+
+" Set up the line numbering
+"set number
+set nu rnu
+
+" Cursor placement
+set scrolloff=5
+
+set backspace=indent,eol,start
+set fillchars=vert:â”‚
+set list listchars=tab:â†’\ ,trail:Â·,precedes:Â«,extends:Â»
+set wildmenu wildmode=longest,list,full
+set completeopt=menuone,longest
+let mapleader = "\<Space>"
+
+
+" systastic settings
+let g:syntastic_mode_map = {
+        \ "mode": "passive",
+        \ "active_filetypes": [],
+        \ "passive_filetypes": [] }
+
+let g:syntastic_python_checkers = ['pylama']
+
+" Run linter
+nnoremap <silent> <leader>l :SyntasticCheck<CR>
+
+
+" Strip trailing whitespace (and save cursor position) when saving files
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" au BufNewFile *.pl 0r ~/.vim/templates/skeleton.pl
+au BufNewFile *.py 0r ~\vimfiles\templates\skeleton.py
+au BufNewFile *.py :call SetFileName()
+au BufNewFile *.py :call SetCreatedTime()
+au BufNewFile *.py :call SetUpdatedTime()
+
+" au BufNewFile *.py :Gf\<\><cr>s/\<\>/ABCD/
+" au BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+" au BufNewFile *.sh :norm 2j
+
+"au FileType *.tex nmap <leader>k :!make<CR>
+" nmap <leader>mk :!make<CR>
+
+" Split line at cursor
+"imap <C-c> <CR><Esc>O
+
+" Location list
+"nmap <unique> <silent> <leader>lo :lopen<CR>
+"nmap <unique> <silent> <leader>lc :lclose<CR>
+"nmap <unique> <silent> <leader>ll :ll<CR>
+"nmap <unique> <silent> <leader>ln :lnext<CR>
+"nmap <unique> <silent> <leader>lp :lprev<CR>
+"nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+
+" Original
+set textwidth=79
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set cursorline
+set fileformat=unix
+set autoindent
+set hlsearch
+
+syntax on
+
+"set tags=./tags;/
+
+" airline settings
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+" I don't remember what this does... but it is related to airline
+set hidden
+
+"let g:netrw_browsex_viewer = 'firefox'
+
+" Enable folding
+"set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+let g:SimpylFold_docstring_preview=1
+
+" call togglebg#map("<F5>")
+
+let python_highlight_all=1
+
+function FixCommas()
+  let save_cursor = getpos(".")
+  :silent! %s/,/, /g
+  :silent! %s/, */, /g
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
+endfunction
+nmap <silent> <leader>fc :call FixCommas()<CR>
+
+
+" Stolen from http://vim.wikia.com/wiki/Insert_current_date_or_time
+" If buffer modified, update any 'Last modified: ' in the first 20 lines.
+" 'Last modified: ' can have up to 10 characters before (they are retained).
+" Restores cursor and window position using save_cursor variable.
+function! SetCreatedTime()
+  let save_cursor = getpos(".")
+  let n = min([20, line("$")])
+  keepjumps exe '1,' . n . 's#^\(.\{,10}Date Created: \).*#\1' .
+        \ strftime('%F') . '#e'
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
+endfun
+
+function! SetUpdatedTime()
+  let save_cursor = getpos(".")
+  let n = min([20, line("$")])
+  keepjumps exe '1,' . n . 's#^\(.\{,10}Last Updated: \).*#\1' .
+        \ strftime('%F') . '#e'
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
+endfun
+nmap <silent> <leader>u :call SetUpdatedTime()<CR>
+
+function! SetFileName()
+  let fn=expand("%:t")
+  let save_cursor = getpos(".")
+  let n = min([20, line("$")])
+  keepjumps exe '1,' . n . 's#^\(.\{,10}Filename: \).*#\1' .
+        \ fn . '#e'
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
+endfun
+nmap <silent> <leader>f :call SetFileName()<CR>
+
+function! FixOpenAPI()
+  let save_cursor = getpos(".")
+  :normal 9G
+  :normal Oimport requests
+  :normal Ofrom tetpyclient RestClient
+  :normal 12G
+  :r ~\vimfiles\templates\openapi.py
+  call setpos('.', save_cursor)
+endfun
+nmap <silent> <leader>o :call FixOpenAPI()<CR>
+
+function! SetUpRestClient()
+  let save_cursor = getpos(".")
+  :normal 20G
+  :r ~\vimfiles\templates\restclient.py
+  call setpos('.', save_cursor)
+endfun
+nnoremap <silent> <leader>c :call SetUpRestClient()<CR>
+
+" Toggle Hardmode
+nnoremap <leader>h <Esc>:call HardTimeToggle()<CR>
+
+" Toggle NERDTree
+nnoremap <leader>N :NERDTreeToggle<CR>
+
+" Toggle paste mode
+nmap <unique> <silent> <leader>p :set paste!<CR>
+
+" run current python script
+nnoremap <leader>x :!python %
+
+" Use jk as escape in insert mode
+inoremap jk <esc>
+
+set splitright splitbelow
