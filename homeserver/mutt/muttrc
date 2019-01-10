@@ -1,0 +1,84 @@
+#### Reading Email ####
+# Caching
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+set text_flowed=yes
+
+#set sidebar_width=30
+set sidebar_visible=no
+#bind index b sidebar-toggle
+#bind index J sidebar-next
+#bind index K sidebar-prev
+#bind index ) sidebar-open
+
+hdr_order Date To From Subject
+#hdr_order From: Subject: From Date:
+
+macro attach W "<save-entry><bol>/home/james/Dropbox/attachments/<eol>" "Save to desktop"
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+set date_format="%m/%d %H:%M"
+set index_format="%2C %Z %?X?A& ? %D  %-15.15F %s (%-4.4c)"
+set folder_format="%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f"
+
+set pager_index_lines   = 10    # number of index lines to show
+set pager_context       = 3     # number of context lines to show
+
+macro index,pager \cb 'urlscan' 'Follow links with urlview'
+
+bind index,pager F flag-message
+
+# Vim keybindings... ish
+bind pager j next-page
+bind pager k previous-page
+bind index G first-entry
+bind index g last-entry
+set pager_stop
+
+
+## Default index colors:
+#color index yellow default '.*'
+#color index_author red default '.*'
+#color index_number blue default
+#color index_subject cyan default '.*'
+#
+## For new mail:
+#color index brightyellow black "~N"
+#color index_author brightred black "~N"
+#color index_subject brightcyan black "~N"
+
+
+# Color Scheme
+color indicator  black green
+color hdrdefault red black
+color quoted     yellow black
+color signature  red black
+color error      red black
+color status     black cyan
+color tree       yellow black
+
+color index brightwhite black "~N"
+color index brightcyan black "~N ~g"
+color index brightcyan black "~N ~G"
+color index brightwhite black "~U"
+color index brightcyan black "~U ~g"
+color index brightcyan black "~U ~G"
+color index green black "~R"
+color index cyan black "~R ~g"
+color index cyan black "~R ~G"
+color index brightwhite red "~F"
+
+color body brightcyan black "(finger|ftp|https?|news|telnet):[^ >)\"\t]+"
+color body brightcyan black "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body brightcyan black "[-a-z_0-9.+]+@[-a-z_0-9.]+"
+
+color header cyan black '^Date:'
+color header cyan black '^From:'
+color header cyan black '^To:'
+color header cyan black '^Subject:'
+
+#General
+#source "gpg -d ~/.mutt/passwords.gpg |"  # Retrieve Encrypted Passwords
+source '~/.mutt/gpg2rc'                   # Load PGP/GPG settings
+#source ~/.mutt/muttrc.$MUTT_CONFIG
+source ~/.mutt/muttrc.fetchmail

@@ -1,0 +1,73 @@
+# Account info and settings
+set mbox_type=Maildir
+set spoolfile = /home/james/Mail
+set folder = /home/james/Mail
+set mask="!^\\.[^.]"
+set header_cache=~/.mutt/hcache/fetchmail
+#set mark_old=no
+
+mailboxes ! + `\
+for file in ~/Mail/.*; do \
+box=$(basename "$file"); \
+if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
+-a ! "$box" = '.subscriptions' ]; then \
+echo -n "\"+$box\" "; \
+fi; \
+done`
+
+#macro index c "?" "open a different folder"
+#macro pager c "?" "open a different folder"
+
+#set folder     = "/home/james/Mail"
+#set imap_user  = "hanavi@gmail.com"
+#set spoolfile  = +INBOX
+#mailboxes      = +INBOX
+set postponed  = "~/.postponed"
+set record = +.Sent
+#unset imap_passive
+#set imap_keepalive = 300
+#set mail_check = 120
+
+# Inbox sorting and grouping
+set sort_aux=reverse-last-date-received
+set sort=threads
+
+#### Sending Email ####
+set from="James Casey <hanavi@gmail.com>"
+set envelope_from=yes
+set sendmail="/usr/bin/msmtp"
+#set sendmail = /home/james/bin/msmtpq
+set sendmail_wait = -1
+
+set editor="/usr/bin/vim"
+set edit_headers
+alternates "jcasey8@gatech.edu|james.casey@gatech.edu|jcasey@icecube.usap.gov|james.casey.guest@usap.gov"
+#set metoo=yes
+
+# Email aliases
+set alias_file="~/.mutt/aliases"
+set sort_alias= alias
+set reverse_alias=yes
+source $alias_file
+
+# Fix some stupid keybindings...
+bind compose \ef edit-fcc
+bind compose f edit-from
+
+# Fix multiple email address on reply
+reply-hook . "unmy_hdr From:"
+reply-hook '~t jcasey8@gatech.edu'     'my_hdr From: James Casey <jcasey8@gatech.edu>'
+reply-hook '~t james.casey@gatech.edu' 'my_hdr From: James Casey <james.casey@gatech.edu>'
+reply-hook '~t jcasey4@wisc.edu'     'my_hdr From: James Casey <jcasey4@wisc.edu>'
+reply-hook '~t james.casey@wisc.edu' 'my_hdr From: James Casey <james.casey@wisc.edu>'
+reply-hook '~t gatech.edu' 'my_hdr From: James Casey <james.casey@gatech.edu>'
+reply-hook '~t wisc.edu' 'my_hdr From: James Casey <james.casey@wisc.edu>'
+#reply-hook '~t icecube.wisc.edu' 'my_hdr From: James Casey <james.casey@wisc.edu>'
+reply-hook '~t icecube.wisc.edu' 'my_hdr From: James Casey <jcasey@icecube.usap.gov>'
+reply-hook '~t icecube.usap.gov' 'my_hdr From: James Casey <jcasey@icecube.usap.gov>'
+reply-hook '~t @usap.gov' 'my_hdr From: James Casey <james.casey.guest@usap.gov>'
+
+# Set my default sending address
+send-hook '~s .*Weekly\ Report.*' 'my_hdr From: James Casey <james.casey.guest@usap.gov>'
+send-hook '!~Q' 'my_hdr From: James Casey <hanavi@gmail.com>'
+

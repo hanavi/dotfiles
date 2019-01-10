@@ -1,0 +1,31 @@
+set ssl_starttls=yes
+set ssl_force_tls=yes
+
+set sort_aux=reverse-last-date-received
+set sort=threads
+
+set imap_user = 'hanavi@gmail.com'
+set imap_pass = 'xxxx'
+set smtp_pass = "xxxx"
+
+set from='hanavi@gmail.com'
+set realname='James Casey'
+
+set folder = imaps://imap.gmail.com/
+set spoolfile = imaps://imap.gmail.com/INBOX
+set postponed="imaps://imap.gmail.com/[Gmail]/Drafts"
+set smtp_url = 'smtps://@gmail.com@smtp.gmail.com:465/'
+
+mailboxes +INBOX +Bills +Amazon +Antarctica\ Flights +AoM +AOPA +ARRL +Bills \
+          +Crap +GATech +GTAC +IceCube +Jobs\ Search +Notes +PQ +Science \
+          +Scuba\ Diving +Social\ Media +SPTS-Admin +Travel +W4AQL \
+          +Winterover +YJFC
+
+
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = "~/.mutt/certificates"
+
+set move = no
+set imap_keepalive = 900
+
