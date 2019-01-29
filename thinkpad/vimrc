@@ -153,7 +153,9 @@ au BufNewFile Dropbox/logs/*.md :norm 3jA
 au BufNewFile Dropbox/logs/*.md :r !date "+\%F"
 au BufNewFile Dropbox/logs/*.md :norm kJG
 
-
+au BufRead,BufNewFile *.sh set softtabstop=2
+"set shiftwidth=4
+"
 "au FileType *.tex nmap <leader>k :!make<CR>
 nmap <leader>mk :!make<CR>
 
@@ -231,3 +233,5 @@ nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 nnoremap <leader>ns :r ~/.vim/templates/beamer/slide.txt<CR>
 
 inoremap jk <esc>
+
+hi Normal guibg=NONE ctermbg=NONE

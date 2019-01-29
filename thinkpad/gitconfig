@@ -4,6 +4,7 @@
 	default = simple
 [user]
 	email = hanavi@gmail.com
+	name = James Casey
 [diff]
 	tool = vimdiff
 [core]

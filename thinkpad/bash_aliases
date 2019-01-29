@@ -1,0 +1,62 @@
+## Python
+alias pylab='ipython --pylab'
+
+## Mounting
+
+
+# NFS
+alias m1="mount /home/james/remote/disk1"
+alias um1="umount /home/james/remote/disk1"
+alias m2="mount /home/james/remote/disk2"
+alias um2="umount /home/james/remote/disk2"
+alias m3="mount /home/james/remote/disk3"
+alias um3="umount /home/james/remote/disk3"
+#alias m4="mount /home/james/remote/disk4"
+#alias um4="umount /home/james/remote/disk4"
+alias mt="mount /home/james/remote/tserver"
+alias umt="umount /home/james/remote/tserver"
+
+# SSHFS
+#alias m1="sshfs homelocal:/media/disk1/files /home/james/remote/disk1"
+#alias um1="fusermount -u /home/james/remote/disk1"
+#alias m2="sshfs homelocal:/media/disk2/files /home/james/remote/disk2"
+#alias um2="fusermount -u /home/james/remote/disk2"
+# alias m3="sshfs homelocal:/media/disk3/files /home/james/remote/disk3"
+# alias um3="fusermount -u /home/james/remote/disk3"
+alias m4="sshfs labserver:/media/disk4/files /home/james/remote/disk4"
+alias um4="fusermount -u /home/james/remote/disk4"
+# alias mt="sshfs 192.168.0.19:/media/spare/torrent/deluge /home/james/remote/tserver"
+# alias umt="fusermount -u /home/james/remote/tserver"
+alias mh="sshfs 192.168.0.11:/mnt/raid/files/james /home/james/remote/homelocal"
+alias umh="fusermount -u /home/james/remote/homelocal"
+
+## ls stuff
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+alias l.='ls -d .*'
+
+## SSH
+alias sa='ssh-agent bash'
+alias saa='ssh-add'
+alias hl='ssh homelocal'
+
+## Misc
+alias cm='hl "./scripts/check_mail.sh" 2>/dev/null'
+alias wx='curl -s http://wttr.in/hsv'
+alias ta='tmux attach'
+
+## Email
+alias mutt="MUTT_CONFIG=fetchmail /usr/bin/mutt"
+alias gmutt="MUTT_CONFIG=gmail /usr/bin/mutt"
+
+
+## Testing
+alias pm='smplayer ~/remote/disk1/youtube/music/*'
+
+## This are old... should I keep them?
+alias resume='cd ~/Dropbox/Documents/Professional/resume_latex'
+alias yt='~/Dropbox/scripts/youtube/youtube_link.py'
+alias tvim="tmux new-session \; split-window -l 10"
+alias vn="vim +NERDTree"
+alias m='mplayer -ontop -geometry 600x450-100+150'
