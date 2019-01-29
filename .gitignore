@@ -1,0 +1,10 @@
+config/dconf/
+config/dunst/
+config/htop/
+config/i3/config.new
+config/i3/config.orig
+config/i3/tmp.txt
+config/i3/tmp2.txt
+config/pulse/
+config/skypeforlinux/
+

@@ -1,0 +1,32 @@
+command=~/.scripts/statusbar/$BLOCK_NAME
+separator_block_width=15
+markup=pango
+
+[checkmail]
+label=📧
+command=$HOME/.scripts/statusbar/checkmail
+interval=300
+
+[extip]
+command=curl ifconfig.me
+interval=once
+
+[internet]
+interval=10
+
+[weather]
+interval=3600
+signal=5
+
+[volume]
+interval=once
+signal=10
+
+[battery]
+command=$HOME/.scripts/statusbar/battery BAT0
+interval=5
+
+[clock]
+label=📅
+interval=30
+
