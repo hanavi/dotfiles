@@ -1,12 +1,12 @@
 set ssl_starttls=yes
 set ssl_force_tls=yes
 
+source "gpg -d ~/.mutt/passwords.gpg |"  # Retrieve Encrypted Passwords
+
 set sort_aux=reverse-last-date-received
 set sort=threads
 
 set imap_user = 'hanavi@gmail.com'
-set imap_pass = 'xxxx'
-set smtp_pass = "xxxx"
 
 set from='hanavi@gmail.com'
 set realname='James Casey'
@@ -21,6 +21,9 @@ mailboxes +INBOX +Bills +Amazon +Antarctica\ Flights +AoM +AOPA +ARRL +Bills \
           +Scuba\ Diving +Social\ Media +SPTS-Admin +Travel +W4AQL \
           +Winterover +YJFC
 
+
+# Email aliases
+set alias_file="~/.mutt/aliases"
 
 set header_cache = "~/.mutt/cache/headers"
 set message_cachedir = "~/.mutt/cache/bodies"

@@ -94,6 +94,10 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -106,9 +110,10 @@ if ! shopt -oq posix; then
 fi
 
 
-## For pip installed apps
-export PATH=$PATH:~/.local/bin/
-export PATH=$PATH:~/remote/prog/github/scripts/bin/
+## For my scripts
+export PATH=$PATH:$HOME/remote/prog/github/scripts/bin/
+export PATH=$PATH:$HOME/.local/bin/
+
 
 export GPG_TTY=$(tty)
 
@@ -118,3 +123,6 @@ PERL5LIB="/home/james/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB
 PERL_LOCAL_LIB_ROOT="/home/james/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/james/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/james/perl5"; export PERL_MM_OPT;
+
+VIRTUAL_ENV_DISABLE_PROMPT=1
+source $HOME/.local/venv/bin/activate

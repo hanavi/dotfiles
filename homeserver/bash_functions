@@ -1,0 +1,32 @@
+function weight()
+{
+  echo
+  DATE=$(date "+%Y-%m-%d")
+  WEIGHT=$1
+  FOUND=false
+  while read line
+  do
+    read -ra DATA <<< "$line"
+    if [[ ${DATA[0]} == ${DATE} ]]
+    then
+      echo Duplicate Date Found, Skipping...
+      FOUND=true
+    fi
+  done < ${HOME}/Dropbox/logs/weight.txt
+
+  if ! $FOUND
+  then
+    echo "Updating File"
+    echo "${DATE}    ${WEIGHT}" >> ${HOME}/Dropbox/logs/weight.txt
+  fi
+
+  $HOME/Dropbox/logs/scripts/stats_weight.py
+  $HOME/Dropbox/logs/scripts/generate_html.py > $HOME/Dropbox/logs/scripts/index.html
+
+  scp $HOME/Dropbox/logs/scripts/{index.html,test.css,test.png} \
+      docker:working/docker/httpd/htdocs/personal
+}
+
+
+
+
