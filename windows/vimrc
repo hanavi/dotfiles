@@ -30,6 +30,7 @@ Plug 'vim-syntastic/syntastic'
 "
 "" Fancy Bar at the bottom of the screen
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 "
 "" Python
 Plug 'davidhalter/jedi-vim'
@@ -100,6 +101,7 @@ let g:SuperTabMappingBackward = '<tab>'
 "let g:solarized_diffmode="high"
 "let g:solarized_termcolors=256
 "let g:solarized_degraded=0
+"let g:solarized_termtrans=1
 if has('gui_running')
     set lines=50 columns=100
     colorscheme gruvbox
@@ -204,6 +206,8 @@ syntax on
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+" Set the airline theme
+let g:airline_theme='gruvbox'
 " I don't remember what this does... but it is related to airline
 set hidden
 
