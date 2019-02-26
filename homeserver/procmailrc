@@ -7,7 +7,8 @@ LOGABSTRACT=all
 
 # Local ##########################################################
 :0:
-* ^From: .*homeserver.mom.hanavi.info.*
+* ^From: .*homeserver.mom.hanavi.info.* |\
+  ^From: .*homeserver.home.hanavi.info.*
 .Local/
 
 ################################################################
@@ -179,6 +180,10 @@ LOGABSTRACT=all
 .Misc.Crap/
 
 :0:
+* ^From: .*mdsave\.com.*
+.Misc.Crap/
+
+:0:
 * ^From: .*HP\.com.*
 .Misc.Crap/
 
@@ -234,6 +239,11 @@ LOGABSTRACT=all
 
 # Travel Stuff  ################################################
 #
+
+:0:
+* ^From:.*discoverer\.com.*
+.TravelDocs/
+
 :0:
 * ^From:.*Hutton Hotel.*
 .TravelDocs/
