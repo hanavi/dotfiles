@@ -27,3 +27,4 @@
 */15 *  * * *   /usr/bin/fetchmail > /dev/null
 0    15 * * 0,6 $HOME/scripts/automation/timesheet
 30   18 * * 5   $HOME/scripts/automation/timesheet
+30   03 * * *   $HOME/scripts/backup/bkup_email

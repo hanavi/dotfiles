@@ -22,3 +22,5 @@ alias gmutt='MUTT_CONFIG=gmail /usr/bin/mutt'
 
 alias sa='ssh-agent bash'
 alias saa='ssh-add'
+
+alias gpg='/usr/bin/gpg2'
