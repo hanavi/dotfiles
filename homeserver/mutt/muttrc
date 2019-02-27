@@ -24,7 +24,9 @@ set folder_format="%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f"
 set pager_index_lines   = 10    # number of index lines to show
 set pager_context       = 3     # number of context lines to show
 
-macro index,pager \cb 'urlscan' 'Follow links with urlview'
+# macro index,pager \cb 'urlscan' 'Follow links with urlview'
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
 
 bind index,pager F flag-message
 
@@ -80,5 +82,5 @@ color header cyan black '^Subject:'
 #General
 #source "gpg -d ~/.mutt/passwords.gpg |"  # Retrieve Encrypted Passwords
 source '~/.mutt/gpg2rc'                   # Load PGP/GPG settings
-#source ~/.mutt/muttrc.$MUTT_CONFIG
-source ~/.mutt/muttrc.fetchmail
+source ~/.mutt/muttrc.$MUTT_CONFIG
+#source ~/.mutt/muttrc.fetchmail

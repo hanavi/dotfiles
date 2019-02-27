@@ -1,0 +1,9 @@
+[user]
+	email = hanavi@gmail.com
+	name = James Casey
+[core]
+	editor = /usr/bin/vim
+[push]
+	default = matching
+[commit]
+	gpgsign = true
