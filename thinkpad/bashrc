@@ -15,14 +15,6 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
-# # My function
-# if [[ -z $SSH_AUTH_SOCK ]]
-# then
-#   SA=0
-# else
-#   SA=1
-# fi
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 # HISTCONTROL=ignoreboth
