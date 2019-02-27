@@ -37,6 +37,7 @@ alias l='ls -CF'
 alias l.='ls -d .*'
 
 ## SSH
+alias ssh='TERM=rxvt-256color ssh'
 alias sa='ssh-agent bash'
 alias saa='ssh-add'
 alias hl='ssh homelocal'
