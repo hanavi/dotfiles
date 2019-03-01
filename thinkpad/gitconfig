@@ -10,3 +10,8 @@
 [core]
     excludesfile = ~/.gitignore
 	editor = /usr/bin/vim
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/bin/gpg2
+
