@@ -1,4 +1,3 @@
-
 thinkpad/config/QtProject.conf
 thinkpad/config/Signal/
 thinkpad/config/autostart/
@@ -15,3 +14,4 @@ thinkpad/config/skypeforlinux/
 thinkpad/config/smplayer/
 thinkpad/config/whoozle.github.io/
 thinkpad/config/wireshark/
+thinkpad/config/dunst/dunstrc.bk
