@@ -1,10 +1,17 @@
-config/dconf/
-config/dunst/
-config/htop/
-config/i3/config.new
-config/i3/config.orig
-config/i3/tmp.txt
-config/i3/tmp2.txt
-config/pulse/
-config/skypeforlinux/
 
+thinkpad/config/QtProject.conf
+thinkpad/config/Signal/
+thinkpad/config/autostart/
+thinkpad/config/chromium/
+thinkpad/config/dconf/
+thinkpad/config/htop/
+thinkpad/config/i3/config.new
+thinkpad/config/i3/config.orig
+thinkpad/config/i3/tmp.txt
+thinkpad/config/i3/tmp2.txt
+thinkpad/config/keepassxc/
+thinkpad/config/pulse/
+thinkpad/config/skypeforlinux/
+thinkpad/config/smplayer/
+thinkpad/config/whoozle.github.io/
+thinkpad/config/wireshark/
