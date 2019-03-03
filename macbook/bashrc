@@ -1,8 +1,8 @@
 # .bashrc
 
-export I3_PORTS=/Users/james/files/software/icecube/i3ports
-I3_SVN="http://code.icecube.wisc.edu/svn"
-export I3_SVN
+#export I3_PORTS=/Users/james/files/software/icecube/i3ports
+#I3_SVN="http://code.icecube.wisc.edu/svn"
+#export I3_SVN
 
 export HISTFILESIZE=10000
 
@@ -11,50 +11,27 @@ export HISTFILESIZE=10000
 
 VIRTUAL_ENV_DISABLE_PROMPT=1
 #. ~/.virtualenv/standard/bin/activate
-. ~/.virtualenv/python3/bin/activate
+. ~/.virtualenv/python37/bin/activate
 
 export ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future
 
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+if [ -f ~/.bash_aliases ]; then
+       source ~/.bash_aliases
+fi
 
-# some more ls aliases
-alias ls='ls -G'
-alias ll='ls -alhF'
-alias lh='ls -alh'
-alias la='ls -A'
-alias l='ls -CF'
-alias vim='/usr/local/bin/vim'
-
-alias hl="ssh homelocal"
-alias ssa="ssh-agent bash"
-alias ssb="ssh-add"
-alias cm='hl scripts/check_mail.sh'
-
-
-alias pylab='ipython3 --pylab'
-alias octave='/usr/local/octave/3.8.0/bin/octave-cli'
-alias gfull='gvim "+NERDTree" "+set columns=165" "+TagbarToggle"'
-
-alias yt='youtube-dl -f "mp4[height<480]"'
-
-alias mt='sshfs torrentserver:/media/spare/torrent/deluge /Users/james/remote/tserver'
-alias m1='sshfs homelocal:/media/disk1/files /Users/james/remote/data1'
-alias m2='sshfs homelocal:/media/disk2/files /Users/james/remote/data2'
-alias mh='sshfs homelocal:/mnt/raid/files/james /Users/james/remote/mnt'
-alias um1='umount /Users/james/remote/data1'
-alias um2='umount /Users/james/remote/data2'
-alias umt='umount /Users/james/remote/tserver'
-
-alias weather='curl http://wttr.in/'
+# Still thinking about this
+if [ -f ~/.bash_functions ]; then
+       source ~/.bash_functions
+fi
 
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/prog/github/scripts/bin:$PATH
 
-#export PYTHONPATH=/usr/local/lib/python2.7:$PYTHONPATH
 export HOMEBREW_GITHUB_API_TOKEN=905f3e859098e65f2b961fbad8d99898ee08481c
-#905f3e859098e65f2b961fbad8d99898ee08481c
 export EDITOR=/usr/local/bin/vim
+
+#export PYTHONPATH=/usr/local/lib/python2.7:$PYTHONPATH
+
 
 eval $(thefuck --alias)

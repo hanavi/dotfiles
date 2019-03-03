@@ -24,7 +24,7 @@ Plug 'mattn/webapi-vim'
 Plug 'christoomey/vim-quicklink'
 
 " This helps deal with some syntax stuff
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 
 " Fancy Bar at the bottom of the screen
 Plug 'vim-airline/vim-airline'
@@ -32,9 +32,9 @@ Plug 'vim-airline/vim-airline'
 " Python
 Plug 'davidhalter/jedi-vim'
 Plug 'tmhedberg/SimpylFold'
-" Plug 'vim-scripts/indentpython.vim'
+Plug 'nvie/vim-flake8'
+Plug 'vim-scripts/indentpython.vim'
 Plug 'hynek/vim-python-pep8-indent'
-"Plug 'nvie/vim-flake8' " Not installed...
 
 " Javascript
 Plug 'jelera/vim-javascript-syntax'
@@ -80,8 +80,12 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 
-" Hardmode... just for the fun of it...
+" Harmode... just for the fun of it...
 Plug 'wikitopian/hardmode'
+
+
+" Return to last edit position
+Plug 'farmergreg/vim-lastplace'
 
 call plug#end()
 "------------------------------------------------------------------------------
@@ -116,7 +120,7 @@ set mouse=a
 
 " Set up the line numbering
 "set number
-set rnu
+set nu rnu
 
 " Cursor placement
 set scrolloff=5
@@ -126,10 +130,10 @@ set fillchars=vert:│
 set list listchars=tab:→\ ,trail:·,precedes:«,extends:»
 set wildmenu wildmode=longest,list,full
 set completeopt=menuone,longest
-"let mapleader = "\<Space>"
+let mapleader = "\<Space>"
 
 " Toggle paste mode
-nmap <unique> <silent> <leader>p :set paste!<CR>
+"nmap <unique> <silent> <leader>p :set paste!<CR>
 
 " Strip trailing whitespace (and save cursor position) when saving files
 fun! <SID>StripTrailingWhitespaces()
@@ -143,6 +147,15 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 au BufNewFile *.py 0r ~/.vim/templates/skeleton.py
 au BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
 au BufNewFile *.sh :norm 2j
+
+au BufNewFile Dropbox/logs/*.md 0r ~/.vim/templates/logs.md
+au BufNewFile Dropbox/logs/*.md :norm 3jA
+au BufNewFile Dropbox/logs/*.md :r !date "+\%F"
+au BufNewFile Dropbox/logs/*.md :norm kJG
+
+
+"au FileType *.tex nmap <leader>k :!make<CR>
+nmap <leader>mk :!make<CR>
 
 " Split line at cursor
 "imap <C-c> <CR><Esc>O
@@ -184,44 +197,37 @@ set foldlevel=99
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 
-" NERDTree Settings
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
-" This is much faster than the default on OSX (and better?)
-let g:syntastic_python_checkers = ['pylama']
-
 call togglebg#map("<F5>")
 
 let python_highlight_all=1
 
 function FixCommas()
-  %s/,/, /g
-  %s/, */, /g
+  :silent! %s/,/, /g
+  :silent! %s/, */, /g
 endfunction
+
 nmap <leader>fc :call FixCommas()<CR>
 
-nnoremap <leader>ns :r ~/.vim/templates/beamer/slide.txt<CR>
+function StartTimeStamp()
+  :normal 0I**StartTime**
+  :r! date
+  :normal kJo
+endfunction
+
+function EndTimeStamp()
+  :normal 0I**EndTime**
+  :r! date
+  :normal kJo
+endfunction
+
+nmap <leader>s :call StartTimeStamp()<CR>
+nmap <leader>e :call EndTimeStamp()<CR>
+
 function Lipsum()
   :r! lipsum
 endfunction
 
 nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
-
-imap <leader>' ''<ESC>i
-imap <leader>" ""<ESC>i
-imap <leader>( ()<ESC>i
-imap <leader>{ {}<ESC>i
-imap <leader>[ []<ESC>i
-
-" allows cursor change in tmux mode
-if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
+nnoremap <leader>ns :r ~/.vim/templates/beamer/slide.txt<CR>
 
 inoremap jk <esc>
