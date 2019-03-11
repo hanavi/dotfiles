@@ -175,3 +175,6 @@ else
      start_agent;
 fi
 
+# test "$TERM" = "putty" && export LC_ALL=C || export LC_ALL=en_US.utf8
+# export TERM=xterm
+

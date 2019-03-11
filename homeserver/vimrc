@@ -177,6 +177,12 @@ set hlsearch
 
 syntax on
 
+imap <leader>' ''<ESC>i
+imap <leader>" ""<ESC>i
+imap <leader>( ()<ESC>i
+imap <leader>{ {<CR>}<ESC>ko
+imap <leader>[ []<ESC>i
+
 "set tags=./tags;/
 
 "airline
