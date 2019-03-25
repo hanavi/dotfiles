@@ -29,4 +29,13 @@ function weight()
 
 
 
+function journal()
+{
+  DATE=$(date "+%Y-%m-%d")
+  JOURNAL_DIR=${HOME}/Dropbox/logs/daily
+  FILENAME=${JOURNAL_DIR}/${DATE}.md
+  echo Opening file $FILENAME
 
+  $EDITOR ${FILENAME}
+
+}

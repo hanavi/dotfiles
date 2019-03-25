@@ -63,37 +63,34 @@ LOGABSTRACT=all
 
 # IceCube  #######################################################
 
-:0:
-* ^Subject: \[icecube-c\] South Pole On-Ice.*
-.WO\ Pole\ Reports/
 
 :0:
 * ^Subject: .*icecube-c.*
-.Lists.IceCube-C/
+.Lists.IceCube/
 
 :0:
 * ^Subject: .*Icecube-p.*
-.Lists.IceCube-P/
+.Lists.IceCube/
 
 :0:
 * ^Subject: .*Run_coordination.*
-.Lists.Run\ Coordination/
+.Lists.IceCube/
 
 :0:
 * ^To: .*jcasey4@wisc.edu.*
-.Lists.UW/
+.Lists.IceCube/
 
 :0:
 * ^Subject:.*\[everyone\].*
-.Lists.Everyone/
+.Lists.IceCube/
 
 :0:
 * ^Subject: .*\[Transients\].*
-.Lists.GRBAWG/
+.Lists.IceCube/
 
 :0:
 * ^Subject: .*\[Nu-sources\].*
-.Lists.GRBAWG/
+.Lists.IceCube/
 
 ##################################################################
 
@@ -125,17 +122,6 @@ LOGABSTRACT=all
 
 ##################################################################
 
-# Old Antarcitca Lists  ##########################################
-
-:0:
-* ^From: .*chc-intercontinental-flight-group@listserv.usap.gov
-.AntarcticaFlights/
-
-:0:
-* ^From: .*mcm-intracontinental-flights@listserv.usap.gov
-.AntarcticaFlights/
-
-##################################################################
 
 # Social Emails  ###############################################
 
@@ -175,6 +161,18 @@ LOGABSTRACT=all
 
 # Spam-ish  ####################################################
 #
+:0:
+* ^From:.*Pandora.*
+.Misc.Crap/
+
+:0:
+* ^From:.*GitKraken.*
+.Misc.Crap/
+
+:0:
+* ^From:.*Coursera.*
+.Misc.Crap/
+
 :0:
 * ^From:.*microsoft.com.*
 .Misc.Crap/
@@ -297,7 +295,7 @@ LOGABSTRACT=all
 .TravelDocs/
 
 :0:
-* ^From:.*Emerates.*
+* ^From:.*Emirates.*
 .TravelDocs/
 
 :0:
@@ -313,8 +311,12 @@ LOGABSTRACT=all
 #.GaTech.Pace/
 
 :0:
+* ^From:.*PhD2CC.*
+.GaTech/
+
+:0:
 * ^Subject: \[pace-.*
-.GaTech.Pace/
+.GaTech/
 
 :0:
 * ^Subject:.*\[Georgia Tech\].*
@@ -332,9 +334,17 @@ LOGABSTRACT=all
 * ^From:.*gatech@csm.symplicity.com.*
 .GaTech/
 
+:0:
+* ^From:.*presidentsnewletter@gatech.edu.*
+.GaTech/
+
 ################################################################
 
 # Bills  #######################################################
+
+:0:
+* ^From:.*Google Play.*
+.Bills/
 
 :0:
 * ^From:.*Capital One.*
@@ -342,6 +352,10 @@ LOGABSTRACT=all
 
 :0:
 * ^From:.*Navient.*
+.Bills/
+
+:0:
+* ^From:.*bestbuycard.*
 .Bills/
 
 :0:
@@ -368,9 +382,29 @@ LOGABSTRACT=all
 * ^From:.*@aps.org.*
 .Science/
 
+:0:
+* ^From:.*ResearchGate.*
+.Science/
+
 ################################################################
 
 # Misc  ########################################################
+
+:0:
+* ^From:.*messages.squareup.com.*
+.Misc.Crap/
+
+:0:
+* ^From:.*hmcpl.org.*
+.Misc.Crap/
+
+:0:
+* ^From:.*OpenTable.*
+.Misc.Crap/
+
+:0:
+* ^From:.*Landry.*
+.Misc.Crap/
 
 :0:
 * ^From:.*The Juice Box.*

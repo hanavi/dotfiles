@@ -125,7 +125,8 @@ PERL_MB_OPT="--install_base \"/home/james/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/james/perl5"; export PERL_MM_OPT;
 
 VIRTUAL_ENV_DISABLE_PROMPT=1
-source $HOME/.local/venv/bin/activate
+# source $HOME/.local/venv/bin/activate
+source $HOME/.local/python3.7.2/venv/bin/activate
 
 
 SSH_ENV="$HOME/.ssh/environment"
@@ -174,6 +175,8 @@ if [ -f "${SSH_ENV}" ]; then
 else
      start_agent;
 fi
+
+export EDITOR=vim
 
 # test "$TERM" = "putty" && export LC_ALL=C || export LC_ALL=en_US.utf8
 # export TERM=xterm
