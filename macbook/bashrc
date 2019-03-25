@@ -34,4 +34,16 @@ export EDITOR=/usr/local/bin/vim
 #export PYTHONPATH=/usr/local/lib/python2.7:$PYTHONPATH
 
 
+function offer_tmux
+{
+    read -p "Start Tmux ? [y/N] " start_tmux
+
+    if  [[ $start_tmux == "y" || $start_tmux == "Y" ]]
+    then
+        tmux
+    fi
+}
+[[ -z  $TMUX  ]] && offer_tmux
+
+
 eval $(thefuck --alias)

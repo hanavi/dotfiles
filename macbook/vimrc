@@ -2,8 +2,8 @@
 " These dunder strings will be replaced by fresh with the
 " paths to the active interpreters when fresh is run.  This
 " makes it work even when different pyenvs are set up.
-let g:python_host_prog = '__PYTHON2__'
-let g:python3_host_prog = '__PYTHON3__'
+" let g:python_host_prog = '__PYTHON2__'
+" let g:python3_host_prog = '__PYTHON3__'
 
 " Set up a better encoding
 set encoding=utf-8
@@ -133,7 +133,7 @@ set completeopt=menuone,longest
 let mapleader = "\<Space>"
 
 " Toggle paste mode
-"nmap <unique> <silent> <leader>p :set paste!<CR>
+nmap <unique> <silent> <leader>p :set paste!<CR>
 
 " Strip trailing whitespace (and save cursor position) when saving files
 fun! <SID>StripTrailingWhitespaces()
@@ -238,11 +238,11 @@ endfunction
 nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 nnoremap <leader>ns :r ~/.vim/templates/beamer/slide.txt<CR>
 
-" imap <leader>' ''<ESC>i
-" imap <leader>" ""<ESC>i
-" imap <leader>( ()<ESC>i
-" imap <leader>{ {}<ESC>i
-" imap <leader>[ []<ESC>i
+imap <leader>' ''<ESC>i
+imap <leader>" ""<ESC>i
+imap <leader>( ()<ESC>i
+imap <leader>{ {<CR>}<ESC>ko
+imap <leader>[ []<ESC>i
 
 " allows cursor change in tmux mode
 if exists('$TMUX')
