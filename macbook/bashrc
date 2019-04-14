@@ -33,6 +33,10 @@ export EDITOR=/usr/local/bin/vim
 
 #export PYTHONPATH=/usr/local/lib/python2.7:$PYTHONPATH
 
+export GPG_TTY=$(tty)
+if [[ -n "$SSH_CONNECTION" || -n "$TMUX" ]] ;then
+    export PINENTRY_USER_DATA="USE_CURSES=1"
+fi
 
 function offer_tmux
 {
@@ -47,3 +51,5 @@ function offer_tmux
 
 
 eval $(thefuck --alias)
+
+source $HOME/.homebrew_token

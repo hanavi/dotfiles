@@ -197,13 +197,13 @@ set foldlevel=99
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 
-" " NERDTree Settings
-" let g:NERDTreeDirArrows = 1
-" let g:NERDTreeDirArrowExpandable = '▸'
-" let g:NERDTreeDirArrowCollapsible = '▾'
-"
-" " This is much faster than the default on OSX (and better?)
-" let g:syntastic_python_checkers = ['pylama']
+" NERDTree Settings
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" This is much faster than the default on OSX (and better?)
+let g:syntastic_python_checkers = ['pylama']
 
 call togglebg#map("<F5>")
 
