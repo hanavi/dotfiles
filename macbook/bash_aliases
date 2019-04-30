@@ -1,0 +1,54 @@
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+# some more ls aliases
+alias ls='ls -G'
+alias ll='ls -alF'
+alias lh='ls -alh'
+alias la='ls -A'
+alias l='ls -alhF'
+alias vim='/usr/local/bin/vim'
+
+alias hl="ssh homelocal"
+alias ssa="ssh-add"
+alias cm='hl scripts/check_mail.sh'
+
+
+alias ipython=ipython3
+alias pylab='ipython3 --pylab'
+alias octave='/usr/local/octave/3.8.0/bin/octave-cli'
+alias gfull='gvim "+NERDTree" "+set columns=165" "+TagbarToggle"'
+
+
+alias mt='sshfs torrentserver:/media/spare/torrent/deluge /Users/james/remote/tserver'
+alias umt='umount /Users/james/remote/tserver'
+
+alias mh='sshfs homelocal:/mnt/raid/hosts/deluge /Users/james/remote/deluge'
+alias umh='umount /Users/james/remote/deluge'
+
+alias mm="mount homeserver:/srv/media $HOME/remote/media"
+alias um="umount $HOME/remote/media"
+
+alias vlc="open -a VLC"
+
+alias ta='tmux attach'
+alias tl='tmux ls'
+
+alias weather2='curl http://wttr.in/'
+
+
+alias eb="vim ~/.bash_aliases"
+alias sb="source ~/.bash_aliases"
+
+alias s="cd $HOME/remote/media/Shows"
+alias m="cd $HOME/remote/media/Movies"
+alias y="cd $HOME/remote/media/youtube"
+alias sc="cd $HOME/Dropbox/scripts"
+
+alias py="python"
+
+alias fb="open https://www.facebook.com"
+alias yt='open https://www.youtube.com'
+alias h="open https://hangouts.google.com"
+alias gp="open https://www.gigaparts.com/sweepstakes"
+alias vivint="open https://www.vivintsky.com/app/#/account"

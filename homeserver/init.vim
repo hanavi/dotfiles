@@ -13,6 +13,7 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'christoomey/vim-quicklink'
 Plug 'mattn/webapi-vim'
+" Plug 'christoomey/vim-quicklink'
 
 " This helps deal with some syntax stuff
 Plug 'vim-syntastic/syntastic'
@@ -128,8 +129,6 @@ set list listchars=tab:→\ ,trail:·,precedes:«,extends:»
 set wildmenu wildmode=longest,list,full
 set completeopt=menuone,longest
 
-" Toggle paste mode
-"nmap <unique> <silent> <leader>p :set paste!<CR>
 
 " Strip trailing whitespace (and save cursor position) when saving files
 fun! <SID>StripTrailingWhitespaces()
@@ -138,7 +137,6 @@ fun! <SID>StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 augroup new_python_file
@@ -205,6 +203,14 @@ nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 
 call togglebg#map("<F5>")
+" NERDTree Settings
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" This is much faster than the default on OSX (and better?)
+let g:syntastic_python_checkers = ['pylama']
+
 
 let python_highlight_all=1
 
@@ -217,22 +223,23 @@ function! FixCommas()
   :silent! %s/,/, /g
   :silent! %s/, */, /g
 endfunction
+
 nnoremap <leader>fc :call FixCommas()<CR>
 
 function! StartTimeStamp()
-  :normal 0I**StartTime**
+  :normal! 0I**StartTime**
   :r! date
-  :normal kJo
+  :normal! kJo
 endfunction
 
 function! EndTimeStamp()
-  :normal 0I**EndTime**
+  :normal! 0I**EndTime**
   :r! date
-  :normal kJo
+  :normal! kJo
 endfunction
 
-noremap <leader>s :call StartTimeStamp()<CR>
-noremap <leader>e :call EndTimeStamp()<CR>
+nnoremap <leader>s :call StartTimeStamp()<CR>
+nnoremap <leader>e :call EndTimeStamp()<CR>
 
 function! Lipsum()
   :r! lipsum
@@ -297,7 +304,11 @@ endfunction
 nnoremap <silent> <leader>fd :call ListToDict()<CR>
 
 
-
-
-
-
+" allows cursor change in tmux mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif

@@ -1,14 +1,6 @@
-" Python interpreter setup
-" These dunder strings will be replaced by fresh with the
-" paths to the active interpreters when fresh is run.  This
-" makes it work even when different pyenvs are set up.
-" let g:python_host_prog = '__PYTHON2__'
-" let g:python3_host_prog = '__PYTHON3__'
-
 " Set up a better encoding
 set encoding=utf-8
 
-"------------------------------------------------------------------------------
 " Plugins
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -24,7 +16,7 @@ Plug 'mattn/webapi-vim'
 Plug 'christoomey/vim-quicklink'
 
 " This helps deal with some syntax stuff
-" Plug 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 
 " Fancy Bar at the bottom of the screen
 Plug 'vim-airline/vim-airline'
@@ -47,9 +39,6 @@ Plug 'godlygeek/tabular'
 
 " LaTeX
 Plug 'LaTeX-Box-Team/LaTeX-Box'
-
-" Go
-Plug 'fatih/vim-go'
 
 " Git I think
 Plug 'tpope/vim-fugitive'
@@ -89,7 +78,16 @@ Plug 'farmergreg/vim-lastplace'
 
 call plug#end()
 "------------------------------------------------------------------------------
+let mapleader = "\<Space>"
 
+let g:syntastic_python_checkers = ['pylama']
+" systastic settings
+let g:syntastic_mode_map = {
+        \ "mode": "passive",
+        \ "active_filetypes": [],
+        \ "passive_filetypes": [] }
+
+nnoremap <silent> <leader>l :SyntasticCheck<CR>
 
 "--Color Scheme----------------------------------------------------------------
 let g:solarized_diffmode="high"
@@ -130,10 +128,7 @@ set fillchars=vert:│
 set list listchars=tab:→\ ,trail:·,precedes:«,extends:»
 set wildmenu wildmode=longest,list,full
 set completeopt=menuone,longest
-let mapleader = "\<Space>"
 
-" Toggle paste mode
-nmap <unique> <silent> <leader>p :set paste!<CR>
 
 " Strip trailing whitespace (and save cursor position) when saving files
 fun! <SID>StripTrailingWhitespaces()
@@ -144,29 +139,30 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
-au BufNewFile *.py 0r ~/.vim/templates/skeleton.py
-au BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
-au BufNewFile *.sh :norm 2j
+augroup new_python_file
+  autocmd!
+  au BufNewFile *.py 0r ~/.vim/templates/skeleton.py
+augroup END
 
-au BufNewFile Dropbox/logs/*.md 0r ~/.vim/templates/logs.md
-au BufNewFile Dropbox/logs/*.md :norm 3jA
-au BufNewFile Dropbox/logs/*.md :r !date "+\%F"
-au BufNewFile Dropbox/logs/*.md :norm kJG
+augroup new_shell_file
+  autocmd!
+  au BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+  au BufNewFile *.sh :norm 2j
+augroup END
+
+
+augroup dropbox_logs
+  autocmd!
+  au BufNewFile Dropbox/logs/*.md 0r ~/.vim/templates/logs.md
+  au BufNewFile Dropbox/logs/*.md :norm 3jA
+  au BufNewFile Dropbox/logs/*.md :r !date "+\%F"
+  au BufNewFile Dropbox/logs/*.md :norm kJG
+augroup END
 
 
 "au FileType *.tex nmap <leader>k :!make<CR>
-nmap <leader>mk :!make<CR>
+nnoremap <leader>mk :!make<CR>
 
-" Split line at cursor
-"imap <C-c> <CR><Esc>O
-
-" Location list
-"nmap <unique> <silent> <leader>lo :lopen<CR>
-"nmap <unique> <silent> <leader>lc :lclose<CR>
-"nmap <unique> <silent> <leader>ll :ll<CR>
-"nmap <unique> <silent> <leader>ln :lnext<CR>
-"nmap <unique> <silent> <leader>lp :lprev<CR>
-"nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
 " Original
 " set textwidth=79
@@ -180,6 +176,15 @@ set autoindent
 set hlsearch
 
 syntax on
+
+inoremap ' ''<ESC>i
+inoremap " ""<ESC>i
+inoremap ( ()<ESC>i
+inoremap { {}<ESC>i
+inoremap [ []<ESC>i
+
+nnoremap <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "set tags=./tags;/
 
@@ -197,6 +202,7 @@ set foldlevel=99
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 
+call togglebg#map("<F5>")
 " NERDTree Settings
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
@@ -205,44 +211,98 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 " This is much faster than the default on OSX (and better?)
 let g:syntastic_python_checkers = ['pylama']
 
-call togglebg#map("<F5>")
 
 let python_highlight_all=1
 
-function FixCommas()
+function! BlockMove()
+  :execute ":normal! Imv \"\<esc>A\"\<esc>0Wv$hy$A \<esc>080lp"
+endfunction
+vnoremap <leader>mb :call BlockMove()<CR>
+
+function! FixCommas()
   :silent! %s/,/, /g
   :silent! %s/, */, /g
 endfunction
 
-nmap <leader>fc :call FixCommas()<CR>
+nnoremap <leader>fc :call FixCommas()<CR>
 
-function StartTimeStamp()
-  :normal 0I**StartTime**
+function! StartTimeStamp()
+  :normal! 0I**StartTime**
   :r! date
-  :normal kJo
+  :normal! kJo
 endfunction
 
-function EndTimeStamp()
-  :normal 0I**EndTime**
+function! EndTimeStamp()
+  :normal! 0I**EndTime**
   :r! date
-  :normal kJo
+  :normal! kJo
 endfunction
 
-nmap <leader>s :call StartTimeStamp()<CR>
-nmap <leader>e :call EndTimeStamp()<CR>
+nnoremap <leader>s :call StartTimeStamp()<CR>
+nnoremap <leader>e :call EndTimeStamp()<CR>
 
-function Lipsum()
+function! Lipsum()
   :r! lipsum
 endfunction
 
 nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 nnoremap <leader>ns :r ~/.vim/templates/beamer/slide.txt<CR>
 
-imap <leader>' ''<ESC>i
-imap <leader>" ""<ESC>i
-imap <leader>( ()<ESC>i
-imap <leader>{ {<CR>}<ESC>ko
-imap <leader>[ []<ESC>i
+inoremap jk <esc>
+
+
+function! GetArgs()
+  ":normal mayiw/def "f(v/)y'ag_p
+  :normal maK2jf(v/)y:bdg_p
+endfunction
+
+nnoremap <silent> <leader>ff :call GetArgs()<CR>
+
+
+function! SplitArgs()
+  :normal! yi)
+  let c = len(split(@"))
+  :normal! F(wi
+  let i = 1
+  while i < c
+    :normal! f,wi
+    let i += 1
+  endwhile
+  :normal! f)i
+endfunction
+
+nnoremap <silent> <leader>fs :call SplitArgs()<CR>
+
+
+function! ListToDictAlt()
+  :normal! yi)
+  let c = len(split(@"))
+  :normal! F(r{wi
+  execute ":normal! wyiwea = \"\"\"\<esc>f,a\<CR>"
+  let i = 0
+  while i < c
+    execute ":normal! wyiwea = \"\"\"\<esc>f,a\<CR>"
+    let i += 1
+  endwhile
+  execute ":normal! f)i\<CR>\<esc>"
+  :normal <<<<r}
+endfunction
+
+function! ListToDict()
+  :normal! yi)
+  let c = len(split(@"))
+  :normal! F(r{wi
+  let i = 0
+  while i < c
+    execute ":normal! wyiwi\"\<esc>ea\": \"\<esc>f,a\<CR>"
+    let i += 1
+  endwhile
+  execute ":normal! f)i\<CR>\<esc>"
+  :normal! <<<<r}
+endfunction
+
+nnoremap <silent> <leader>fd :call ListToDict()<CR>
+
 
 " allows cursor change in tmux mode
 if exists('$TMUX')
@@ -252,5 +312,3 @@ else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-
-inoremap jk <esc>
