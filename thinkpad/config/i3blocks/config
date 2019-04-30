@@ -8,7 +8,6 @@ interval=once
 
 [checkmail]
 label=📧
-command=$HOME/.scripts/statusbar/checkmail
 interval=300
 
 [extip]

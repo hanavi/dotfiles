@@ -5,12 +5,8 @@ alias pylab='ipython --pylab'
 
 
 # NFS
-alias m1="mount /home/james/remote/disk1"
-alias um1="umount /home/james/remote/disk1"
-alias m2="mount /home/james/remote/disk2"
-alias um2="umount /home/james/remote/disk2"
-alias m3="mount /home/james/remote/disk3"
-alias um3="umount /home/james/remote/disk3"
+alias mm="mount /home/james/remote/media"
+alias um="umount /home/james/remote/media"
 #alias m4="mount /home/james/remote/disk4"
 #alias um4="umount /home/james/remote/disk4"
 alias mt="mount /home/james/remote/tserver"
@@ -33,7 +29,7 @@ alias umh="fusermount -u /home/james/remote/homelocal"
 ## ls stuff
 alias ll='ls -l'
 alias la='ls -A'
-alias l='ls -CF'
+alias l='ls -alhF'
 alias l.='ls -d .*'
 
 ## SSH
@@ -41,10 +37,11 @@ alias ssh='TERM=rxvt-256color ssh'
 alias sa='ssh-agent bash'
 alias saa='ssh-add'
 alias hl='ssh homelocal'
+alias hr='ssh homeremote'
 
 ## Misc
 alias cm='hl "./scripts/check_mail.sh" 2>/dev/null'
-alias wx='curl -s http://wttr.in/hsv'
+# alias wx='curl -s http://wttr.in/hsv'
 alias ta='tmux attach'
 
 ## Email
@@ -52,12 +49,23 @@ alias mutt="MUTT_CONFIG=fetchmail /usr/bin/mutt"
 alias gmutt="MUTT_CONFIG=gmail /usr/bin/mutt"
 
 
-## Testing
-alias pm='smplayer ~/remote/disk1/youtube/music/*'
 
 ## This are old... should I keep them?
 alias resume='cd ~/Dropbox/Documents/Professional/resume_latex'
-alias yt='~/Dropbox/scripts/youtube/youtube_link.py'
+alias ytlink='~/Dropbox/scripts/youtube/youtube_link.py'
 alias tvim="tmux new-session \; split-window -l 10"
 alias vn="vim +NERDTree"
 alias m='mplayer -ontop -geometry 600x450-100+150'
+alias pm='sudo /home/james/scripts/pmode'
+
+alias m='cd $HOME/remote/media/Movies'
+alias s='cd $HOME/remote/media/Shows'
+alias y='cd $HOME/remote/media/youtube'
+alias a='cd $HOME/remote/media/Music'
+
+alias eb='vim $HOME/.bash_aliases'
+alias sb='source $HOME/.bash_aliases'
+
+alias f='firefox https://www.facebook.com'
+alias h='firefox https://hangouts.google.com'
+alias yt='firefox https://www.youtube.com'

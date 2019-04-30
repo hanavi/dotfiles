@@ -5,12 +5,13 @@
     indicate_hidden = yes
     shrink = yes
     transparency = 40
-    notification_height = 0
+    notification_height = 50
     separator_height = 2
-    padding = 0
-    horizontal_padding = 8
-    frame_width = 3
-    frame_color = "#282828"
+    padding = 30
+    horizontal_padding = 30
+    frame_width = 2
+    corner_radius = 10
+    # frame_color = "#282828"
     # frame_color = "#00ff00"
 
     # Define a color for the separator.
@@ -28,6 +29,7 @@
     font = Monospace 12
     line_height = 0
     markup = full
+    plane_text = no
 
     # The format of the message.  Possible variables are:
     #   %a  appname
@@ -39,7 +41,8 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "%s\n%b"
+    # format = "<b>%s</b>\n%b"
+    format = "%b"
 
     alignment = left
     show_age_threshold = 60
@@ -51,7 +54,7 @@
     show_indicators = no
     icon_position = left
     max_icon_size = 120
-    #icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:/usr/share/icons/Adwaita/256x256/status/
+    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:/usr/share/icons/Adwaita/256x256/status/
     sticky_history = yes
     history_length = 20
     dmenu = /usr/bin/dmenu -p dunst:
@@ -85,10 +88,11 @@
 
 [urgency_normal]
     # background = "#458588"
-    background = "#ccccff"
+    background = "#000000"
     # foreground = "#ebdbb2"
-    foreground = "#000000"
-    timeout = 10
+    foreground = "#00ffff"
+    frame_color = "#ccffff"
+    # timeout = 10
 
 [urgency_critical]
     background = "#cc2421"
@@ -124,9 +128,13 @@
     # frame_color = "#fabd2f"
 
 
-#[espeak]
-#    summary = "*"
-#    script = dunst_espeak.sh
+[weather]
+    appname = "weather"
+    set_transient = no
+    background = "#000000"
+    foreground = "#00ffff"
+    timeout = 0
+    # icon =
 
 #[script-test]
 #    summary = "*script*"

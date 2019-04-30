@@ -143,6 +143,6 @@ fi
 [ $TERM == "st-256color" ] && transset-df --id "$WINDOWID" .75 >/dev/null
 
 
-if [[ ! $TERM =~ screen && $TERM != rxvt-unicode-256color ]]; then
-    exec tmux
-fi
+# if [[ ! $TERM =~ screen && $TERM != rxvt-unicode-256color ]]; then
+#     exec tmux
+# fi
