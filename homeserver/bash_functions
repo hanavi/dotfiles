@@ -39,3 +39,13 @@ function journal()
   $EDITOR ${FILENAME}
 
 }
+
+function search()
+{
+  find . \
+    | sed -nE 's/.*([sS][0-9]+[eE][0-9]+).*/\1/p' \
+    | tr 'se' 'SE' \
+    | sort \
+    | uniq \
+    | tail -n 1
+}

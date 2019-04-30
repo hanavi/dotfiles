@@ -9,11 +9,25 @@ set send_charset="utf-8:iso-8859-2:iso-8859-1"
 charset-hook ks_c_5601-1987 euc-kr
 
 #set sidebar_width=30
-set sidebar_visible=no
+# set sidebar_visible=yes
 #bind index b sidebar-toggle
 #bind index J sidebar-next
 #bind index K sidebar-prev
 #bind index ) sidebar-open
+## Sidebar mappings
+set sidebar_visible = no
+set sidebar_width = 20
+set sidebar_short_path = yes
+set sidebar_next_new_wrap = yes
+set mail_check_stats
+set sidebar_format = '%B%?F? [%F]?%* %?N?%N/? %?S?%S?'
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+bind index,pager \Co sidebar-open
+bind index,pager \Cp sidebar-prev-new
+bind index,pager \Cn sidebar-next-new
+bind index,pager B sidebar-toggle-visible
+
 
 hdr_order Date To From Subject
 #hdr_order From: Subject: From Date:
@@ -42,16 +56,21 @@ bind index g last-entry
 set pager_stop
 
 
-## Default index colors:
-#color index yellow default '.*'
-#color index_author red default '.*'
-#color index_number blue default
-#color index_subject cyan default '.*'
-#
-## For new mail:
-#color index brightyellow black "~N"
-#color index_author brightred black "~N"
-#color index_subject brightcyan black "~N"
+# Default index colors:
+color index yellow default '.*'
+color index_author red default '.*'
+color index_number blue default
+color index_subject cyan default '.*'
+
+# For new mail:
+color index brightyellow black "~N"
+color index_author brightred black "~N"
+color index_subject brightcyan black "~N"
+
+color sidebar_highlight red default
+color sidebar_divider brightblack black
+color sidebar_flagged red black
+color sidebar_new green black
 
 
 # Color Scheme

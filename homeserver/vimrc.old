@@ -77,7 +77,7 @@ Plug 'farmergreg/vim-lastplace'
 
 call plug#end()
 "------------------------------------------------------------------------------
-"let mapleader = "\<Space>"
+let mapleader = "\<Space>"
 
 let g:syntastic_python_checkers = ['pylama']
 " systastic settings
@@ -177,11 +177,14 @@ set hlsearch
 
 syntax on
 
-imap <leader>' ''<ESC>i
-imap <leader>" ""<ESC>i
-imap <leader>( ()<ESC>i
-imap <leader>{ {<CR>}<ESC>ko
-imap <leader>[ []<ESC>i
+" imap <leader>' ''<ESC>i
+" imap <leader>" ""<ESC>i
+" imap <leader>( ()<ESC>i
+" imap <leader>{ {<CR>}<ESC>ko
+" imap <leader>[ []<ESC>i
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "set tags=./tags;/
 
@@ -203,20 +206,26 @@ call togglebg#map("<F5>")
 
 let python_highlight_all=1
 
-function FixCommas()
+function! BlockMove()
+  :normal Imv "jkA"jk0Wv$hy$A jkp
+endfunction
+
+vmap <leader>mb :call BlockMove()<CR>
+
+function! FixCommas()
   :silent! %s/,/, /g
   :silent! %s/, */, /g
 endfunction
 
 nmap <leader>fc :call FixCommas()<CR>
 
-function StartTimeStamp()
+function! StartTimeStamp()
   :normal 0I**StartTime**
   :r! date
   :normal kJo
 endfunction
 
-function EndTimeStamp()
+function! EndTimeStamp()
   :normal 0I**EndTime**
   :r! date
   :normal kJo
@@ -225,7 +234,7 @@ endfunction
 nmap <leader>s :call StartTimeStamp()<CR>
 nmap <leader>e :call EndTimeStamp()<CR>
 
-function Lipsum()
+function! Lipsum()
   :r! lipsum
 endfunction
 
@@ -233,3 +242,4 @@ nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 nnoremap <leader>ns :r ~/.vim/templates/beamer/slide.txt<CR>
 
 inoremap jk <esc>
+
