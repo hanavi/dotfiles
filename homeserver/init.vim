@@ -20,6 +20,7 @@ Plug 'vim-syntastic/syntastic'
 
 " Fancy Bar at the bottom of the screen
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Python
 Plug 'davidhalter/jedi-vim'
@@ -106,7 +107,7 @@ endif
 
 " Set that fancy color lign at the end of 80 char
 "set colorcolumn=+1
-set colorcolumn=80
+set colorcolumn=80,100,120
 hi ColorColumn guibg=darkred ctermbg=darkred
 "------------------------------------------------------------------------------
 
@@ -194,6 +195,8 @@ let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+let g:airline_theme = 'dark'
+
 "let g:netrw_browsex_viewer = 'firefox'
 
 " Enable folding
@@ -201,6 +204,8 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 set foldlevel=99
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
+
+nnoremap <leader>p :set paste!<CR>
 
 call togglebg#map("<F5>")
 " NERDTree Settings
