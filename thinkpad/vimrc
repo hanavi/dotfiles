@@ -131,6 +131,7 @@ set list listchars=tab:→\ ,trail:·,precedes:«,extends:»
 set wildmenu wildmode=longest,list,full
 set completeopt=menuone,longest
 let mapleader = "\<Space>"
+set complete=.,w,b,u,t,i,kspell
 
 " Toggle paste mode
 "nmap <unique> <silent> <leader>p :set paste!<CR>
@@ -155,20 +156,6 @@ au BufNewFile Dropbox/logs/*.md :norm kJG
 
 au BufRead,BufNewFile *.sh set softtabstop=2
 "set shiftwidth=4
-"
-"au FileType *.tex nmap <leader>k :!make<CR>
-nmap <leader>mk :!make<CR>
-
-" Split line at cursor
-"imap <C-c> <CR><Esc>O
-
-" Location list
-"nmap <unique> <silent> <leader>lo :lopen<CR>
-"nmap <unique> <silent> <leader>lc :lclose<CR>
-"nmap <unique> <silent> <leader>ll :ll<CR>
-"nmap <unique> <silent> <leader>ln :lnext<CR>
-"nmap <unique> <silent> <leader>lp :lprev<CR>
-"nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
 " Original
 " set textwidth=79
@@ -180,6 +167,12 @@ set cursorline
 set fileformat=unix
 set autoindent
 set hlsearch
+
+inoremap ' ''<ESC>i
+inoremap " ""<ESC>i
+inoremap ( ()<ESC>i
+inoremap { {}<ESC>i
+inoremap [ []<ESC>i
 
 syntax on
 
@@ -203,29 +196,29 @@ call togglebg#map("<F5>")
 
 let python_highlight_all=1
 
-function FixCommas()
+function! FixCommas()
   :silent! %s/,/, /g
   :silent! %s/, */, /g
 endfunction
 
-nmap <leader>fc :call FixCommas()<CR>
+nnoremap <leader>fc :call FixCommas()<CR>
 
-function StartTimeStamp()
+function! StartTimeStamp()
   :normal 0I**StartTime**
   :r! date
   :normal kJo
 endfunction
 
-function EndTimeStamp()
+function! EndTimeStamp()
   :normal 0I**EndTime**
   :r! date
   :normal kJo
 endfunction
 
-nmap <leader>s :call StartTimeStamp()<CR>
-nmap <leader>e :call EndTimeStamp()<CR>
+nnoremap <leader>s :call StartTimeStamp()<CR>
+nnoremap <leader>e :call EndTimeStamp()<CR>
 
-function Lipsum()
+function! Lipsum()
   :r! lipsum
 endfunction
 

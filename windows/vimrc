@@ -35,7 +35,7 @@ Plug 'vim-airline/vim-airline-themes'
 "" Python
 Plug 'davidhalter/jedi-vim'
 Plug 'tmhedberg/SimpylFold'
-Plug 'nvie/vim-flake8'
+" Plug 'nvie/vim-flake8'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'hynek/vim-python-pep8-indent'
 "
@@ -134,8 +134,8 @@ set nu rnu
 set scrolloff=5
 
 set backspace=indent,eol,start
-set fillchars=vert:â”‚
-set list listchars=tab:â†’\ ,trail:Â·,precedes:Â«,extends:Â»
+set fillchars=vert:???
+set list listchars=tab:???\ ,trail:??,precedes:??,extends:??
 set wildmenu wildmode=longest,list,full
 set completeopt=menuone,longest
 let mapleader = "\<Space>"
@@ -186,8 +186,13 @@ au BufNewFile *.py :call SetUpdatedTime()
 "nmap <unique> <silent> <leader>lp :lprev<CR>
 "nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
+inoremap ( ()<esc>i
+inoremap [ []<esc>i
+inoremap " ""<esc>i
+inoremap ' ''<esc>i
+
 " Original
-set textwidth=79
+" set textwidth=79
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -207,7 +212,7 @@ let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 " Set the airline theme
-let g:airline_theme='gruvbox'
+let g:airline_theme='dark'
 " I don't remember what this does... but it is related to airline
 set hidden
 
@@ -286,6 +291,22 @@ function! SetUpRestClient()
 endfun
 nnoremap <silent> <leader>c :call SetUpRestClient()<CR>
 
+function! GetFunction()
+  " :normal BmayawK2jv/)
+y:q
+'avEp
+  :normal Bmayaw/def "(
+wv/)
+y'avEp
+endfun
+nnoremap <silent> <leader>ff <Esc>:call GetFunction()<CR>
+
+function! SplitArg()
+  :normal 0f,wi
+
+endfun
+nnoremap <leader>fs <Esc>:call SplitArg()<CR>
+
 " Toggle Hardmode
 nnoremap <leader>h <Esc>:call HardTimeToggle()<CR>
 
@@ -293,7 +314,7 @@ nnoremap <leader>h <Esc>:call HardTimeToggle()<CR>
 nnoremap <leader>N :NERDTreeToggle<CR>
 
 " Toggle paste mode
-nmap <unique> <silent> <leader>p :set paste!<CR>
+" nmap <unique> <silent> <leader>p :set paste!<CR>
 
 " run current python script
 nnoremap <leader>x :!python %
@@ -302,3 +323,7 @@ nnoremap <leader>x :!python %
 inoremap jk <esc>
 
 set splitright splitbelow
+
+set guioptions-=m  "menu bar
+set guioptions-=T  "toolbar
+set guioptions-=r  "scrollbar
