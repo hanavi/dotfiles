@@ -108,8 +108,7 @@ endif
 
 " Set that fancy color lign at the end of 80 char
 "set colorcolumn=+1
-set colorcolumn=80
-hi ColorColumn guibg=darkred ctermbg=darkred
+" hi ColorColumn guibg=darkred ctermbg=darkred
 "------------------------------------------------------------------------------
 
 " I don't remember what this does...
@@ -228,3 +227,5 @@ nnoremap <leader>ns :r ~/.vim/templates/beamer/slide.txt<CR>
 inoremap jk <esc>
 
 hi Normal guibg=NONE ctermbg=NONE
+hi ColorColumn guibg=darkred ctermbg=darkred
+set colorcolumn=80,100,120
