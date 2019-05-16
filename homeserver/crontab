@@ -21,10 +21,13 @@
 #
 # m h  dom mon dow   command
 
-30   23 * * *   $HOME/scripts/automation/saveip
-*/5  *  * * *   $HOME/scripts/youtube/ytservice > /dev/null
-*/10 *  * * *   $HOME/scripts/email/check_mail.sh > $HOME/.newmail
-*/15 *  * * *   /usr/bin/fetchmail > /dev/null
-0    15 * * 0,6 $HOME/scripts/automation/timesheet
-30   18 * * 5   $HOME/scripts/automation/timesheet
-30   03 * * *   $HOME/scripts/backup/bkup_email
+30   23 * * *    $HOME/scripts/automation/saveip
+*/5  *  * * *    $HOME/scripts/youtube/ytservice > /dev/null
+*/10 *  * * *    $HOME/scripts/email/checkmail > $HOME/.newmail
+*/15 *  * * *    /usr/bin/fetchmail > /dev/null
+0    15 * * 6    $HOME/scripts/automation/timesheet
+0    15 * * 7    $HOME/scripts/automation/timesheet
+30   18 * * 5    $HOME/scripts/automation/timesheet
+30   03 * * *    $HOME/scripts/backup/bkup_email
+30   08,20 * * * $HOME/scripts/automation/feeddogs
+

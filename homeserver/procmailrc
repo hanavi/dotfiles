@@ -165,6 +165,15 @@ aol/
 
 # Spam-ish  ####################################################
 #
+
+:0:
+* ^From:.*carbonite.com.*
+.Misc.Crap/
+
+:0:
+* ^From:.*chipotle.com.*
+.Misc.Crap/
+
 :0:
 * ^From:.*Pandora.*
 .Misc.Crap/
@@ -340,6 +349,10 @@ aol/
 
 :0:
 * ^From:.*presidentsnewletter@gatech.edu.*
+.GaTech/
+
+:0:
+* ^From:.*gtathletics.*
 .GaTech/
 
 ################################################################
