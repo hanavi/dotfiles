@@ -7,6 +7,8 @@ alias pylab='ipython --pylab'
 # NFS
 alias mm="mount /home/james/remote/media"
 alias um="umount /home/james/remote/media"
+alias md="mount /home/james/remote/deluge"
+alias ud="umount /home/james/remote/deluge"
 #alias m4="mount /home/james/remote/disk4"
 #alias um4="umount /home/james/remote/disk4"
 alias mt="mount /home/james/remote/tserver"
@@ -62,6 +64,7 @@ alias m='cd $HOME/remote/media/Movies'
 alias s='cd $HOME/remote/media/Shows'
 alias y='cd $HOME/remote/media/youtube'
 alias a='cd $HOME/remote/media/Music'
+alias d='cd $HOME/remote/deluge'
 
 alias eb='vim $HOME/.bash_aliases'
 alias sb='source $HOME/.bash_aliases'
