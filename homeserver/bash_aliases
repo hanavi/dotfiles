@@ -40,5 +40,7 @@ alias sc='cd ~/Dropbox/scripts'
 alias d='cd /mnt/raid/hosts/deluge'
 alias a='cd /mnt/raid/media/Music'
 alias dl='cd /mnt/raid/files/youtube'
+alias c='crypto'
+alias di="ssh deluge deluge-console info"
 
 alias py="python"
