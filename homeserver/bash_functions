@@ -3,6 +3,7 @@ function bp()
   echo
   DATE=$(date "+%Y-%m-%d %H:%M")
   BP=$1
+  HR=$2
   FOUND=false
   while read line
   do
@@ -17,7 +18,7 @@ function bp()
   if ! $FOUND
   then
     echo "Updating File"
-    echo "${DATE}    ${BP}" >> ${HOME}/Dropbox/logs/bp.txt
+    echo "${DATE}    ${BP}    ${HR}" >> ${HOME}/Dropbox/logs/bp.txt
   fi
 }
 function bp2()
@@ -25,6 +26,7 @@ function bp2()
   echo
   DATE=$(date "+%Y-%m-%d %H:%M")
   BP=$1
+  HR=$2
   FOUND=false
   while read line
   do
@@ -39,7 +41,7 @@ function bp2()
   if ! $FOUND
   then
     echo "Updating File"
-    echo "${DATE}    ${BP}" >> ${HOME}/Dropbox/logs/bp2.txt
+    echo "${DATE}    ${BP}    ${HR}" >> ${HOME}/Dropbox/logs/bp2.txt
   fi
 }
 function weight()
