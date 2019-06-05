@@ -408,6 +408,14 @@ aol/
 # Misc  ########################################################
 
 :0:
+* ^From:.*reddoorz.com.*
+.Misc.Crap/
+
+:0:
+* ^From:.*bukalapak.com.*
+.Misc.Crap/
+
+:0:
 * ^From:.*wix.com.*
 .Misc.Crap/
 
