@@ -14,8 +14,8 @@ exec "xrandr --dpi 192"
 # #---Basic Definitions---# #
 # Needed for i3-gaps
 for_window [class="^.*"] border pixel 0
-gaps inner 10
-gaps outer 10
+gaps inner 7
+gaps outer 7
 set $term --no-startup-id $TERMINAL
 set $mod Mod4
 # set $stoprec --no-startup-id dmenurecord kill
