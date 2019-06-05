@@ -28,12 +28,6 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'hynek/vim-python-pep8-indent'
 
-" Javascript
-"Plug 'jelera/vim-javascript-syntax'
-
-" Puppet (Why do I have puppet?)
-" Plug 'rodjek/vim-puppet'
-
 " Tab formatting stuff
 Plug 'godlygeek/tabular'
 
@@ -77,8 +71,12 @@ Plug 'takac/vim-hardtime'
 Plug 'farmergreg/vim-lastplace'
 
 call plug#end()
+
 "------------------------------------------------------------------------------
 let mapleader = "\<Space>"
+"
+" Default Hardmode to on
+let g:hardtime_default_on = 1
 
 let g:syntastic_python_checkers = ['pylama']
 " systastic settings
@@ -98,6 +96,7 @@ let g:SuperTabMappingBackward = '<tab>'
 " let g:solarized_termcolors=256
 " let g:solarized_degraded=0
 " let g:solarized_termtrans=1
+"
 if has('gui_running')
     set lines=50 columns=100
     colorscheme gruvbox
@@ -111,17 +110,12 @@ else
     "colorscheme solarized
     set background=dark
 endif
-
 "------------------------------------------------------------------------------
 
 " I don't remember what this does...
 set hidden
 
-" Enable the mouse
-" set mouse=a
-
 " Set up the line numbering
-"set number
 set nu rnu
 
 " Cursor placement
@@ -132,7 +126,6 @@ set fillchars=vert:│
 set list listchars=tab:→\ ,trail:·,precedes:«,extends:»
 set wildmenu wildmode=longest,list,full
 set completeopt=menuone,longest
-
 
 " Strip trailing whitespace (and save cursor position) when saving files
 fun! <SID>StripTrailingWhitespaces()
@@ -153,7 +146,6 @@ augroup new_shell_file
   au BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
   au BufNewFile *.sh :norm 2j
 augroup END
-
 
 augroup dropbox_logs
   autocmd!
@@ -239,7 +231,7 @@ function! SetCreatedTime()
   call setpos('.', save_cursor)
 endfun
 
-function FixCommas()
+function! FixCommas()
   let save_cursor = getpos(".")
   :silent! %s/,/, /g
   :silent! %s/, */, /g
@@ -255,14 +247,13 @@ function! StartTimeStamp()
   :r! date
   :normal! kJo
 endfunction
+nnoremap <leader>s :call StartTimeStamp()<CR>
 
 function! EndTimeStamp()
   :normal! 0I**EndTime**
   :r! date
   :normal! kJo
 endfunction
-
-nnoremap <leader>s :call StartTimeStamp()<CR>
 nnoremap <leader>e :call EndTimeStamp()<CR>
 
 function! Lipsum()
