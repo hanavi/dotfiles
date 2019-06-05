@@ -116,11 +116,6 @@ else
     set background=dark
 endif
 
-" Set that fancy color lign at the end of 80 char
-"set colorcolumn=+1
-set colorcolumn=80
-hi ColorColumn guibg=darkred ctermbg=darkred
-"------------------------------------------------------------------------------
 
 
 " Enable the mouse
@@ -186,10 +181,10 @@ au BufNewFile *.py :call SetUpdatedTime()
 "nmap <unique> <silent> <leader>lp :lprev<CR>
 "nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
-inoremap ( ()<esc>i
-inoremap [ []<esc>i
-inoremap " ""<esc>i
-inoremap ' ''<esc>i
+"inoremap ( ()<esc>i
+"inoremap [ []<esc>i
+"inoremap " ""<esc>i
+"inoremap ' ''<esc>i
 
 " Original
 " set textwidth=79
@@ -303,7 +298,6 @@ nnoremap <silent> <leader>ff <Esc>:call GetFunction()<CR>
 
 function! SplitArg()
   :normal 0f,wi
-
 endfun
 nnoremap <leader>fs <Esc>:call SplitArg()<CR>
 
@@ -327,3 +321,13 @@ set splitright splitbelow
 set guioptions-=m  "menu bar
 set guioptions-=T  "toolbar
 set guioptions-=r  "scrollbar
+
+nnoremap <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>p :set paste!<CR>
+
+" Set that fancy color lign at the end of 80 char
+"set colorcolumn=+1
+set colorcolumn=80,100,120
+hi ColorColumn guibg=darkred ctermbg=darkred
+"------------------------------------------------------------------------------
