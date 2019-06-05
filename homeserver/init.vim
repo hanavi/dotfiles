@@ -13,7 +13,6 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'christoomey/vim-quicklink'
 Plug 'mattn/webapi-vim'
-" Plug 'christoomey/vim-quicklink'
 
 " This helps deal with some syntax stuff
 Plug 'vim-syntastic/syntastic'
@@ -24,16 +23,16 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Python
 Plug 'davidhalter/jedi-vim'
-" Plug 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold'
 " Plug 'nvie/vim-flake8'
-" Plug 'vim-scripts/indentpython.vim'
-" Plug 'hynek/vim-python-pep8-indent'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'hynek/vim-python-pep8-indent'
 
 " Javascript
-Plug 'jelera/vim-javascript-syntax'
+"Plug 'jelera/vim-javascript-syntax'
 
 " Puppet (Why do I have puppet?)
-Plug 'rodjek/vim-puppet'
+" Plug 'rodjek/vim-puppet'
 
 " Tab formatting stuff
 Plug 'godlygeek/tabular'
@@ -71,7 +70,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 
 " Harmode... just for the fun of it...
-Plug 'wikitopian/hardmode'
+Plug 'takac/vim-hardtime'
 
 
 " Return to last edit position
@@ -88,19 +87,27 @@ let g:syntastic_mode_map = {
         \ "active_filetypes": [],
         \ "passive_filetypes": [] }
 
+
+" Run linter
 nnoremap <silent> <leader>l :SyntasticCheck<CR>
+let g:SuperTabMappingForward = '<s-tab>'
+let g:SuperTabMappingBackward = '<tab>'
 
 "--Color Scheme----------------------------------------------------------------
-let g:solarized_diffmode="high"
-let g:solarized_termcolors=256
-"let g:solarized_degraded=0
+" let g:solarized_diffmode="high"
+" let g:solarized_termcolors=256
+" let g:solarized_degraded=0
+" let g:solarized_termtrans=1
 if has('gui_running')
     set lines=50 columns=100
-    colorscheme solarized
+    colorscheme gruvbox
+    "colorscheme ron
+    "colorscheme solarized
     set background=dark
 else
     "colorscheme zenburn
     colorscheme gruvbox
+    "colorscheme ron
     "colorscheme solarized
     set background=dark
 endif
@@ -171,27 +178,29 @@ set cursorline
 set fileformat=unix
 set autoindent
 set hlsearch
+set splitright splitbelow
 
 syntax on
 
 " inoremap ' ''<ESC>i
 " inoremap " ""<ESC>i
-inoremap ( ()<ESC>i
-inoremap { {}<ESC>i
-inoremap [ []<ESC>i
+" inoremap ( ()<ESC>i
+" inoremap { {}<ESC>i
+" inoremap [ []<ESC>i
 
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>p :set paste!<CR>
 
 "set tags=./tags;/
 
-"airline
+" airline settings
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-
-let g:airline_theme = 'dark'
+" Set the airline theme
+let g:airline_theme='dark'
 
 "let g:netrw_browsex_viewer = 'firefox'
 
@@ -201,7 +210,6 @@ set foldlevel=99
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 
-nnoremap <leader>p :set paste!<CR>
 
 call togglebg#map("<F5>")
 " NERDTree Settings
@@ -209,24 +217,39 @@ let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
+" Toggle NERDTree
+nnoremap <leader>N :NERDTreeToggle<CR>
+
 " This is much faster than the default on OSX (and better?)
 let g:syntastic_python_checkers = ['pylama']
-
-
 let python_highlight_all=1
 
-function! BlockMove()
-  :execute ":normal! Imv \"\<esc>A\"\<esc>0Wv$hy$A \<esc>080lp"
-endfunction
-vnoremap <leader>mb :call BlockMove()<CR>
 
-function! FixCommas()
+
+" Stolen from http://vim.wikia.com/wiki/Insert_current_date_or_time
+" If buffer modified, update any 'Last modified: ' in the first 20 lines.
+" 'Last modified: ' can have up to 10 characters before (they are retained).
+" Restores cursor and window position using save_cursor variable.
+function! SetCreatedTime()
+  let save_cursor = getpos(".")
+  let n = min([20, line("$")])
+  keepjumps exe '1,' . n . 's#^\(.\{,10}Date Created: \).*#\1' .
+        \ strftime('%F') . '#e'
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
+endfun
+
+function FixCommas()
+  let save_cursor = getpos(".")
   :silent! %s/,/, /g
   :silent! %s/, */, /g
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
 endfunction
 
 nnoremap <leader>fc :call FixCommas()<CR>
 
+" Might only work in unix
 function! StartTimeStamp()
   :normal! 0I**StartTime**
   :r! date
@@ -259,7 +282,6 @@ endfunction
 
 nnoremap <silent> <leader>ff :call GetArgs()<CR>
 
-
 function! SplitArgs()
   :normal! yi)
   let c = len(split(@"))
@@ -274,6 +296,8 @@ endfunction
 
 nnoremap <silent> <leader>fs :call SplitArgs()<CR>
 
+" Toggle Hardmode
+nnoremap <leader>h <Esc>:call HardTimeToggle()<CR>
 
 function! ListToDictAlt()
   :normal! yi)
@@ -304,6 +328,15 @@ endfunction
 
 nnoremap <silent> <leader>fd :call ListToDict()<CR>
 
+" run current python script
+nnoremap <leader>x :!python %
+
+" Set that fancy color lign at the end of 80 char
+"set colorcolumn=+1
+set colorcolumn=80,100,120
+hi ColorColumn guibg=darkred ctermbg=darkred
+
+" System Specific
 
 " allows cursor change in tmux mode
 if exists('$TMUX')
@@ -313,8 +346,7 @@ else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-
-" Set that fancy color lign at the end of 80 char
-"set colorcolumn=+1
-set colorcolumn=80,100,120
-hi ColorColumn guibg=darkred ctermbg=darkred
+function! BlockMove()
+  :execute ":normal! Imv \"\<esc>A\"\<esc>0Wv$hy$A \<esc>080lp"
+endfunction
+vnoremap <leader>mb :call BlockMove()<CR>
