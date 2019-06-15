@@ -52,7 +52,7 @@ alias py="python"
 alias fb="open https://www.facebook.com"
 alias yt='open https://www.youtube.com'
 alias h="open https://hangouts.google.com"
-alias gp="open https://www.gigaparts.com/sweepstakes"
+alias giga="open https://www.gigaparts.com/sweepstakes"
 alias vivint="open https://www.vivintsky.com/app/#/account"
 alias tpb="open -a TorBrowser http://uj3wazyk5u4hnvtk.onion/"
 
