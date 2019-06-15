@@ -260,7 +260,6 @@ function! Lipsum()
   :r! lipsum
 endfunction
 
-nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 nnoremap <leader>ns :r ~/.vim/templates/beamer/slide.txt<CR>
 
 inoremap jk <esc>
