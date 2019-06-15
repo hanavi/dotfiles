@@ -1,0 +1,7 @@
+function bu
+{
+  today=$(date "+%Y_%m_%d")
+  fname=$HOME/Dropbox/Documents/blog_updates/${today}_blogupdate.txt
+  vim ${fname}
+}
+

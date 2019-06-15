@@ -70,7 +70,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 
 " Harmode... just for the fun of it...
-Plug 'wikitopian/hardmode'
+" Plug 'wikitopian/hardmode'
+Plug 'takac/vim-hardtime'
 
 
 " Return to last edit position
@@ -98,16 +99,15 @@ if has('gui_running')
     colorscheme solarized
     set background=dark
 else
-    "colorscheme zenburn
-    colorscheme gruvbox
-    "colorscheme solarized
+    " colorscheme zenburn
+    " colorscheme gruvbox
+    " colorscheme solarized
+    colorscheme darkblue
     set background=dark
 endif
 
 " Set that fancy color lign at the end of 80 char
 "set colorcolumn=+1
-set colorcolumn=80
-hi ColorColumn guibg=darkred ctermbg=darkred
 "------------------------------------------------------------------------------
 
 " I don't remember what this does...
@@ -177,11 +177,11 @@ set hlsearch
 
 syntax on
 
-inoremap ' ''<ESC>i
-inoremap " ""<ESC>i
-inoremap ( ()<ESC>i
-inoremap { {}<ESC>i
-inoremap [ []<ESC>i
+" inoremap ' ''<ESC>i
+" inoremap " ""<ESC>i
+" inoremap ( ()<ESC>i
+" inoremap { {}<ESC>i
+" inoremap [ []<ESC>i
 
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -245,7 +245,9 @@ function! Lipsum()
   :r! lipsum
 endfunction
 
-nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
+let g:hardtime_default_on = 1
+nnoremap <leader>h <Esc>:call HardTimeToggle()<CR>
+
 nnoremap <leader>ns :r ~/.vim/templates/beamer/slide.txt<CR>
 
 inoremap jk <esc>
@@ -312,3 +314,6 @@ else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
+set colorcolumn=80,90,100,110,120
+hi ColorColumn guibg=darkred ctermbg=darkred
