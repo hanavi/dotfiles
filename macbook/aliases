@@ -37,8 +37,8 @@ alias tl='tmux ls'
 alias weather2='curl http://wttr.in/'
 
 
-alias eb="vim ~/.bash_aliases"
-alias sb="source ~/.bash_aliases"
+alias eb="vim ~/.aliases"
+alias sb="source ~/.aliases"
 
 alias s="cd $HOME/remote/media/Shows"
 alias m="cd $HOME/remote/media/Movies"
