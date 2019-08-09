@@ -32,7 +32,9 @@ alias vim='/usr/local/bin/nvim'
 alias sb='source ~/.bash_aliases'
 alias eb='vim ~/.bash_aliases'
 
+alias files="cd /mnt/raid/files"
 alias logs='cd $HOME/Dropbox/logs'
+alias games='cd /mnt/raid/files/roms'
 alias s='cd /mnt/raid/media/Shows'
 alias b='cd /mnt/raid/files/Books'
 alias m='cd /mnt/raid/media/Movies'
@@ -45,6 +47,7 @@ alias c='crypto'
 alias di="ssh deluge deluge-console info"
 alias ds="du -hs *"
 alias db="cd /mnt/raid/files/Dropbox"
+alias wl="ls | wc -l"
 
 alias py="python"
 

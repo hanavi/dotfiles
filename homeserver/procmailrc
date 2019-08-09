@@ -252,6 +252,14 @@ aol/
 #
 
 :0:
+* ^From:.*novotelcairoairport.*
+.TravelDocs/
+
+:0:
+* ^From:.*hilton\.com.*
+.TravelDocs/
+
+:0:
 * ^From:.*discoverer\.com.*
 .TravelDocs/
 
@@ -406,6 +414,14 @@ aol/
 ################################################################
 
 # Misc  ########################################################
+
+:0:
+* ^From:.*triplebyte.com.*
+.Misc.Crap/
+
+:0:
+* ^From:.*sportclips.com.*
+.Misc.Crap/
 
 :0:
 * ^From:.*reddoorz.com.*

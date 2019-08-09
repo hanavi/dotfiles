@@ -73,6 +73,8 @@ Plug 'farmergreg/vim-lastplace'
 call plug#end()
 
 "------------------------------------------------------------------------------
+let g:jedi#smart_auto_mappings = 0
+
 let mapleader = "\<Space>"
 "
 " Default Hardmode to on
