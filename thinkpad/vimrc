@@ -1,10 +1,3 @@
-" Python interpreter setup
-" These dunder strings will be replaced by fresh with the
-" paths to the active interpreters when fresh is run.  This
-" makes it work even when different pyenvs are set up.
-let g:python_host_prog = '__PYTHON2__'
-let g:python3_host_prog = '__PYTHON3__'
-
 " Set up a better encoding
 set encoding=utf-8
 
@@ -136,6 +129,8 @@ set list listchars=tab:→\ ,trail:·,precedes:«,extends:»
 set wildmenu wildmode=longest,list,full
 " set completeopt=menuone,longest
 set complete=.,w,b,u,t,i,kspell
+
+let g:hardtime_default_on = 1
 
 " Strip trailing whitespace (and save cursor position) when saving files
 fun! <SID>StripTrailingWhitespaces()

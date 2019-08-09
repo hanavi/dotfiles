@@ -283,6 +283,7 @@ bindsym $mod+c exec urxvt -e cava
 
 bindsym $mod+t exec cd /home/james/local/tor-browser_en-US && ./start-tor-browser.desktop
 bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+w exec chromium
 
 bindsym $mod+grave exec /home/james/.scripts/dmenu/dmenuunicode
 bindsym $mod+u exec /home/james/.scripts/dmenu/urls
