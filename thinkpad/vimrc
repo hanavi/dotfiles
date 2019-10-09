@@ -62,8 +62,9 @@ Plug 'jnurmine/Zenburn'
 Plug 'octol/vim-cpp-enhanced-highlight'
 
 " Extra panels to improve productivity
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-vinegar'
 
 " Harmode... just for the fun of it...
 Plug 'takac/vim-hardtime'
@@ -72,9 +73,13 @@ Plug 'takac/vim-hardtime'
 " Return to last edit position
 Plug 'farmergreg/vim-lastplace'
 
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 "------------------------------------------------------------------------------
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
 let mapleader = "\<Space>"
 "
 " Default Hardmode to on
@@ -93,6 +98,10 @@ nnoremap <silent> <leader>l :SyntasticCheck<CR>
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+"
 "--Color Scheme----------------------------------------------------------------
 " let g:solarized_diffmode="high"
 " let g:solarized_termcolors=256
@@ -186,6 +195,7 @@ set fileformat=unix
 set autoindent
 set hlsearch
 set splitright splitbelow
+set completeopt-=preview
 
 syntax on
 
@@ -356,3 +366,26 @@ function! BlockMove()
   :execute ":normal! Imv \"\<esc>A\"\<esc>0Wv$hy$A \<esc>080lp"
 endfunction
 vnoremap <leader>mb :call BlockMove()<CR>
+
+function! AddImportFrom()
+  let save_cursor = getpos(".")
+  let save_cursor[1] = line('.') + 1
+  :norm G<CR>
+  call search('import', 'b')
+  let cmd = input("from ", "")
+  execute ':norm ofrom ' . cmd
+  call setpos('.', save_cursor )
+endfunction
+nnoremap <silent> <leader>im :call AddImport()<CR>
+
+function! AddImport()
+  let save_cursor = getpos(".")
+  let save_cursor[1] = line('.') + 1
+  :norm G<CR>
+  call search('import', 'b')
+  let cmd = input("import ", "")
+  execute ':norm oimport ' . cmd
+  call setpos('.', save_cursor )
+endfunction
+nnoremap <silent> <leader>if :call AddImportFrom()<CR>
+
