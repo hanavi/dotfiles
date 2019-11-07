@@ -24,6 +24,7 @@ set $mod Mod4
 # set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 # set $hibernate sudo -A systemctl suspend
 
+for_window [instance="octave-gui" class="GNU Octave"] floating enable
 
 
 ## Volume Control

@@ -78,6 +78,8 @@ Plug 'honza/vim-snippets'
 call plug#end()
 
 "------------------------------------------------------------------------------
+let g:jedi#smart_auto_mappings = 1
+
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 let mapleader = "\<Space>"
@@ -196,6 +198,8 @@ set autoindent
 set hlsearch
 set splitright splitbelow
 set completeopt-=preview
+
+au FileType tex set spell
 
 syntax on
 
