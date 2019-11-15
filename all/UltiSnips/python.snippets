@@ -1,0 +1,27 @@
+snippet o "@click.option"
+@click.option("-$1", "--$2", is_flag=${3:True}, default=${4:False},
+                help="${5:Some Help}")
+endsnippet
+
+snippet jp "Prety print json" b
+print(json.dumps($1, indent=4))
+endsnippet
+
+snippet pv "Print Variable"
+print("${1:variable}: ", $1)
+endsnippet
+
+snippet @r "New @route"
+@app.route("/$1")
+def ${2:function}($3):
+    pass
+endsnippet
+
+snippet kvi "description" b
+from kivy.app import App
+from kivy.uix.widget import Widget
+from kivy.config import Config
+endsnippet
+
+
+

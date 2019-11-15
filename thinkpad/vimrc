@@ -100,9 +100,13 @@ nnoremap <silent> <leader>l :SyntasticCheck<CR>
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
+let g:UltiSnipsSnippetsDir = $HOME.'/.vim/UltiSnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+nnoremap <silent> <leader>u :UltiSnipsEdit<CR>
+
 "
 "--Color Scheme----------------------------------------------------------------
 " let g:solarized_diffmode="high"
@@ -155,9 +159,14 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " au BufNewFile *.py 0r ~/.vim/templates/skeleton.py
 " au BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
 " au BufNewFile *.sh :norm 2j
+"
+au BufWritePre *.py :call SetUpdatedTime()
 augroup new_python_file
   autocmd!
   au BufNewFile *.py 0r ~/.vim/templates/skeleton.py
+  au BufNewFile *.py :call SetFileName()
+  au BufNewFile *.py :call SetCreatedTime()
+  au BufNewFile *.py :call SetUpdatedTime()
 augroup END
 
 augroup new_shell_file
@@ -393,3 +402,24 @@ function! AddImport()
 endfunction
 nnoremap <silent> <leader>if :call AddImportFrom()<CR>
 
+function! SetFileName()
+  let fn=expand("%:t")
+  let save_cursor = getpos(".")
+  let n = min([20, line("$")])
+  keepjumps exe '1,' . n . 's#^\(.\{,10}Filename: \).*#\1' .
+        \ fn . '#e'
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
+endfun
+nmap <silent> <leader>f :call SetFileName()<CR>
+
+
+function! SetUpdatedTime()
+  let save_cursor = getpos(".")
+  let n = min([20, line("$")])
+  keepjumps exe '1,' . n . 's#^\(.\{,10}Last Updated: \).*#\1' .
+        \ strftime('%F') . '#e'
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
+endfun
+" nmap <silent> <leader>u :call SetUpdatedTime()<CR>
