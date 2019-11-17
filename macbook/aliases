@@ -9,24 +9,24 @@ alias la='ls -A'
 alias l='ls -alhF'
 alias vim='/usr/local/bin/vim'
 
-alias hl="ssh homelocal"
+alias hl="ssh 10.1.0.250"
 alias ssa="ssh-add"
 alias cm='hl scripts/check_mail.sh'
 
 
 alias ipython=ipython3
 alias pylab='ipython3 --pylab'
-alias octave='/usr/local/octave/3.8.0/bin/octave-cli'
+alias octave='/Applications/Octave-4.4.1.app/Contents/Resources/usr/bin/octave-cli'
 alias gfull='gvim "+NERDTree" "+set columns=165" "+TagbarToggle"'
 
 
 alias mt='sshfs torrentserver:/media/spare/torrent/deluge /Users/james/remote/tserver'
 alias umt='umount /Users/james/remote/tserver'
 
-alias md='sshfs homelocal:/mnt/raid/hosts/deluge /Users/james/remote/deluge'
+alias md='sshfs 10.1.0.11:/mnt/raid/hosts/deluge /Users/james/remote/deluge'
 alias umd='umount /Users/james/remote/deluge'
 
-alias mm="mount homeserver:/srv/media $HOME/remote/media"
+alias mm="mount 10.1.0.11:/srv/media $HOME/remote/media"
 alias um="umount $HOME/remote/media"
 
 alias vlc="open -a VLC"
@@ -48,6 +48,7 @@ alias d="cd $HOME/remote/deluge"
 alias logs="cd $HOME/Dropbox/logs"
 
 alias py="python"
+alias a="source venv/bin/activate"
 
 alias fb="open https://www.facebook.com"
 alias yt='open https://www.youtube.com'

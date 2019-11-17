@@ -77,8 +77,14 @@ Plug 'takac/vim-hardtime'
 " Return to last edit position
 Plug 'farmergreg/vim-lastplace'
 
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 "------------------------------------------------------------------------------
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
 let mapleader = "\<Space>"
 
 let g:syntastic_python_checkers = ['pylama']
