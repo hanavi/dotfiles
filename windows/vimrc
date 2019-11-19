@@ -72,6 +72,7 @@ Plug 'jnurmine/Zenburn'
 "Plug 'octol/vim-cpp-enhanced-highlight'
 "
 "" Extra panels to improve productivity
+"Plug 'tpope/vim-vinegar'
 Plug 'scrooloose/nerdtree'
 "Plug 'majutsushi/tagbar'
 "
@@ -83,20 +84,34 @@ Plug 'takac/vim-hardtime'
 "" Return to last edit position
 Plug 'farmergreg/vim-lastplace'
 "
+"
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+
 call plug#end()
 "------------------------------------------------------------------------------
-"
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = 'venv$'
+
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
 " Default Hardmode to on
 let g:hardtime_default_on = 1
 
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsDirectories="/users/t70995/vimfiles/ultisnips"
 "--Color Scheme----------------------------------------------------------------
 "let g:solarized_diffmode="high"
 "let g:solarized_termcolors=256
 "let g:solarized_degraded=0
 "let g:solarized_termtrans=1
+
 if has('gui_running')
     set lines=50 columns=100
     colorscheme gruvbox
@@ -174,11 +189,11 @@ au BufWritePre *.py :call SetUpdatedTime()
 
 " Location list for syntastic
 let g:syntastic_always_populate_loc_list = 1
-nmap <unique> <silent> <leader>lo :lopen<CR>
-nmap <unique> <silent> <leader>lc :lclose<CR>
-nmap <unique> <silent> <leader>ll :ll<CR>
-nmap <unique> <silent> <leader>ln :lnext<CR>
-nmap <unique> <silent> <leader>lp :lprev<CR>
+nnoremap <silent> <leader>lo :lopen<CR>
+nnoremap <silent> <leader>lc :lclose<CR>
+nnoremap <silent> <leader>ll :ll<CR>
+nnoremap <silent> <leader>ln :lnext<CR>
+nnoremap <silent> <leader>lp :lprev<CR>
 "nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
 "inoremap ( ()<esc>i
@@ -226,6 +241,7 @@ let g:SimpylFold_docstring_preview=1
 
 let python_highlight_all=1
 
+" Make commas pep8 complient (no space before, and one space after)
 function FixCommas()
   let save_cursor = getpos(".")
   :silent! %s/,/, /g
@@ -249,6 +265,7 @@ function! SetCreatedTime()
   call setpos('.', save_cursor)
 endfun
 
+" Update the 'UpdatedTime' in the header
 function! SetUpdatedTime()
   let save_cursor = getpos(".")
   let n = min([20, line("$")])
@@ -259,6 +276,7 @@ function! SetUpdatedTime()
 endfun
 nmap <silent> <leader>u :call SetUpdatedTime()<CR>
 
+" Update the name of the file in the header
 function! SetFileName()
   let fn=expand("%:t")
   let save_cursor = getpos(".")
@@ -270,6 +288,7 @@ function! SetFileName()
 endfun
 nmap <silent> <leader>f :call SetFileName()<CR>
 
+" Tetration import stuff (could be moved to snippets)
 function! FixOpenAPI()
   let save_cursor = getpos(".")
   :normal 9G
@@ -281,6 +300,7 @@ function! FixOpenAPI()
 endfun
 nmap <silent> <leader>o :call FixOpenAPI()<CR>
 
+" Rest client stuff for BCBSAL (could be moved to snippets)
 function! SetUpRestClient()
   let save_cursor = getpos(".")
   :normal 20G
@@ -289,6 +309,7 @@ function! SetUpRestClient()
 endfun
 nnoremap <silent> <leader>c :call SetUpRestClient()<CR>
 
+" TODO: figure out what this does
 function! GetFunction()
   " :normal BmayawK2jv/)
 y:q
@@ -299,6 +320,7 @@ y'avEp
 endfun
 nnoremap <silent> <leader>ff <Esc>:call GetFunction()<CR>
 
+" TODO: figure out what this does
 function! SplitArg()
   :normal 0f,wi
 endfun
@@ -328,6 +350,7 @@ set guioptions-=r  "scrollbar
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>p :set paste!<CR>
+nnoremap <leader>u :UltiSnipsEdit<CR>
 
 " Set that fancy color lign at the end of 80 char
 "set colorcolumn=+1
@@ -335,10 +358,29 @@ set colorcolumn=80,100,120
 hi ColorColumn guibg=darkred ctermbg=darkred
 "------------------------------------------------------------------------------
 
+" Throwaway function for grouping IPs by mask(?)
 function! SortIPs()
     let mask = 32
     while mask > 20
         :exec ":g/\\/" . mask . "/m 0"
         let mask -= 1
+    endwhile
+endfun
+
+" Generate an incrementing string of padded numbers surrounded by text
+function! MyList(count, ...)
+    let start = get(a:, 1, "")
+    let end = get(a:, 2, "")
+    let pad = get(a:, 3, 0)
+
+    let c = 0
+    while c < a:count
+        let cout = c
+        while len(cout) < pad
+            let cout = 0 . cout
+        endwhile
+        let output = start . cout . end
+        let stat = append(line('.') + c, output)
+        let c += 1
     endwhile
 endfun
