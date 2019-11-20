@@ -207,6 +207,7 @@ set autoindent
 set hlsearch
 set splitright splitbelow
 set completeopt-=preview
+set path+=**
 
 au FileType tex set spell
 
@@ -231,6 +232,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 " Set the airline theme
 let g:airline_theme='dark'
+let g:airline_powerline_fonts = 1
 
 "let g:netrw_browsex_viewer = 'firefox'
 
@@ -423,3 +425,10 @@ function! SetUpdatedTime()
   call setpos('.', save_cursor)
 endfun
 " nmap <silent> <leader>u :call SetUpdatedTime()<CR>
+
+let g:syntastic_always_populate_loc_list = 1
+nmap <unique> <silent> <leader>lo :lopen<CR>
+nmap <unique> <silent> <leader>lc :lclose<CR>
+nmap <unique> <silent> <leader>ll :ll<CR>
+nmap <unique> <silent> <leader>ln :lnext<CR>
+nmap <unique> <silent> <leader>lp :lprev<CR>
