@@ -432,3 +432,9 @@ nmap <unique> <silent> <leader>lc :lclose<CR>
 nmap <unique> <silent> <leader>ll :ll<CR>
 nmap <unique> <silent> <leader>ln :lnext<CR>
 nmap <unique> <silent> <leader>lp :lprev<CR>
+
+inoremap \\ <Esc>/<++><Enter>"_c4l
+vnoremap \\ <Esc>/<++><Enter>"_c4l
+map \\ <Esc>/<++><Enter>"_c4l
+
+nnoremap <leader>w :%s/\<<C-r><C-w>\>/

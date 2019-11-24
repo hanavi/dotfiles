@@ -23,5 +23,118 @@ from kivy.uix.widget import Widget
 from kivy.config import Config
 endsnippet
 
+snippet d0 "create a dictionary" b
+$1 = {
+    $2
+`!p
 
+entries = t[2]
+
+snip.rv = ''
+if entries:
+    ovars = entries.split(",")
+    for line in ovars:
+        snip += '    "{}": <++>,'.format(line)
+    snip.rv += "\n" + snip.mkline(line='', indent=None)
+`}
+endsnippet
+
+snippet d1 "create a dictionary" b
+$1 = {
+    $2
+`!p
+
+entries = t[2]
+
+snip.rv = ''
+if entries:
+    ovars = entries.split(",")
+    for line in ovars:
+        snip += '    "{}": "<++>",'.format(line)
+    snip.rv += "\n" + snip.mkline(line='', indent=None)
+`}
+endsnippet
+
+snippet d2 "Generate a dict" b
+$1 = {
+    $2
+`!p
+entries = t[2].split(' ')
+entvar = entries[0]
+
+snip.rv = ''
+if len(entries) > 1:
+    ovars = entries[1].split(",")
+    for i, line in enumerate(ovars):
+        snip += '    "{}": {}[{}],'.format(line, entvar, i)
+    snip.rv += '\n' + snip.mkline(line='',indent=None)
+`}
+endsnippet
+
+snippet d3 "Generate a dict from a dict" b
+$1 = {
+    $2
+`!p
+entries = t[2].split(' ')
+entvar = entries[0]
+
+snip.rv = ''
+if len(entries) > 1:
+    ovars = entries[1].split(",")
+    for i, line in enumerate(ovars):
+        snip += '    "{}": {}["<++>"],'.format(line, entvar, i)
+    snip.rv += "\n" + snip.mkline(line='', indent=None)
+`}
+endsnippet
+
+snippet d4 "create a dictionary" b
+$1 = {
+    $2
+`!p
+
+entries = t[2]
+
+snip.rv = ''
+if entries:
+    ovars = entries.split(",")
+    ml = max([len(x) for x in ovars])
+    for line in ovars:
+        snip += '    "{}":'.format(line) + " "*(ml-len(line)) + ' <++>,'
+    snip.rv += "\n" + snip.mkline(line='', indent=None)
+`}
+endsnippet
+
+snippet d5 "create a dictionary" b
+$1 = {
+    $2
+`!p
+
+entries = t[2]
+
+snip.rv = ''
+if entries:
+    ovars = entries.split(",")
+    ml = max([len(x) for x in ovars])
+    for line in ovars:
+        snip += '    "{}":'.format(line) + " "*(ml-len(line)) + ' "<++>",'
+    snip.rv += "\n" + snip.mkline(line='', indent=None)
+`}
+endsnippet
+
+snippet d6 "Generate a dict from a dict" b
+$1 = {
+    $2
+`!p
+entries = t[2].split(' ')
+entvar = entries[0]
+
+snip.rv = ''
+if len(entries) > 1:
+    ovars = entries[1].split(",")
+    ml = max([len(x) for x in ovars])
+    for i, line in enumerate(ovars):
+        snip += '    "{}":'.format(line) + " "*(ml-len(line))+ ' {}["<++>"],'.format(entvar)
+    snip.rv += "\n" + snip.mkline(line='', indent=None)
+`}
+endsnippet
 
