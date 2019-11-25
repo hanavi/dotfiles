@@ -1,4 +1,4 @@
-snippet o "@click.option"
+snippet @o "@click.option"
 @click.option("-$1", "--$2", is_flag=${3:True}, default=${4:False},
                 help="${5:Some Help}")
 endsnippet
@@ -188,3 +188,45 @@ if len(entries) > 1:
 `}
 endsnippet
 
+snippet vfd "variables from dict aligned" b
+$1 $2
+`!p
+entries = t[1].split(' ')
+dictvar = entries[0]
+
+snip.rv = ''
+if len(entries) > 1:
+    ovars = entries[1].split(",")
+    for line in ovars:
+        snip += '{}["{}"] ='.format(dictvar, line) + ' {}'.format(line)
+`
+endsnippet
+
+snippet vfda "variables from dict aligned" b
+$1 $2
+`!p
+entries = t[1].split(' ')
+dictvar = entries[0]
+
+snip.rv = ''
+if len(entries) > 1:
+    ovars = entries[1].split(",")
+    ml = max([len(x) for x in ovars])
+    for line in ovars:
+        snip += '{}["{}"] ='.format(dictvar, line) + " "*(ml-len(line))+ ' {}'.format(line)
+`
+endsnippet
+
+snippet vfd2 "variables from dict aligned" b
+$1
+`!p
+entries = t[1].split(' ')
+dictvar = entries[0]
+
+snip.rv = ''
+if len(entries) > 1:
+    ovars = entries[1].split(",")
+    for line in ovars:
+        snip += '{}["<++>"] ='.format(dictvar) + ' {}'.format(line)
+`
+endsnippet
