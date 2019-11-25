@@ -23,7 +23,7 @@ from kivy.uix.widget import Widget
 from kivy.config import Config
 endsnippet
 
-snippet d0 "create a dictionary" b
+snippet d "create a dictionary" b
 $1 = {
     $2
 `!p
@@ -39,7 +39,7 @@ if entries:
 `}
 endsnippet
 
-snippet d1 "create a dictionary" b
+snippet d" "create a dictionary" b
 $1 = {
     $2
 `!p
@@ -55,7 +55,7 @@ if entries:
 `}
 endsnippet
 
-snippet d2 "Generate a dict" b
+snippet dfl "Generate a dict from a list" b
 $1 = {
     $2
 `!p
@@ -71,7 +71,7 @@ if len(entries) > 1:
 `}
 endsnippet
 
-snippet d3 "Generate a dict from a dict" b
+snippet dfd "Generate a dict from a dict" b
 $1 = {
     $2
 `!p
@@ -87,7 +87,7 @@ if len(entries) > 1:
 `}
 endsnippet
 
-snippet d4 "create a dictionary" b
+snippet da "create a dictionary with alignment" b
 $1 = {
     $2
 `!p
@@ -104,7 +104,7 @@ if entries:
 `}
 endsnippet
 
-snippet d5 "create a dictionary" b
+snippet da" "create a dictionary with alignment and quotes" b
 $1 = {
     $2
 `!p
@@ -121,7 +121,7 @@ if entries:
 `}
 endsnippet
 
-snippet d6 "Generate a dict from a dict" b
+snippet dfda "Dict from dict align" b
 $1 = {
     $2
 `!p
@@ -134,6 +134,23 @@ if len(entries) > 1:
     ml = max([len(x) for x in ovars])
     for i, line in enumerate(ovars):
         snip += '    "{}":'.format(line) + " "*(ml-len(line))+ ' {}["<++>"],'.format(entvar)
+    snip.rv += "\n" + snip.mkline(line='', indent=None)
+`}
+endsnippet
+
+snippet dfla "Dcit from list align" b
+$1 = {
+    $2
+`!p
+entries = t[2].split(' ')
+entvar = entries[0]
+
+snip.rv = ''
+if len(entries) > 1:
+    ovars = entries[1].split(",")
+    ml = max([len(x) for x in ovars])
+    for i, line in enumerate(ovars):
+        snip += '    "{}":'.format(line) + " "*(ml-len(line))+ ' {}[{}],'.format(entvar, i)
     snip.rv += "\n" + snip.mkline(line='', indent=None)
 `}
 endsnippet
