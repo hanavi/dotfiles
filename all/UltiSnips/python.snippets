@@ -23,7 +23,23 @@ from kivy.uix.widget import Widget
 from kivy.config import Config
 endsnippet
 
-snippet d "create a dictionary" b
+snippet dfv "create a dictionary from variables (copy keyname to var)" b
+$1 = {
+    $2
+`!p
+
+entries = t[2]
+
+snip.rv = ''
+if entries:
+    ovars = entries.split(",")
+    for line in ovars:
+        snip += '    "{}": {},'.format(line, line)
+    snip.rv += "\n" + snip.mkline(line='', indent=None)
+`}
+endsnippet
+
+snippet dfv2 "create a dictionary from variables (<++> for vars)" b
 $1 = {
     $2
 `!p
@@ -39,7 +55,7 @@ if entries:
 `}
 endsnippet
 
-snippet d" "create a dictionary" b
+snippet dfs "create a dictionary with strings for var" b
 $1 = {
     $2
 `!p
@@ -87,7 +103,24 @@ if len(entries) > 1:
 `}
 endsnippet
 
-snippet da "create a dictionary with alignment" b
+snippet dfva "create a dictionary from vars with alignment (copy keyname to var)" b
+$1 = {
+    $2
+`!p
+
+entries = t[2]
+
+snip.rv = ''
+if entries:
+    ovars = entries.split(",")
+    ml = max([len(x) for x in ovars])
+    for line in ovars:
+        snip += '    "{}":'.format(line) + " "*(ml-len(line)) + ' {},'.format(line)
+    snip.rv += "\n" + snip.mkline(line='', indent=None)
+`}
+endsnippet
+
+snippet dfva2 "create a dictionary with alignment (<++> for vars)" b
 $1 = {
     $2
 `!p
@@ -104,7 +137,7 @@ if entries:
 `}
 endsnippet
 
-snippet da" "create a dictionary with alignment and quotes" b
+snippet dfsa "dictionary from strings with alignment" b
 $1 = {
     $2
 `!p
@@ -138,7 +171,7 @@ if len(entries) > 1:
 `}
 endsnippet
 
-snippet dfla "Dcit from list align" b
+snippet dfla "Dict from list align" b
 $1 = {
     $2
 `!p
