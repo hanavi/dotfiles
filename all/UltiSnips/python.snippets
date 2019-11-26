@@ -213,11 +213,11 @@ if len(entries) > 1:
     ovars = entries[1].split(",")
     ml = max([len(x) for x in ovars])
     for line in ovars:
-        snip += '{} ='.format(line) + " "*(ml-len(line)) + ' {}["{}"]'.format(dictvar, line)
+        snip += '{} '.format(line) + " "*(ml-len(line)) + '= {}["{}"]'.format(dictvar, line)
 `
 endsnippet
 
-snippet vfd2 "variables from dict aligned" b
+snippet vfd2 "variables from dict" b
 $1
 `!p
 entries = t[1].split(' ')
