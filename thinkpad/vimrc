@@ -129,7 +129,7 @@ else
 endif
 "------------------------------------------------------------------------------
 
-" I don't remember what this does...
+" Allow moving around buffers w/o saving
 set hidden
 
 " Set up the line numbering
@@ -145,7 +145,13 @@ set wildmenu wildmode=longest,list,full
 " set completeopt=menuone,longest
 set complete=.,w,b,u,t,i,kspell
 
+"-- Hardtime configuration ----------------------------------------------------
+" Turn on by default
 let g:hardtime_default_on = 1
+" allow +/-
+let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:hardtime_allow_different_key = 1
+"------------------------------------------------------------------------------
 
 " Strip trailing whitespace (and save cursor position) when saving files
 fun! <SID>StripTrailingWhitespaces()

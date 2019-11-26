@@ -189,7 +189,7 @@ if len(entries) > 1:
 endsnippet
 
 snippet vfd "variables from dict aligned" b
-$1 $2
+$1
 `!p
 entries = t[1].split(' ')
 dictvar = entries[0]
@@ -198,12 +198,12 @@ snip.rv = ''
 if len(entries) > 1:
     ovars = entries[1].split(",")
     for line in ovars:
-        snip += '{}["{}"] ='.format(dictvar, line) + ' {}'.format(line)
+        snip +=  '{} ='.format(line) + ' {}["{}"]'.format(dictvar, line)
 `
 endsnippet
 
 snippet vfda "variables from dict aligned" b
-$1 $2
+$1
 `!p
 entries = t[1].split(' ')
 dictvar = entries[0]
@@ -213,7 +213,7 @@ if len(entries) > 1:
     ovars = entries[1].split(",")
     ml = max([len(x) for x in ovars])
     for line in ovars:
-        snip += '{}["{}"] ='.format(dictvar, line) + " "*(ml-len(line))+ ' {}'.format(line)
+        snip += '{} ='.format(line) + " "*(ml-len(line)) + ' {}["{}"]'.format(dictvar, line)
 `
 endsnippet
 
@@ -227,6 +227,6 @@ snip.rv = ''
 if len(entries) > 1:
     ovars = entries[1].split(",")
     for line in ovars:
-        snip += '{}["<++>"] ='.format(dictvar) + ' {}'.format(line)
+        snip += '{} ='.format(line) + ' {}["<++>"]'.format(dictvar)
 `
 endsnippet
