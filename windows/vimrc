@@ -9,82 +9,84 @@ let &pythonthreedll = 'C:\Users\t70995\PycharmProjects\tetration\venv\Scripts\py
 "  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "  autocmd VimEnter * PlugInstall
 "endif
-"
+
 call plug#begin()
 " Lightweight Markup Languages
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 "Plug 'christoomey/vim-quicklink'
 "Plug 'mattn/webapi-vim'
-"
+
 " This helps deal with some syntax stuff
 Plug 'vim-syntastic/syntastic'
-"
+
 "" Fancy Bar at the bottom of the screen
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"
+
 "" Python
 Plug 'davidhalter/jedi-vim'
 Plug 'tmhedberg/SimpylFold'
 Plug 'nvie/vim-flake8'
-Plug 'vim-scripts/indentpython.vim'
+" Plug 'vim-scripts/indentpython.vim'
 " Plug 'hynek/vim-python-pep8-indent'
-"
+
 "" Javascript
 "Plug 'jelera/vim-javascript-syntax'
-"
+
 "" Puppet (Why do I have puppet?)
 "Plug 'rodjek/vim-puppet'
-"
+
 "" Tab formatting stuff
 Plug 'godlygeek/tabular'
-"
+
 "" LaTeX
 "Plug 'LaTeX-Box-Team/LaTeX-Box'
-"
+
 "" Go
 "Plug 'fatih/vim-go'
-"
-"" Git I think
-"Plug 'tpope/vim-fugitive'
-"
+
+"" Git
+Plug 'tpope/vim-fugitive'
+
+" Better error monitoring for vim
+Plug 'tpope/vim-dispatch'
+
 "" Searching
 Plug 'kien/ctrlp.vim'
 "Plug 'rking/ag.vim'
-"
+
 "" Generic
 Plug 'ervandew/supertab'
 "Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-"
+
 "" Add stuff around blocks of text
 Plug 'tpope/vim-surround'
-"
+
 "" Fancy colors
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'jnurmine/Zenburn'
-"
+
 "" I don't know what this does but some kind of highlighting
 "Plug 'octol/vim-cpp-enhanced-highlight'
-"
+
 "" Extra panels to improve productivity
 "Plug 'tpope/vim-vinegar'
 Plug 'scrooloose/nerdtree'
 "Plug 'majutsushi/tagbar'
-"
+
 "" Harmode... just for the fun of it...
-"Plug 'wikitopian/hardmode'
 Plug 'takac/vim-hardtime'
-"
-"
+
+
 "" Return to last edit position
 Plug 'farmergreg/vim-lastplace'
-"
-"
+
+
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
@@ -100,6 +102,7 @@ let g:SuperTabMappingBackward = '<tab>'
 
 " Default Hardmode to on
 let g:hardtime_default_on = 1
+let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -384,3 +387,13 @@ function! MyList(count, ...)
         let c += 1
     endwhile
 endfun
+
+
+" Testing some stuff here....
+
+" Navigating with guides
+inoremap \\ <Esc>/<++><Enter>"_c4l
+vnoremap \\ <Esc>/<++><Enter>"_c4l
+map \\ <Esc>/<++><Enter>"_c4l
+
+nnoremap <Leader>w :%s/\<<C-r><C-w>\>/
