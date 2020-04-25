@@ -9,7 +9,7 @@ alias la='ls -A'
 alias l='ls -alhF'
 alias vim='/usr/local/bin/vim'
 
-alias hl="ssh 10.1.0.250"
+alias hl="ssh homelocal"
 alias ssa="ssh-add"
 alias cm='hl scripts/check_mail.sh'
 
