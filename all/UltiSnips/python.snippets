@@ -1,4 +1,4 @@
-snippet o "@click.option"
+snippet @o "@click.option"
 @click.option("-$1", "--$2", is_flag=${3:True}, default=${4:False},
                 help="${5:Some Help}")
 endsnippet
@@ -23,7 +23,23 @@ from kivy.uix.widget import Widget
 from kivy.config import Config
 endsnippet
 
-snippet d0 "create a dictionary" b
+snippet dfv "create a dictionary from variables (copy keyname to var)" b
+$1 = {
+    $2
+`!p
+
+entries = t[2]
+
+snip.rv = ''
+if entries:
+    ovars = entries.split(",")
+    for line in ovars:
+        snip += '    "{}": {},'.format(line, line)
+    snip.rv += "\n" + snip.mkline(line='', indent=None)
+`}
+endsnippet
+
+snippet dfv2 "create a dictionary from variables (<++> for vars)" b
 $1 = {
     $2
 `!p
@@ -39,7 +55,7 @@ if entries:
 `}
 endsnippet
 
-snippet d1 "create a dictionary" b
+snippet dfs "create a dictionary with strings for var" b
 $1 = {
     $2
 `!p
@@ -55,7 +71,7 @@ if entries:
 `}
 endsnippet
 
-snippet d2 "Generate a dict" b
+snippet dfl "Generate a dict from a list" b
 $1 = {
     $2
 `!p
@@ -71,7 +87,7 @@ if len(entries) > 1:
 `}
 endsnippet
 
-snippet d3 "Generate a dict from a dict" b
+snippet dfd "Generate a dict from a dict" b
 $1 = {
     $2
 `!p
@@ -87,7 +103,24 @@ if len(entries) > 1:
 `}
 endsnippet
 
-snippet d4 "create a dictionary" b
+snippet dfva "create a dictionary from vars with alignment (copy keyname to var)" b
+$1 = {
+    $2
+`!p
+
+entries = t[2]
+
+snip.rv = ''
+if entries:
+    ovars = entries.split(",")
+    ml = max([len(x) for x in ovars])
+    for line in ovars:
+        snip += '    "{}":'.format(line) + " "*(ml-len(line)) + ' {},'.format(line)
+    snip.rv += "\n" + snip.mkline(line='', indent=None)
+`}
+endsnippet
+
+snippet dfva2 "create a dictionary with alignment (<++> for vars)" b
 $1 = {
     $2
 `!p
@@ -104,7 +137,7 @@ if entries:
 `}
 endsnippet
 
-snippet d5 "create a dictionary" b
+snippet dfsa "dictionary from strings with alignment" b
 $1 = {
     $2
 `!p
@@ -121,7 +154,7 @@ if entries:
 `}
 endsnippet
 
-snippet d6 "Generate a dict from a dict" b
+snippet dfda "Dict from dict align" b
 $1 = {
     $2
 `!p
@@ -138,3 +171,62 @@ if len(entries) > 1:
 `}
 endsnippet
 
+snippet dfla "Dict from list align" b
+$1 = {
+    $2
+`!p
+entries = t[2].split(' ')
+entvar = entries[0]
+
+snip.rv = ''
+if len(entries) > 1:
+    ovars = entries[1].split(",")
+    ml = max([len(x) for x in ovars])
+    for i, line in enumerate(ovars):
+        snip += '    "{}":'.format(line) + " "*(ml-len(line))+ ' {}[{}],'.format(entvar, i)
+    snip.rv += "\n" + snip.mkline(line='', indent=None)
+`}
+endsnippet
+
+snippet vfd "variables from dict aligned" b
+$1
+`!p
+entries = t[1].split(' ')
+dictvar = entries[0]
+
+snip.rv = ''
+if len(entries) > 1:
+    ovars = entries[1].split(",")
+    for line in ovars:
+        snip +=  '{} ='.format(line) + ' {}["{}"]'.format(dictvar, line)
+`
+endsnippet
+
+snippet vfda "variables from dict aligned" b
+$1
+`!p
+entries = t[1].split(' ')
+dictvar = entries[0]
+
+snip.rv = ''
+if len(entries) > 1:
+    ovars = entries[1].split(",")
+    ml = max([len(x) for x in ovars])
+    for line in ovars:
+        snip += '{} '.format(line) + " "*(ml-len(line)) + '= {}["{}"]'.format(dictvar, line)
+`
+endsnippet
+
+snippet vfd2 "variables from dict" b
+$1
+`!p
+entries = t[1].split(' ')
+dictvar = entries[0]
+
+snip.rv = ''
+if len(entries) > 1:
+    ovars = entries[1].split(",")
+    for line in ovars:
+        snip += '{} ='.format(line) + ' {}["<++>"]'.format(dictvar)
+`
+endsnippet

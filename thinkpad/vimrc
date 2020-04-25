@@ -129,7 +129,7 @@ else
 endif
 "------------------------------------------------------------------------------
 
-" I don't remember what this does...
+" Allow moving around buffers w/o saving
 set hidden
 
 " Set up the line numbering
@@ -145,7 +145,13 @@ set wildmenu wildmode=longest,list,full
 " set completeopt=menuone,longest
 set complete=.,w,b,u,t,i,kspell
 
+"-- Hardtime configuration ----------------------------------------------------
+" Turn on by default
 let g:hardtime_default_on = 1
+" allow +/-
+let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:hardtime_allow_different_key = 1
+"------------------------------------------------------------------------------
 
 " Strip trailing whitespace (and save cursor position) when saving files
 fun! <SID>StripTrailingWhitespaces()
@@ -287,14 +293,14 @@ function! StartTimeStamp()
   :r! date
   :normal! kJo
 endfunction
-nnoremap <leader>s :call StartTimeStamp()<CR>
+nnoremap <leader>S :call StartTimeStamp()<CR>
 
 function! EndTimeStamp()
   :normal! 0I**EndTime**
   :r! date
   :normal! kJo
 endfunction
-nnoremap <leader>e :call EndTimeStamp()<CR>
+nnoremap <leader>E :call EndTimeStamp()<CR>
 
 function! Lipsum()
   :r! lipsum
@@ -377,6 +383,7 @@ else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
 function! BlockMove()
   :execute ":normal! Imv \"\<esc>A\"\<esc>0Wv$hy$A \<esc>080lp"
 endfunction
@@ -404,6 +411,7 @@ function! AddImport()
 endfunction
 nnoremap <silent> <leader>if :call AddImportFrom()<CR>
 
+" Update the filename in the header
 function! SetFileName()
   let fn=expand("%:t")
   let save_cursor = getpos(".")
@@ -415,7 +423,7 @@ function! SetFileName()
 endfun
 nmap <silent> <leader>f :call SetFileName()<CR>
 
-
+" Update the Last Updated info in the header
 function! SetUpdatedTime()
   let save_cursor = getpos(".")
   let n = min([20, line("$")])
@@ -426,6 +434,7 @@ function! SetUpdatedTime()
 endfun
 " nmap <silent> <leader>u :call SetUpdatedTime()<CR>
 
+" Error console
 let g:syntastic_always_populate_loc_list = 1
 nmap <unique> <silent> <leader>lo :lopen<CR>
 nmap <unique> <silent> <leader>lc :lclose<CR>
@@ -433,8 +442,29 @@ nmap <unique> <silent> <leader>ll :ll<CR>
 nmap <unique> <silent> <leader>ln :lnext<CR>
 nmap <unique> <silent> <leader>lp :lprev<CR>
 
+" Jump to marker(<++>) delete and switch to insert mode
 inoremap \\ <Esc>/<++><Enter>"_c4l
 vnoremap \\ <Esc>/<++><Enter>"_c4l
-map \\ <Esc>/<++><Enter>"_c4l
+nnoremap \\ <Esc>/<++><Enter>"_c4l
 
+" Search and replace word under cursor
 nnoremap <leader>w :%s/\<<C-r><C-w>\>/
+
+
+" Generate an incrementing string of padded numbers surrounded by text
+function! MyList(count, ...)
+    let start = get(a:, 1, "")
+    let end = get(a:, 2, "")
+    let pad = get(a:, 3, 0)
+
+    let c = 0
+    while c < a:count
+        let cout = c
+        while len(cout) < pad
+            let cout = 0 . cout
+        endwhile
+        let output = start . cout . end
+        let stat = append(line('.') + c, output)
+        let c += 1
+    endwhile
+endfun
