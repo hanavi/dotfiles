@@ -1,6 +1,7 @@
 " Set up a better encoding
 set encoding=utf-8
 
+"------------------------------------------------------------------------------
 " Plugins
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -20,6 +21,7 @@ Plug 'vim-syntastic/syntastic'
 
 " Fancy Bar at the bottom of the screen
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Python
 Plug 'davidhalter/jedi-vim'
@@ -68,9 +70,9 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " Extra panels to improve productivity
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-vinegar'
 
 " Harmode... just for the fun of it...
-" Plug 'wikitopian/hardmode'
 Plug 'takac/vim-hardtime'
 
 
@@ -81,7 +83,9 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 call plug#end()
+
 "------------------------------------------------------------------------------
+let g:jedi#smart_auto_mappings = 1
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
@@ -94,8 +98,20 @@ let g:syntastic_mode_map = {
         \ "active_filetypes": [],
         \ "passive_filetypes": [] }
 
-nnoremap <silent> <leader>l :SyntasticCheck<CR>
 
+" Run linter
+nnoremap <silent> <leader>l :SyntasticCheck<CR>
+let g:SuperTabMappingForward = '<s-tab>'
+let g:SuperTabMappingBackward = '<tab>'
+
+let g:UltiSnipsSnippetsDir = $HOME.'/.vim/UltiSnips'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+nnoremap <silent> <leader>u :UltiSnipsEdit<CR>
+
+"
 "--Color Scheme----------------------------------------------------------------
 let g:solarized_diffmode="high"
 let g:solarized_termcolors=256
@@ -170,6 +186,16 @@ augroup END
 nnoremap <leader>mk :!make<CR>
 
 
+" Location list for syntastic
+let g:syntastic_always_populate_loc_list = 1
+nnoremap <silent> <leader>lo :lopen<CR>
+nnoremap <silent> <leader>lc :lclose<CR>
+nnoremap <silent> <leader>ll :ll<CR>
+nnoremap <silent> <leader>ln :lnext<CR>
+nnoremap <silent> <leader>lp :lprev<CR>
+" nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+
+
 " Original
 " set textwidth=79
 set expandtab
@@ -180,6 +206,15 @@ set cursorline
 set fileformat=unix
 set autoindent
 set hlsearch
+set splitright splitbelow
+set completeopt-=preview
+
+" nnoremap <silent> <c-Up> :vert resize +3<cr>
+" nnoremap <silent> <c-Down> :vert resize +3<cr>
+" nnoremap <silent> <c-Left> :vert resize -3<cr>
+" nnoremap <silent> <c-Right> :vert resize +3<cr>
+
+au FileType tex set spell
 
 syntax on
 
@@ -191,14 +226,18 @@ syntax on
 
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>p :set paste!<CR>
 
 "set tags=./tags;/
 
-"airline
+" airline settings
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+" Set the airline theme
+let g:airline_theme='dark'
+" let g:airline_powerline_fonts = 1
 
 "let g:netrw_browsex_viewer = 'firefox'
 
@@ -208,16 +247,18 @@ set foldlevel=99
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 
+
 call togglebg#map("<F5>")
 " NERDTree Settings
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
+" Toggle NERDTree
+nnoremap <leader>N :NERDTreeToggle<CR>
+
 " This is much faster than the default on OSX (and better?)
 let g:syntastic_python_checkers = ['pylama']
-
-
 let python_highlight_all=1
 
 function! BlockMove()
@@ -226,25 +267,28 @@ endfunction
 vnoremap <leader>mb :call BlockMove()<CR>
 
 function! FixCommas()
+  let save_cursor = getpos(".")
   :silent! %s/,/, /g
   :silent! %s/, */, /g
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
 endfunction
 
 nnoremap <leader>fc :call FixCommas()<CR>
 
+" Might only work in unix
 function! StartTimeStamp()
   :normal! 0I**StartTime**
   :r! date
   :normal! kJo
 endfunction
+nnoremap <leader>s :call StartTimeStamp()<CR>
 
 function! EndTimeStamp()
   :normal! 0I**EndTime**
   :r! date
   :normal! kJo
 endfunction
-
-nnoremap <leader>s :call StartTimeStamp()<CR>
 nnoremap <leader>e :call EndTimeStamp()<CR>
 
 function! Lipsum()
@@ -265,7 +309,6 @@ function! GetArgs()
 endfunction
 
 nnoremap <silent> <leader>ff :call GetArgs()<CR>
-
 
 function! SplitArgs()
   :normal! yi)
@@ -321,5 +364,49 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-set colorcolumn=80,90,100,110,120
+set colorcolumn=80,100,120
 hi ColorColumn guibg=darkred ctermbg=darkred
+
+function! AddImportFrom()
+  let save_cursor = getpos(".")
+  let save_cursor[1] = line('.') + 1
+  :norm G<CR>
+  call search('import', 'b')
+  let cmd = input("from ", "")
+  execute ':norm ofrom ' . cmd
+  call setpos('.', save_cursor )
+endfunction
+nnoremap <silent> <leader>im :call AddImport()<CR>
+
+function! AddImport()
+  let save_cursor = getpos(".")
+  let save_cursor[1] = line('.') + 1
+  :norm G<CR>
+  call search('import', 'b')
+  let cmd = input("import ", "")
+  execute ':norm oimport ' . cmd
+  call setpos('.', save_cursor )
+endfunction
+nnoremap <silent> <leader>if :call AddImportFrom()<CR>
+
+function! SetFileName()
+  let fn=expand("%:t")
+  let save_cursor = getpos(".")
+  let n = min([20, line("$")])
+  keepjumps exe '1,' . n . 's#^\(.\{,10}Filename: \).*#\1' .
+        \ fn . '#e'
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
+endfun
+nmap <silent> <leader>f :call SetFileName()<CR>
+
+
+function! SetUpdatedTime()
+  let save_cursor = getpos(".")
+  let n = min([20, line("$")])
+  keepjumps exe '1,' . n . 's#^\(.\{,10}Last Updated: \).*#\1' .
+        \ strftime('%F') . '#e'
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
+endfun
+" nmap <silent> <leader>u :call SetUpdatedTime()<CR>

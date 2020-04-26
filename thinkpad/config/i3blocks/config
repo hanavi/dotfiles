@@ -2,16 +2,12 @@ command=~/.scripts/statusbar/$BLOCK_NAME
 separator_block_width=15
 markup=pango
 
-[transparency]
-label=🥃
-interval=once
-
 [checkmail]
 label=📧
 interval=300
 
 [extip]
-command=curl ifconfig.me
+command=echo $(curl ifconfig.me)
 interval=once
 
 [internet]
