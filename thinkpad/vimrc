@@ -28,7 +28,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'tmhedberg/SimpylFold'
 " Plug 'nvie/vim-flake8'
 Plug 'vim-scripts/indentpython.vim'
-Plug 'hynek/vim-python-pep8-indent'
+" Plug 'hynek/vim-python-pep8-indent'
 
 " Tab formatting stuff
 Plug 'godlygeek/tabular'
@@ -36,7 +36,7 @@ Plug 'godlygeek/tabular'
 " LaTeX
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 
-" Git I think
+" Git
 Plug 'tpope/vim-fugitive'
 
 " Searching
@@ -67,7 +67,7 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-vinegar'
 
 " Harmode... just for the fun of it...
-Plug 'takac/vim-hardtime'
+" Plug 'takac/vim-hardtime'
 
 
 " Return to last edit position
@@ -75,9 +75,14 @@ Plug 'farmergreg/vim-lastplace'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 
 "------------------------------------------------------------------------------
+autocmd FileType c setlocal commentstring=//\ %s
+autocmd FileType cpp setlocal commentstring=//\ %s
+
 let g:jedi#smart_auto_mappings = 1
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
@@ -101,18 +106,21 @@ let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
 let g:UltiSnipsSnippetsDir = $HOME.'/.vim/UltiSnips'
-let g:UltiSnipsExpandTrigger="<tab>"
+" UltiSnips triggering
+let g:UltiSnipsExpandTrigger = '<C-j>'
+" let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 nnoremap <silent> <leader>u :UltiSnipsEdit<CR>
 
+
 "
 "--Color Scheme----------------------------------------------------------------
 " let g:solarized_diffmode="high"
-" let g:solarized_termcolors=256
-" let g:solarized_degraded=2
-" let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+let g:solarized_degraded=2
+let g:solarized_termtrans=1
 "
 if has('gui_running')
     set lines=50 columns=100
@@ -167,12 +175,30 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " au BufNewFile *.sh :norm 2j
 "
 au BufWritePre *.py :call SetUpdatedTime()
+au BufWritePre *.c++ :call SetUpdatedTime()
+au BufWritePre *.cpp :call SetUpdatedTime()
+
 augroup new_python_file
   autocmd!
   au BufNewFile *.py 0r ~/.vim/templates/skeleton.py
   au BufNewFile *.py :call SetFileName()
   au BufNewFile *.py :call SetCreatedTime()
   au BufNewFile *.py :call SetUpdatedTime()
+augroup END
+
+augroup new_c++_file
+  autocmd!
+  au BufNewfile *.h 0r ~/.vim/templates/skeleton.h
+  au BufNewfile *.c++ 0r ~/.vim/templates/skeleton.cpp
+  au BufNewfile *.cpp 0r ~/.vim/templates/skeleton.cpp
+
+  au BufNewFile *.h :call SetFileName()
+  au BufNewFile *.c++ :call SetFileName()
+  au BufNewFile *.cpp :call SetFileName()
+
+  au BufNewFile *.h :call SetCreatedTime()
+  au BufNewFile *.c++ :call SetCreatedTime()
+  au BufNewFile *.cpp :call SetCreatedTime()
 augroup END
 
 augroup new_shell_file
@@ -241,6 +267,8 @@ let g:airline_theme='dark'
 let g:airline_powerline_fonts = 1
 
 "let g:netrw_browsex_viewer = 'firefox'
+let g:netrw_liststyle=3
+let g:netrw_http_cmd="firefox"
 
 " Enable folding
 "set foldmethod=indent
@@ -270,7 +298,7 @@ let python_highlight_all=1
 " Restores cursor and window position using save_cursor variable.
 function! SetCreatedTime()
   let save_cursor = getpos(".")
-  let n = min([20, line("$")])
+  let n = min([30, line("$")])
   keepjumps exe '1,' . n . 's#^\(.\{,10}Date Created: \).*#\1' .
         \ strftime('%F') . '#e'
   call histdel('search', -1)
@@ -415,7 +443,7 @@ nnoremap <silent> <leader>if :call AddImportFrom()<CR>
 function! SetFileName()
   let fn=expand("%:t")
   let save_cursor = getpos(".")
-  let n = min([20, line("$")])
+  let n = min([30, line("$")])
   keepjumps exe '1,' . n . 's#^\(.\{,10}Filename: \).*#\1' .
         \ fn . '#e'
   call histdel('search', -1)
@@ -426,7 +454,7 @@ nmap <silent> <leader>f :call SetFileName()<CR>
 " Update the Last Updated info in the header
 function! SetUpdatedTime()
   let save_cursor = getpos(".")
-  let n = min([20, line("$")])
+  let n = min([30, line("$")])
   keepjumps exe '1,' . n . 's#^\(.\{,10}Last Updated: \).*#\1' .
         \ strftime('%F') . '#e'
   call histdel('search', -1)
@@ -436,11 +464,11 @@ endfun
 
 " Error console
 let g:syntastic_always_populate_loc_list = 1
-nmap <unique> <silent> <leader>lo :lopen<CR>
-nmap <unique> <silent> <leader>lc :lclose<CR>
-nmap <unique> <silent> <leader>ll :ll<CR>
-nmap <unique> <silent> <leader>ln :lnext<CR>
-nmap <unique> <silent> <leader>lp :lprev<CR>
+nmap <silent> <leader>lo :lopen<CR>
+nmap <silent> <leader>lc :lclose<CR>
+nmap <silent> <leader>ll :ll<CR>
+nmap <silent> <leader>ln :lnext<CR>
+nmap <silent> <leader>lp :lprev<CR>
 
 " Jump to marker(<++>) delete and switch to insert mode
 inoremap \\ <Esc>/<++><Enter>"_c4l
@@ -468,3 +496,13 @@ function! MyList(count, ...)
         let c += 1
     endwhile
 endfun
+
+map <esc>[1;5D <c-Left>
+map <esc>[1;5C <c-Right>
+map <esc>[1;5A <c-Up>
+map <esc>[1;5B <c-Down>
+
+nmap <silent> <c-left> :vert resize -3<cr>
+nmap <silent> <c-right> :vert resize +3<cr>
+nmap <silent> <c-up> :resize +3<cr>
+nmap <silent> <c-down> :resize -3<cr>
