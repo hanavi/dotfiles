@@ -14,7 +14,7 @@ LOGABSTRACT=all
 ################################################################
 
 :0:
-* ^To:.*aol.com.*
+* ^To:.*latrumpeta@aol.com.*
 aol/
 
 # Job Recruiters #################################################
@@ -304,6 +304,14 @@ aol/
 .TravelDocs/
 
 :0:
+* ^From:.*brett-robinson.*
+.TravelDocs/
+
+:0:
+* ^From:.*Hilton Grand.*
+.TravelDocs/
+
+:0:
 * ^From:.*Hilton Honors.*
 .TravelDocs/
 
@@ -426,6 +434,10 @@ aol/
 :0:
 * ^Subject:.*\[Snort-users\].*
 .Snort/
+
+:0:
+* ^From:.*Classmates.com.*
+.Misc.Crap/
 
 :0:
 * ^From:.*triplebyte.com.*

@@ -3,6 +3,8 @@ alias la='ls -A'
 alias l='ls -alhF'
 alias l.="ls -d .*"
 
+alias ffi="find . -iname"
+
 alias javac-algs='javac -cp /mnt/raid/files/james/prog/coursera/algs4.jar:.'
 alias java-algs='java -cp /mnt/raid/files/james/prog/coursera/algs4.jar:.'
 
@@ -27,7 +29,7 @@ alias saa='ssh-add'
 
 alias gpg='/usr/bin/gpg2'
 
-alias vim='/usr/local/bin/nvim'
+alias vim='/usr/bin/vim'
 alias rvim='alias vim="/usr/bin/vim"'
 
 
