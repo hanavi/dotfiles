@@ -186,6 +186,16 @@ augroup END
 nnoremap <leader>mk :!make<CR>
 
 
+" Location list for syntastic
+let g:syntastic_always_populate_loc_list = 1
+nnoremap <silent> <leader>lo :lopen<CR>
+nnoremap <silent> <leader>lc :lclose<CR>
+nnoremap <silent> <leader>ll :ll<CR>
+nnoremap <silent> <leader>ln :lnext<CR>
+nnoremap <silent> <leader>lp :lprev<CR>
+" nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+
+
 " Original
 " set textwidth=79
 set expandtab
@@ -198,6 +208,11 @@ set autoindent
 set hlsearch
 set splitright splitbelow
 set completeopt-=preview
+
+" nnoremap <silent> <c-Up> :vert resize +3<cr>
+" nnoremap <silent> <c-Down> :vert resize +3<cr>
+" nnoremap <silent> <c-Left> :vert resize -3<cr>
+" nnoremap <silent> <c-Right> :vert resize +3<cr>
 
 au FileType tex set spell
 
