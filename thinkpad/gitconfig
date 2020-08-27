@@ -15,3 +15,9 @@
 [gpg]
 	program = /usr/bin/gpg2
 
+[pull]
+	rebase = false
+[alias]
+	co = checkout
+	ci = commit
+	st = status
