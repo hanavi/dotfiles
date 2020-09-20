@@ -1,0 +1,8 @@
+ipp ()
+{
+if [[ -z '${VIRTUAL_ENV}' ]] || [[ $VIRTUAL_ENV != /home/james/.local/python/python3.7 ]]
+then
+   source ~/.local/python/python3.7/bin/activate
+fi
+ipython "$@"
+}

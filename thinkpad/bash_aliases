@@ -1,8 +1,14 @@
 ## Python
 alias pylab='ipython --pylab'
 
-## Mounting
+alias fpg='gpg-connect-agent updatestartuptty /bye'
 
+## Mounting
+alias ec='vim /usr/local/src/dwm/dwm-6.2/config.h'
+alias src='cd /usr/local/src/dwm/dwm-6.2/'
+
+alias px='pulsemixer'
+alias bat='cat /sys/class/power_supply/BAT0/capacity'
 
 # NFS
 alias mm="mount /home/james/remote/media"
@@ -25,8 +31,10 @@ alias m4="sshfs labserver:/media/disk4/files /home/james/remote/disk4"
 alias um4="fusermount -u /home/james/remote/disk4"
 # alias mt="sshfs 192.168.0.19:/media/spare/torrent/deluge /home/james/remote/tserver"
 # alias umt="fusermount -u /home/james/remote/tserver"
-alias mh="sshfs 192.168.0.11:/mnt/raid/files/james /home/james/remote/homelocal"
-alias umh="fusermount -u /home/james/remote/homelocal"
+alias mms="sshfs hv1:/mnt/raid/media /home/james/remote/media"
+alias umms="fusermount -u /home/james/remote/media"
+alias mfs="sshfs hv1:/mnt/raid/files /home/james/remote/files"
+alias umfs="fusermount -u /home/james/remote/files"
 
 ## ls stuff
 alias ll='ls -l'
@@ -44,21 +52,27 @@ alias hr='ssh homeremote'
 ## Misc
 alias cm='hl "./scripts/check_mail.sh" 2>/dev/null'
 # alias wx='curl -s http://wttr.in/hsv'
+alias tl='tmux ls'
 alias ta='tmux attach'
+alias nmd='xrandr --output eDP-1 --brightness .5; redshift -O 2000'
+
+alias c='ssh homelocal /home/james/.local/bin/crypto'
+alias rmutt='ssh -X -t homelocal "env MUTT_CONFIG=fetchmail /usr/local/bin/mutt"'
+alias gwi='$HOME/.local/bin/get_weather_image.py'
 
 ## Email
 alias mutt="MUTT_CONFIG=fetchmail /usr/bin/mutt"
 alias gmutt="MUTT_CONFIG=gmail /usr/bin/mutt"
 
-
+alias pp='source ~/.local/python/python3.7/bin/activate'
 
 ## This are old... should I keep them?
 alias resume='cd ~/Dropbox/Documents/Professional/resume_latex'
 alias ytlink='~/Dropbox/scripts/youtube/youtube_link.py'
 alias tvim="tmux new-session \; split-window -l 10"
-alias vn="vim +NERDTree"
-alias m='mplayer -ontop -geometry 600x450-100+150'
-alias pm='sudo /home/james/scripts/pmode'
+# alias vn="vim +NERDTree"
+# alias m='mplayer -ontop -geometry 600x450-100+150'
+alias pm='sudo /home/james/.local/bin/pmode'
 
 alias m='cd $HOME/remote/media/Movies'
 alias s='cd $HOME/remote/media/Shows'
@@ -72,3 +86,5 @@ alias sb='source $HOME/.bash_aliases'
 alias f='firefox https://www.facebook.com'
 alias h='firefox https://hangouts.google.com'
 alias yt='firefox https://www.youtube.com'
+
+alias nb='newsboat'

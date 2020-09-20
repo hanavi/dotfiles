@@ -13,7 +13,7 @@
 [commit]
 	gpgsign = true
 [gpg]
-	program = /usr/bin/gpg2
+	program = /usr/bin/gpg
 
 [pull]
 	rebase = false
