@@ -3,6 +3,8 @@ alias pylab='ipython --pylab'
 
 alias fpg='gpg-connect-agent updatestartuptty /bye'
 
+alias hv='sudo ~/.local/bin/homevpn'
+
 ## Mounting
 alias ec='vim /usr/local/src/dwm/dwm-6.2/config.h'
 alias src='cd /usr/local/src/dwm/dwm-6.2/'
@@ -57,7 +59,8 @@ alias ta='tmux attach'
 alias nmd='xrandr --output eDP-1 --brightness .5; redshift -O 2000'
 
 alias c='ssh homelocal /home/james/.local/bin/crypto'
-alias rmutt='ssh -X -t homelocal "env MUTT_CONFIG=fetchmail /usr/local/bin/mutt"'
+alias rmutt='ssh -X -t homelocal_gpg "env MUTT_CONFIG=fetchmail /usr/local/bin/mutt"'
+alias amutt='ssh -X -t homelocal_gpg "env MUTT_CONFIG=aol /usr/local/bin/mutt"'
 alias gwi='$HOME/.local/bin/get_weather_image.py'
 
 ## Email
@@ -82,6 +85,7 @@ alias d='cd $HOME/remote/deluge'
 
 alias eb='vim $HOME/.bash_aliases'
 alias sb='source $HOME/.bash_aliases'
+alias es='vim $HOME/.ssh/config'
 
 alias f='firefox https://www.facebook.com'
 alias h='firefox https://hangouts.google.com'
