@@ -101,7 +101,7 @@ let g:SuperTabMappingBackward = '<tab>'
 "
 if has('gui_running')
     set lines=50 columns=100
-    colorscheme gruvbox
+    "colorscheme gruvbox
     "colorscheme ron
     "colorscheme solarized
     set background=dark
@@ -130,7 +130,7 @@ set wildmenu wildmode=longest,list,full
 " set completeopt=menuone,longest
 set complete=.,w,b,u,t,i,kspell
 
-let g:hardtime_default_on = 1
+let g:hardtime_default_on = 0
 
 " Strip trailing whitespace (and save cursor position) when saving files
 fun! <SID>StripTrailingWhitespaces()
@@ -218,7 +218,7 @@ nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 
 
-call togglebg#map("<F5>")
+" call togglebg#map("<F5>")
 " NERDTree Settings
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
