@@ -107,7 +107,7 @@ if has('gui_running')
     set background=dark
 else
     "colorscheme zenburn
-    colorscheme gruvbox
+    "colorscheme gruvbox
     "colorscheme ron
     "colorscheme solarized
     set background=dark
