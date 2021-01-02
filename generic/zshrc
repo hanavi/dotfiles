@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/james/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -108,7 +108,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
+
 if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
@@ -122,11 +122,11 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 # source $HOME/.local/venv/bin/activate
 export GPG_TTY=$(tty)
 
-# source $HOME/.local/python3.7.2/venv/bin/activate
+# SSH Agent from GPG
+# gpg-connect-agent updatestartuptty /bye >/dev/null
+# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
-export PATH=$PATH:$HOME/remote/prog/github/scripts/bin
 export PATH=$PATH:$HOME/.local/bin
-
 
 SSH_ENV="$HOME/.ssh/environment"
 
@@ -136,25 +136,7 @@ function start_agent {
      echo succeeded
      chmod 600 "${SSH_ENV}"
      . "${SSH_ENV}" > /dev/null
-     /usr/bin/ssh-add;
+     #/usr/bin/ssh-add;
 }
 
-# Source SSH settings, if applicable
-
-if [ -f "${SSH_ENV}" ]; then
-     . "${SSH_ENV}" > /dev/null
-     #ps ${SSH_AGENT_PID} doesn't work under cywgin
-     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-         start_agent;
-     }
-else
-     start_agent;
-fi
-
 export EDITOR=vim
-
-PATH="/home/james/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/james/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/james/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/james/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/james/perl5"; export PERL_MM_OPT;

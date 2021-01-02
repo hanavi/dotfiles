@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-exec "xrandr --dpi 192"
+exec --no-startup-id "xrandr --dpi 192"
 
 # #---Basic Definitions---# #
 # Needed for i3-gaps
@@ -26,6 +26,17 @@ set $mod Mod4
 
 for_window [instance="octave-gui" class="GNU Octave"] floating enable
 
+for_window [title="Remote"] floating enable
+for_window [title="Remote"] move position 2100 50
+
+for_window [instance="dropdown"] floating enabled
+for_window [instance="dropdown"] resize set 1400 700
+for_window [instance="dropdown"] move scratchpad
+for_window [instance="dropdown"] border pixel 5
+exec --no-startup-id $term -n dropdown -f Monospace-10 -e tmux
+bindsym $mod+Ctrl+Escape exec --no-startup-id $term -n dropdown -f Monospace-10 -e tmux
+
+for_window [class="^MPlayer.*"] sticky enable
 
 ## Volume Control
 # set $sink `pactl list short sinks | cut -f1`
@@ -69,7 +80,7 @@ set_from_resource $white	color15 #000000
 set $transparent		#00000000
 
 #                       BORDER		BACKGROUND	TEXT		INDICATOR   CHILD_BORDER
-client.focused		$red		$red		$magenta	$darkmagenta		$darkblue
+client.focused		$red		$red		$magenta	$darkmagenta		$darkred
 client.unfocused	$transparent	$blue		$white		$darkblue		$darkblack
 client.focused_inactive	$transparent	$blue		$white		$darkblue		$darkblack
 client.urgent		$darkred	$darkred	$black		$darkred		$darkred
@@ -119,7 +130,7 @@ floating_modifier $mod
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -166,7 +177,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+# bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -190,6 +201,7 @@ bindsym $mod+Control+h move container to workspace prev; workspace prev
 bindsym $mod+Control+Left  move container to workspace next; workspace next
 bindsym $mod+Control+Right move container to workspace prev; workspace prev
 
+workspace_auto_back_and_forth yes
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -233,7 +245,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -272,9 +284,27 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+mode "Media Mode" {
+        bindsym Right exec echo "seek +10" > /home/james/.mplayer/testing
+        bindsym Left exec echo "seek -10" > /home/james/.mplayer/testing
+        bindsym Up exec echo "seek +60" > /home/james/.mplayer/testing
+        bindsym Down exec echo "seek -60" > /home/james/.mplayer/testing
+        bindsym n exec echo "pt_step 1" > /home/james/.mplayer/testing
+        bindsym p exec echo "pt_step -1" > /home/james/.mplayer/testing
+        bindsym space exec echo "pause" > /home/james/.mplayer/testing
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+Shift+u mode "default"
+}
+
+bindsym $mod+Shift+u mode "Media Mode"
+
 # start a terminal
-bindsym $mod+Return split h; exec i3-sensible-terminal
-bindsym $mod+Shift+Return split v; exec i3-sensible-terminal
+bindsym $mod+Return split h; exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Shift+Return split v; exec --no-startup-id i3-sensible-terminal
+
+bindsym $mod+Ctrl+Return [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
 
 ## Custom Apps
 bindsym $mod+m split h; exec $term -e ranger
@@ -282,15 +312,18 @@ bindsym $mod+Shift+m split v; exec $term -e ranger
 
 bindsym $mod+c exec urxvt -e cava
 
-bindsym $mod+t exec cd /home/james/local/tor-browser_en-US && ./start-tor-browser.desktop
-bindsym $mod+Shift+f exec firefox
-bindsym $mod+Shift+w exec chromium
-bindsym $mod+Shift+p exec firefox --private-window
+bindsym $mod+t exec --no-startup-id cd /home/james/local/tor-browser_en-US && ./start-tor-browser.desktop
+bindsym $mod+Shift+f exec --no-startup-id firefox
+bindsym $mod+Shift+w exec --no-startup-id chromium
+bindsym $mod+Shift+p exec --no-startup-id firefox --private-window
 
 bindsym $mod+grave exec /home/james/.scripts/dmenu/dmenuunicode
 bindsym $mod+u exec /home/james/.scripts/dmenu/urls
 
 bindsym $mod+p exec /home/james/.scripts/dmenu/lastpass
+
+bindsym $mod+s exec --no-startup-id redshift -x
+bindsym $mod+Shift+s exec --no-startup-id redshift -O 2000
 
 
 bindsym $mod+plus exec transset-df -a --min 0.1 --dec 0.1
