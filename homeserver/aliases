@@ -1,3 +1,4 @@
+alias ls='/usr/local/bin/gls --color'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -alhF'
@@ -16,19 +17,20 @@ alias tl='tmux ls'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 alias yt='youtube-dl -f mp4'
-alias mutt='MUTT_CONFIG=fetchmail /usr/bin/neomutt'
-alias gmutt='MUTT_CONFIG=gmail /usr/bin/neomutt'
-alias amutt='MUTT_CONFIG=aol /usr/bin/neomutt'
-# alias mutt-usap='MUTT_CONFIG=usap /usr/bin/mutt'
+alias mutt='MUTT_CONFIG=fetchmail /usr/local/bin/mutt'
+alias gmutt='MUTT_CONFIG=gmail /usr/local/bin/mutt'
+alias amutt='MUTT_CONFIG=aol /usr/local/bin/mutt'
+# alias mutt-usap='MUTT_CONFIG=usap /usr/local/bin/mutt'
 
+alias wd='weather --daily'
 
 alias sa='ssh-agent bash'
 alias saa='ssh-add'
 
-alias gpg='/usr/bin/gpg2'
+#alias gpg='/usr/bin/gpg2'
 
-alias vim='/usr/local/bin/nvim'
-alias rvim='alias vim="/usr/bin/vim"'
+#alias vim='/usr/local/bin/nvim'
+#alias rvim='alias vim="/usr/bin/vim"'
 
 
 alias sb='source ~/.aliases'
@@ -41,13 +43,13 @@ alias poh="cd $HOME/files/projects/poh"
 alias files="cd /mnt/raid/files"
 alias logs='cd $HOME/Dropbox/logs'
 alias games='cd /mnt/raid/files/roms'
-alias s='cd /mnt/raid/media/Shows'
+alias s='cd /home/james/remote/media/Shows'
 alias b='cd /mnt/raid/files/Books'
-alias m='cd /mnt/raid/media/Movies'
-alias y='cd /mnt/raid/media/youtube'
+alias m='cd /home/james/remote/media/Movies'
+alias y='cd /home/james/remote/media/youtube'
 alias sc='cd ~/Dropbox/scripts'
-alias d='cd /mnt/raid/hosts/deluge'
-alias a='cd /mnt/raid/media/Music'
+alias d='cd $HOME/remote/deluge'
+alias a='cd /home/james/remote/media/Music'
 alias dl='cd /mnt/raid/files/youtube'
 alias c='crypto'
 alias di="ssh deluge deluge-console info"

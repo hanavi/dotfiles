@@ -4,6 +4,7 @@ set spoolfile = /home/james/Mail
 set folder = /home/james/Mail
 set mask="!^\\.[^.]"
 set header_cache=~/.mutt/hcache/fetchmail
+#set message_cachedir = ~/.mutt/bcache/fetchmail
 #set mark_old=no
 
 mailboxes ! + `\
@@ -35,11 +36,11 @@ set sort=threads
 #### Sending Email ####
 set from="James Casey <hanavi@gmail.com>"
 set envelope_from=yes
-set sendmail="/usr/bin/msmtp"
+set sendmail="/usr/local/bin/msmtp"
 #set sendmail = /home/james/bin/msmtpq
 set sendmail_wait = -1
 
-set editor="/usr/bin/vim"
+#set editor="/usr/bin/vim"
 set edit_headers
 alternates "jcasey8@gatech.edu|james.casey@gatech.edu|jcasey@icecube.usap.gov|james.casey.guest@usap.gov"
 #set metoo=yes

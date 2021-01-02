@@ -3,10 +3,11 @@
 auto_view text/html
 alternative_order text/plain text/enriched text/html
 set text_flowed=yes
+set editor=vim
 
 set charset="UTF-8"
 set send_charset="utf-8:iso-8859-2:iso-8859-1"
-charset-hook ks_c_5601-1987 euc-kr
+# charset-hook ks_c_5601-1987 euc-kr
 
 #set sidebar_width=30
 # set sidebar_visible=yes
@@ -27,6 +28,7 @@ bind index,pager \Co sidebar-open
 bind index,pager \Cp sidebar-prev-new
 bind index,pager \Cn sidebar-next-new
 bind index,pager B sidebar-toggle-visible
+bind index <return> display-message
 
 
 hdr_order Date To From Subject
@@ -37,14 +39,15 @@ macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "ma
 
 set date_format="%m/%d %H:%M"
 set index_format="%2C %Z %?X?A& ? %D  %-15.15F %s (%-4.4c)"
-set folder_format="%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f"
+set folder_format="%2C %t %N %F %2l %-8.8u %-8.8g     (%4n/%4m)    %d %f"
+# set folder_format="%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f"
 
 set pager_index_lines   = 10    # number of index lines to show
 set pager_context       = 3     # number of context lines to show
 
-# macro index,pager \cb 'urlscan' 'Follow links with urlview'
-macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
-macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+# macro index,pager \cb 'urlview' 'Follow links with urlview'
+macro index,pager \cb "<pipe-message> urlview<Enter>" "call urlview to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlview<Enter>" "call urlview to extract URLs out of a message"
 
 bind index,pager F flag-message
 
@@ -57,15 +60,15 @@ set pager_stop
 
 
 # Default index colors:
-color index yellow default '.*'
-color index_author red default '.*'
-color index_number blue default
-color index_subject cyan default '.*'
+#color index yellow default '.*'
+#color index_author red default '.*'
+#color index_number blue default
+#color index_subject cyan default '.*'
 
 # For new mail:
-color index brightyellow black "~N"
-color index_author brightred black "~N"
-color index_subject brightcyan black "~N"
+#color index brightyellow black "~N"
+#color index_author brightred black "~N"
+#color index_subject brightcyan black "~N"
 
 color sidebar_highlight red default
 color sidebar_divider brightblack black
