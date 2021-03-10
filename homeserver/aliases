@@ -27,7 +27,7 @@ alias wd='weather --daily'
 alias sa='ssh-agent bash'
 alias saa='ssh-add'
 
-#alias gpg='/usr/bin/gpg2'
+alias gpg='/usr/local/bin/gpg2'
 
 #alias vim='/usr/local/bin/nvim'
 #alias rvim='alias vim="/usr/bin/vim"'
