@@ -1,6 +1,9 @@
 " Set up a better encoding
 set encoding=utf-8
 
+let mapleader = "\<Space>"
+
+
 "------------------------------------------------------------------------------
 " Plugins
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -42,7 +45,7 @@ Plug 'godlygeek/tabular'
 " LaTeX
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 
-" Git I think
+" Git
 Plug 'tpope/vim-fugitive'
 
 " Searching
@@ -83,35 +86,169 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 call plug#end()
+"------------------------------------------------------------------------------
+
 
 "------------------------------------------------------------------------------
+" vim-jedi config
 let g:jedi#smart_auto_mappings = 1
+"------------------------------------------------------------------------------
 
+
+"------------------------------------------------------------------------------
+" ctrl-p  config
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+"------------------------------------------------------------------------------
 
-let mapleader = "\<Space>"
 
+"------------------------------------------------------------------------------
+" syntastic config
 let g:syntastic_python_checkers = ['pylama']
-" systastic settings
 let g:syntastic_mode_map = {
         \ "mode": "passive",
         \ "active_filetypes": [],
         \ "passive_filetypes": [] }
 
+" TODO: look into this...
+let python_highlight_all=1
 
 " Run linter
 nnoremap <silent> <leader>l :SyntasticCheck<CR>
+"------------------------------------------------------------------------------
+
+
+"------------------------------------------------------------------------------
+" Supertab settings
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
+"------------------------------------------------------------------------------
 
+
+"------------------------------------------------------------------------------
+" Ultisnips config
 let g:UltiSnipsSnippetsDir = $HOME.'/.vim/UltiSnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 nnoremap <silent> <leader>u :UltiSnipsEdit<CR>
+"------------------------------------------------------------------------------
 
-"
+
+"------------------------------------------------------------------------------
+" Airline Settings
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+" Set the airline theme
+let g:airline_theme='dark'
+" let g:airline_powerline_fonts = 1
+"------------------------------------------------------------------------------
+
+
+"------------------------------------------------------------------------------
+" SimplyFold and folding settings
+" Enable folding
+"set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+let g:SimpylFold_docstring_preview=1
+"------------------------------------------------------------------------------
+
+
+"------------------------------------------------------------------------------
+call togglebg#map("<F5>")
+" NERDTree Settings
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" Toggle NERDTree
+nnoremap <leader>N :NERDTreeToggle<CR>
+"------------------------------------------------------------------------------
+
+
+"------------------------------------------------------------------------------
+" Hardtime config
+let g:hardtime_default_on = 0
+nnoremap <leader>h <Esc>:call HardTimeToggle()<CR>
+"------------------------------------------------------------------------------
+
+
+"------------------------------------------------------------------------------
+" Generic
+
+set hidden
+
+
+" Set up the line numbering
+set nu rnu
+"set number
+
+" Cursor placement
+set scrolloff=5
+
+set backspace=indent,eol,start
+set fillchars=vert:│
+set list listchars=tab:→\ ,trail:·,precedes:«,extends:»
+set wildmenu wildmode=longest,list,full
+set completeopt=menuone,longest
+
+" set textwidth=79
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set cursorline
+set fileformat=unix
+set autoindent
+set hlsearch
+set splitright splitbelow
+set completeopt-=preview
+"let g:netrw_browsex_viewer = 'firefox'
+
+au FileType tex set spell
+
+syntax on
+
+"au FileType *.tex nmap <leader>k :!make<CR>
+nnoremap <leader>mk :!make<CR>
+
+nnoremap <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>p :set paste!<CR>
+
+" Location list for syntastic
+let g:syntastic_always_populate_loc_list = 1
+nnoremap <silent> <leader>lo :lopen<CR>
+nnoremap <silent> <leader>lc :lclose<CR>
+nnoremap <silent> <leader>ll :ll<CR>
+nnoremap <silent> <leader>ln :lnext<CR>
+nnoremap <silent> <leader>lp :lprev<CR>
+
+" nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+" Enable the mouse
+" set mouse=a
+
+" Set that fancy color lign at the end of 80 char
+"set colorcolumn=+1
+
+" allows cursor change in tmux mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+set colorcolumn=80,100,120
+hi ColorColumn guibg=darkred ctermbg=darkred
+
+"------------------------------------------------------------------------------
+
+
 "--Color Scheme----------------------------------------------------------------
 let g:solarized_diffmode="high"
 let g:solarized_termcolors=256
@@ -127,40 +264,10 @@ else
     colorscheme darkblue
     set background=dark
 endif
-
-" Set that fancy color lign at the end of 80 char
-"set colorcolumn=+1
 "------------------------------------------------------------------------------
 
-" I don't remember what this does...
-set hidden
-
-" Enable the mouse
-set mouse=a
-
-" Set up the line numbering
-"set number
-set nu rnu
-
-" Cursor placement
-set scrolloff=5
-
-set backspace=indent,eol,start
-set fillchars=vert:│
-set list listchars=tab:→\ ,trail:·,precedes:«,extends:»
-set wildmenu wildmode=longest,list,full
-set completeopt=menuone,longest
-
-
-" Strip trailing whitespace (and save cursor position) when saving files
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
+"------------------------------------------------------------------------------
+" Buffer load configs
 augroup new_python_file
   autocmd!
   au BufNewFile *.py 0r ~/.vim/templates/skeleton.py
@@ -180,90 +287,27 @@ augroup dropbox_logs
   au BufNewFile Dropbox/logs/*.md :r !date "+\%F"
   au BufNewFile Dropbox/logs/*.md :norm kJG
 augroup END
+"------------------------------------------------------------------------------
 
 
-"au FileType *.tex nmap <leader>k :!make<CR>
-nnoremap <leader>mk :!make<CR>
+"------------------------------------------------------------------------------
+" Generic Functions
 
+" Strip trailing whitespace (and save cursor position) when saving files
 
-" Location list for syntastic
-let g:syntastic_always_populate_loc_list = 1
-nnoremap <silent> <leader>lo :lopen<CR>
-nnoremap <silent> <leader>lc :lclose<CR>
-nnoremap <silent> <leader>ll :ll<CR>
-nnoremap <silent> <leader>ln :lnext<CR>
-nnoremap <silent> <leader>lp :lprev<CR>
-" nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
-
-" Original
-" set textwidth=79
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set cursorline
-set fileformat=unix
-set autoindent
-set hlsearch
-set splitright splitbelow
-set completeopt-=preview
-
-" nnoremap <silent> <c-Up> :vert resize +3<cr>
-" nnoremap <silent> <c-Down> :vert resize +3<cr>
-" nnoremap <silent> <c-Left> :vert resize -3<cr>
-" nnoremap <silent> <c-Right> :vert resize +3<cr>
-
-au FileType tex set spell
-
-syntax on
-
-" inoremap ' ''<ESC>i
-" inoremap " ""<ESC>i
-" inoremap ( ()<ESC>i
-" inoremap { {}<ESC>i
-" inoremap [ []<ESC>i
-
-nnoremap <leader>ev :edit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>p :set paste!<CR>
-
-"set tags=./tags;/
-
-" airline settings
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-" Set the airline theme
-let g:airline_theme='dark'
-" let g:airline_powerline_fonts = 1
-
-"let g:netrw_browsex_viewer = 'firefox'
-
-" Enable folding
-"set foldmethod=indent
-set foldlevel=99
-nnoremap <space> za
-let g:SimpylFold_docstring_preview=1
-
-
-call togglebg#map("<F5>")
-" NERDTree Settings
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
-" Toggle NERDTree
-nnoremap <leader>N :NERDTreeToggle<CR>
-
-" This is much faster than the default on OSX (and better?)
-let g:syntastic_python_checkers = ['pylama']
-let python_highlight_all=1
 
 function! BlockMove()
   :execute ":normal! Imv \"\<esc>A\"\<esc>0Wv$hy$A \<esc>080lp"
 endfunction
+
 vnoremap <leader>mb :call BlockMove()<CR>
 
 function! FixCommas()
@@ -295,8 +339,6 @@ function! Lipsum()
   :r! lipsum
 endfunction
 
-let g:hardtime_default_on = 1
-nnoremap <leader>h <Esc>:call HardTimeToggle()<CR>
 
 nnoremap <leader>ns :r ~/.vim/templates/beamer/slide.txt<CR>
 
@@ -353,19 +395,6 @@ function! ListToDict()
 endfunction
 
 nnoremap <silent> <leader>fd :call ListToDict()<CR>
-
-
-" allows cursor change in tmux mode
-if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
-set colorcolumn=80,100,120
-hi ColorColumn guibg=darkred ctermbg=darkred
 
 function! AddImportFrom()
   let save_cursor = getpos(".")
