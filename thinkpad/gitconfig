@@ -13,5 +13,11 @@
 [commit]
 	gpgsign = true
 [gpg]
-	program = /usr/bin/gpg2
+	program = /usr/bin/gpg
 
+[pull]
+	rebase = false
+[alias]
+	co = checkout
+	ci = commit
+	st = status

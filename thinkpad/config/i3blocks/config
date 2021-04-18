@@ -2,6 +2,10 @@ command=~/.scripts/statusbar/$BLOCK_NAME
 separator_block_width=15
 markup=pango
 
+[battery]
+command=$HOME/.scripts/statusbar/vpn
+interval=5
+
 [checkmail]
 label=📧
 interval=300

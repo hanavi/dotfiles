@@ -23,7 +23,7 @@ alias amutt='MUTT_CONFIG=aol /usr/bin/neomutt'
 
 
 alias sa='ssh-agent bash'
-alias saa='ssh-add'
+alias ssa='ssh-add -t 1h'
 
 alias gpg='/usr/bin/gpg2'
 

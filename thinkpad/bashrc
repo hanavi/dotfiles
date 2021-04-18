@@ -146,3 +146,4 @@ fi
 # if [[ ! $TERM =~ screen && $TERM != rxvt-unicode-256color ]]; then
 #     exec tmux
 # fi
+
