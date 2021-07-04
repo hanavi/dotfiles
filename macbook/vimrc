@@ -30,8 +30,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'davidhalter/jedi-vim'
 Plug 'tmhedberg/SimpylFold'
 Plug 'nvie/vim-flake8'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'hynek/vim-python-pep8-indent'
+" Plug 'vim-scripts/indentpython.vim'
+" Plug 'hynek/vim-python-pep8-indent'
 
 " Javascript
 Plug 'jelera/vim-javascript-syntax'
@@ -53,8 +53,8 @@ Plug 'kien/ctrlp.vim'
 Plug 'rking/ag.vim'
 
 " Generic
-Plug 'ervandew/supertab'
-Plug 'tpope/vim-sleuth'
+"Plug 'ervandew/supertab'
+"Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
@@ -83,8 +83,8 @@ Plug 'takac/vim-hardtime'
 Plug 'farmergreg/vim-lastplace'
 
 " Snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 call plug#end()
 "------------------------------------------------------------------------------
 
