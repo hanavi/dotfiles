@@ -9,6 +9,9 @@ alias hv='sudo ~/.local/bin/homevpn'
 alias ec='vim /usr/local/src/dwm/dwm-6.2/config.h'
 alias src='cd /usr/local/src/dwm/dwm-6.2/'
 
+alias rs="$HOME/scripts/run_redshift.sh &; disown"
+alias fu="fusermount -u $HOME/mnt"
+
 alias z="zathura"
 alias px='pulsemixer'
 alias bat='cat /sys/class/power_supply/BAT0/capacity'
@@ -44,7 +47,8 @@ alias udb="fusermount -u /home/james/remote/Dropbox"
 ## ls stuff
 alias ll='ls -l'
 alias la='ls -A'
-alias l='ls -alhF'
+alias l='ls'
+alias lll='ls -alhF'
 alias l.='ls -d .*'
 alias lh='ls -alh'
 
@@ -70,9 +74,11 @@ alias nmdl='xrandr --output eDP-1 --brightness .6; redshift -O 2500'
 alias dmd='redshift -x'
 
 alias c='ssh homelocal /home/james/.local/bin/crypto'
-alias rmutt='ssh -X -t homelocal_gpg "env LC_ALL=C.UTF-8 MUTT_CONFIG=fetchmail /usr/local/bin/mutt"'
-alias amutt='ssh -X -t homelocal_gpg "env LC_ALL=C.UTF-8 MUTT_CONFIG=aol /usr/local/bin/mutt"'
+alias rmutt='ssh -X -t email "env LC_ALL=C.UTF-8 MUTT_CONFIG=fetchmail /usr/bin/mutt"'
+alias amutt='ssh -X -t email "env LC_ALL=C.UTF-8 MUTT_CONFIG=aol /usr/bin/mutt"'
+alias calcurse='ssh -X -t email "env LC_ALL=C.UTF-8 MUTT_CONFIG=aol /usr/bin/calcurse"'
 alias gwi='$HOME/.local/bin/get_weather_image.py'
+alias procmail="vim scp://email/.procmailrc"
 
 ## Email
 alias mutt="MUTT_CONFIG=fetchmail /usr/bin/mutt"
@@ -86,7 +92,6 @@ alias ytlink='~/Dropbox/scripts/youtube/youtube_link.py'
 alias tvim="tmux new-session \; split-window -l 10"
 # alias vn="vim +NERDTree"
 # alias m='mplayer -ontop -geometry 600x450-100+150'
-alias pm='sudo /home/james/.local/bin/pmode'
 
 alias m='cd $HOME/remote/media/Movies'
 alias s='cd $HOME/remote/media/Shows'
@@ -105,5 +110,6 @@ alias yt='firefox https://www.youtube.com'
 
 alias nb='newsboat'
 
-
 alias kas="killall ssh"
+
+alias pm='sudo /home/james/.local/bin/pmode'
