@@ -13,7 +13,8 @@ alias hl="ssh homelocal"
 alias hlg="ssh homelocal_gpg"
 alias ssa="ssh-add"
 alias cm='hl scripts/check_mail.sh'
-alias rmutt='ssh -X homelocal_gpg -t "env LC_ALL=C.UTF-8 MUTT_CONFIG=fetchmail /usr/local/bin/mutt"'
+alias rmutt='ssh -X email -t "env LC_ALL=C.UTF-8 MUTT_CONFIG=fetchmail /usr/bin/mutt"'
+alias amutt='ssh -X email -t "env LC_ALL=C.UTF-8 MUTT_CONFIG=aol /usr/bin/mutt"'
 
 alias ipython=ipython3
 alias pylab='ipython3 --pylab'

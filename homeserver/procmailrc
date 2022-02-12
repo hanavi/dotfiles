@@ -175,6 +175,14 @@ aol/
 #
 
 :0:
+* ^From:.*ridge.com.*
+.Misc.Crap/
+
+:0:
+* ^From:.*aaa.com.*
+.Misc.Crap/
+
+:0:
 * ^From:.*carbonite.com.*
 .Misc.Crap/
 
@@ -252,6 +260,10 @@ aol/
 
 :0:
 * ^From:.*landrysselect.*
+.Misc.Crap/
+
+:0:
+* ^From:.*humblebundle.com.*
 .Misc.Crap/
 
 ################################################################
@@ -380,8 +392,39 @@ aol/
 .GaTech/
 
 ################################################################
+:0:
+* ^From:.*redfcu.*
+.RedFCU/
+
+:0:
+* ^From:.*bespokepost.*
+.BespokePost/
+
+:0:
+* ^From:.*j-galt.*
+.Work/
+
+:0:
+* ^From:.*ll.mit.edu.*
+.Work/
+
+:0:
+* ^To:.*j-galt.*
+.Work/
+
+:0:
+* ^From:.*eavesbyavalon.*
+.Eaves/
 
 # Bills  #######################################################
+
+:0:
+* ^From:.*eversource.*
+.Bills/
+
+:0:
+* ^From:.*Xfinity.*
+.Bills/
 
 :0:
 * ^From:.*Google Play.*
@@ -436,7 +479,27 @@ aol/
 .Snort/
 
 :0:
+* ^From:.*govisibly.*
+.Misc.Crap/
+
+:0:
+* ^From:.*kaggle.*
+.Misc.Crap/
+
+:0:
+* ^From:.*repl.it.*
+.Misc.Crap/
+
+:0:
+* ^From:.*aaa.com.*
+.Misc.Crap/
+
+:0:
 * ^From:.*Classmates.com.*
+.Misc.Crap/
+
+:0:
+* ^From:.*netflix.com.*
 .Misc.Crap/
 
 :0:
@@ -446,6 +509,14 @@ aol/
 :0:
 * ^From:.*sportclips.com.*
 .Misc.Crap/
+
+:0:
+* ^From:.*1800contacts.com.*
+.Misc.Crap/
+
+:0:
+* ^From:.*sportys.com.*
+.Sportys/
 
 :0:
 * ^From:.*reddoorz.com.*
