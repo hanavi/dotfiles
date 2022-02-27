@@ -10,7 +10,6 @@ alias ec='vim /usr/local/src/dwm/dwm-6.2/config.h'
 alias src='cd /usr/local/src/dwm/dwm-6.2/'
 
 alias rs="$HOME/scripts/run_redshift.sh &; disown"
-alias fu="fusermount -u $HOME/mnt"
 
 alias z="zathura"
 alias px='pulsemixer'
@@ -43,6 +42,7 @@ alias mfs="sshfs hv1:/mnt/raid/files /home/james/remote/files"
 alias umfs="fusermount -u /home/james/remote/files"
 alias db="sshfs hv1:/mnt/raid/files/Dropbox /home/james/remote/Dropbox/"
 alias udb="fusermount -u /home/james/remote/Dropbox"
+alias todo="vim ~/Documents/todo.md"
 
 ## ls stuff
 alias ll='ls -l'
@@ -51,6 +51,16 @@ alias l='ls'
 alias lll='ls -alhF'
 alias l.='ls -d .*'
 alias lh='ls -alh'
+
+## Logging
+alias plog='~/scripts/log.sh'
+alias mood='~/scripts/log.sh mood'
+alias weight='~/scripts/log.sh weight'
+alias alcohol='~/scripts/log.sh alcohol'
+alias salad='~/scripts/log.sh salad'
+alias carbs='~/scripts/log.sh carbs'
+alias trumpet='~/scripts/log.sh trumpet'
+alias violin='~/scripts/log.sh violin'
 
 ## SSH
 # alias ssh='TERM=rxvt-256color ssh'
@@ -63,6 +73,7 @@ alias hr='ssh homeremote'
 alias svnc='ssh -L 5901:localhost:5900'
 alias weather='ssh homelocal -t "LC_ALL=C.UTF-8 ~/.local/bin/weather"'
 alias wd='ssh homelocal -t "LC_ALL=C.UTF-8 ~/.local/bin/weather --daily"'
+alias cw='curl -s wttr.in'
 
 ## Misc
 alias cm='hl "./scripts/check_mail.sh" 2>/dev/null'
@@ -72,6 +83,8 @@ alias ta='tmux attach'
 alias nmd='xrandr --output eDP-1 --brightness .5; redshift -O 2000'
 alias nmdl='xrandr --output eDP-1 --brightness .6; redshift -O 2500'
 alias dmd='redshift -x'
+alias topic='hl scripts/topic.sh'
+alias mentions='hl scripts/mentions.sh'
 
 alias c='ssh homelocal /home/james/.local/bin/crypto'
 alias rmutt='ssh -X -t email "env LC_ALL=C.UTF-8 MUTT_CONFIG=fetchmail /usr/bin/mutt"'
@@ -113,3 +126,15 @@ alias nb='newsboat'
 alias kas="killall ssh"
 
 alias pm='sudo /home/james/.local/bin/pmode'
+
+function fu {
+    if [ -z "$(mount |grep /home/james/mnt)" ]
+    then
+        echo mounting
+        sshfs hv2:tmp ~/mnt
+    else
+        echo un-mounting
+        fusermount -u $HOME/mnt
+    fi
+}
+
