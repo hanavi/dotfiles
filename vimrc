@@ -31,6 +31,9 @@ Plug 'tmhedberg/SimpylFold'
 " Tab formatting stuff
 Plug 'godlygeek/tabular'
 
+" LaTeX
+" Plug 'LaTeX-Box-Team/LaTeX-Box'
+
 " Git
 Plug 'tpope/vim-fugitive'
 
@@ -138,7 +141,6 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 nnoremap <silent> <leader>u :UltiSnipsEdit<CR>
-"
 "------------------------------------------------------------------------------
 
 
@@ -615,5 +617,4 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-
-
+inoremap <C-L> <C-O>$
