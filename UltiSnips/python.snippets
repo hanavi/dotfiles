@@ -230,3 +230,42 @@ if len(entries) > 1:
         snip += '{} ='.format(line) + ' {}["<++>"]'.format(dictvar)
 `
 endsnippet
+
+snippet dg
+debug(f'$1: {$1}')
+endsnippet
+
+snippet ig
+info(f'$1: {$1}')
+endsnippet
+
+snippet p
+print("$1")
+endsnippet
+
+snippet fp
+print(f"$1")
+endsnippet
+
+snippet ifm
+def main():
+	$0
+
+
+if __name__ == "__main__":
+	main()
+endsnippet
+
+snippet d
+def ${1:func}($2):
+	"""${3:<++>}"""
+	$0
+endsnippet
+
+snippet cl
+class ${1:Foo}:
+	"""${2:<++>}"""
+
+	def __init__(self$3):
+		$0
+endsnippet
