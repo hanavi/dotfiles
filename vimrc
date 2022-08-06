@@ -24,8 +24,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Python
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 Plug 'tmhedberg/SimpylFold'
+" Plug 'nvie/vim-flake8'
 " Plug 'hynek/vim-python-pep8-indent'
 
 " Tab formatting stuff
@@ -36,6 +37,7 @@ Plug 'godlygeek/tabular'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
 
 " Searching
 Plug 'ctrlpvim/ctrlp.vim'
@@ -47,7 +49,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch'
 
 " Add stuff around blocks of text
 Plug 'tpope/vim-surround'
@@ -66,7 +68,7 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-vinegar'
 
 " Harmode... just for the fun of it...
-Plug 'takac/vim-hardtime'
+" Plug 'takac/vim-hardtime'
 
 
 " Return to last edit position
@@ -74,6 +76,8 @@ Plug 'farmergreg/vim-lastplace'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+" Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 
 "------------------------------------------------------------------------------
@@ -119,8 +123,6 @@ let g:hardtime_allow_different_key = 1
 " Toggle Hardmode
 nnoremap <leader>h <Esc>:call HardTimeToggle()<CR>
 " nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
-" Toggle Hardmode
-nnoremap <leader>h <Esc>:call HardTimeToggle()<CR>
 "------------------------------------------------------------------------------
 
 
@@ -312,14 +314,18 @@ nnoremap <leader>p :set paste!<CR>
 "set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
+" call togglebg#map("<F5>")
+
+" run current python script
+" nnoremap <leader>x :!python %
 
 " Set that fancy color lign at the end of 80 char
-"set colorcolumn=+1
-" set colorcolumn=80, 100, 120
+set colorcolumn=+1
+set colorcolumn=80,100
 " hi ColorColumn guibg=darkred ctermbg=darkred
-call matchadd('MyWarn', '\%80v', 100)
-call matchadd('MyError', '\%100v', 100)
-call matchadd('MyWarn', '[^\s],[^ ]', 100)
+" call matchadd('MyWarn', '\%80v', 100)
+" call matchadd('MyError', '\%100v', 100)
+" call matchadd('MyWarn', '[^\s],[^ ]', 100)
 
 
 " Error console
@@ -460,24 +466,6 @@ endfunction
 
 nnoremap <silent> <leader>fd :call ListToDict()<CR>
 
-" run current python script
-nnoremap <leader>x :!python %
-
-" Set that fancy color lign at the end of 80 char
-"set colorcolumn=+1
-set colorcolumn=80,100,120
-hi ColorColumn guibg=darkred ctermbg=darkred
-
-" System Specific
-
-" allows cursor change in tmux mode
-if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
 function! BlockMove()
   :execute ":normal! Imv \"\<esc>A\"\<esc>0Wv$hy$A \<esc>080lp"
 endfunction
