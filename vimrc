@@ -15,9 +15,6 @@ call plug#begin()
 " Lightweight Markup Languages
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-" Plug 'christoomey/vim-quicklink'
-" Plug 'mattn/webapi-vim'
-" Plug 'christoomey/vim-quicklink'
 
 " This helps deal with some syntax stuff
 Plug 'vim-syntastic/syntastic'
@@ -36,14 +33,13 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'godlygeek/tabular'
 
 " LaTeX
-Plug 'LaTeX-Box-Team/LaTeX-Box'
+" Plug 'LaTeX-Box-Team/LaTeX-Box'
 
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 
 " Searching
-" Plug 'kien/ctrlp.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
 
@@ -609,5 +605,4 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-
-
+inoremap <C-L> <C-O>$
