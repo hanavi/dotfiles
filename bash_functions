@@ -1,11 +1,3 @@
-ipp ()
-{
-    if [[ -z '${VIRTUAL_ENV}' ]] || [[ $VIRTUAL_ENV != /home/james/.local/python/python3.7 ]]
-    then
-       source ~/.local/python/python3.7/bin/activate
-    fi
-    ipython "$@"
-}
 
 
 resetcard() {
@@ -43,5 +35,25 @@ __EOF__
 gpg --card-status >/dev/null
 gpg -d <(echo $DATA) 2> /dev/null
 
+}
+
+ipp ()
+{
+    if [[ -z '${VIRTUAL_ENV}' ]] || [[ $VIRTUAL_ENV != /home/james/.local/python/python3.9 ]]
+    then
+       source ~/.local/python/python3.9/bin/activate
+    fi
+    ipython "$@"
+}
+
+function fu {
+    if [ -z "$(mount |grep /home/james/mnt)" ]
+    then
+        echo mounting
+        sshfs hv2:tmp ~/mnt
+    else
+        echo un-mounting
+        fusermount -u $HOME/mnt
+    fi
 }
 

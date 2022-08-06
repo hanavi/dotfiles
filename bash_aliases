@@ -4,10 +4,14 @@ alias pylab='ipython --pylab'
 alias fpg='gpg-connect-agent updatestartuptty /bye'
 
 alias hv='sudo ~/.local/bin/homevpn'
+alias vim='nvim'
 
 ## Mounting
 alias ec='vim /usr/local/src/dwm/dwm-6.2/config.h'
 alias src='cd /usr/local/src/dwm/dwm-6.2/'
+alias notes='cd ${HOME}/Dropbox/Documents/notes'
+alias food='cd ${HOME}/Dropbox/Documents/notes/food'
+alias en='vim ${HOME}/Dropbox/Documents/notes/notes.tex'
 
 alias rs="$HOME/scripts/run_redshift.sh &; disown"
 
@@ -15,39 +19,12 @@ alias z="zathura"
 alias px='pulsemixer'
 alias bat='cat /sys/class/power_supply/BAT0/capacity'
 
-# NFS
-alias mm="mount /home/james/remote/media"
-alias um="umount /home/james/remote/media"
-alias md="mount /home/james/remote/deluge"
-alias ud="umount /home/james/remote/deluge"
-#alias m4="mount /home/james/remote/disk4"
-#alias um4="umount /home/james/remote/disk4"
-alias mt="mount /home/james/remote/tserver"
-alias umt="umount /home/james/remote/tserver"
-
-# SSHFS
-#alias m1="sshfs homelocal:/media/disk1/files /home/james/remote/disk1"
-#alias um1="fusermount -u /home/james/remote/disk1"
-#alias m2="sshfs homelocal:/media/disk2/files /home/james/remote/disk2"
-#alias um2="fusermount -u /home/james/remote/disk2"
-# alias m3="sshfs homelocal:/media/disk3/files /home/james/remote/disk3"
-# alias um3="fusermount -u /home/james/remote/disk3"
-alias m4="sshfs labserver:/media/disk4/files /home/james/remote/disk4"
-alias um4="fusermount -u /home/james/remote/disk4"
-# alias mt="sshfs 192.168.0.19:/media/spare/torrent/deluge /home/james/remote/tserver"
-# alias umt="fusermount -u /home/james/remote/tserver"
-alias mms="sshfs hv1:/mnt/raid/media /home/james/remote/media"
-alias umms="fusermount -u /home/james/remote/media"
-alias mfs="sshfs hv1:/mnt/raid/files /home/james/remote/files"
-alias umfs="fusermount -u /home/james/remote/files"
-alias db="sshfs hv1:/mnt/raid/files/Dropbox /home/james/remote/Dropbox/"
-alias udb="fusermount -u /home/james/remote/Dropbox"
 alias todo="vim ~/Documents/todo.md"
 
 ## ls stuff
 alias ll='ls -l'
 alias la='ls -A'
-alias l='ls'
+alias l='ls -F'
 alias lll='ls -alhF'
 alias l.='ls -d .*'
 alias lh='ls -alh'
@@ -70,6 +47,7 @@ alias hl='ssh homelocal'
 alias hv1='ssh hv1'
 alias hv2='ssh hv2'
 alias hr='ssh homeremote'
+alias em='ssh 10.0.0.77'
 alias svnc='ssh -L 5901:localhost:5900'
 alias weather='ssh homelocal -t "LC_ALL=C.UTF-8 ~/.local/bin/weather"'
 alias wd='ssh homelocal -t "LC_ALL=C.UTF-8 ~/.local/bin/weather --daily"'
@@ -88,8 +66,9 @@ alias mentions='hl scripts/mentions.sh'
 
 alias c='ssh homelocal /home/james/.local/bin/crypto'
 alias rmutt='ssh -X -t email "env LC_ALL=C.UTF-8 MUTT_CONFIG=fetchmail /usr/bin/mutt"'
+alias rrmutt='ssh -X -t remail "env LC_ALL=C.UTF-8 MUTT_CONFIG=fetchmail /usr/bin/mutt"'
 alias amutt='ssh -X -t email "env LC_ALL=C.UTF-8 MUTT_CONFIG=aol /usr/bin/mutt"'
-alias calcurse='ssh -X -t email "env LC_ALL=C.UTF-8 MUTT_CONFIG=aol /usr/bin/calcurse"'
+# alias calcurse='ssh -X -t email "env LC_ALL=C.UTF-8 MUTT_CONFIG=aol /usr/bin/calcurse"'
 alias gwi='$HOME/.local/bin/get_weather_image.py'
 alias procmail="vim scp://email/.procmailrc"
 
@@ -97,44 +76,35 @@ alias procmail="vim scp://email/.procmailrc"
 alias mutt="MUTT_CONFIG=fetchmail /usr/bin/mutt"
 alias gmutt="MUTT_CONFIG=gmail /usr/bin/mutt"
 
-alias pp='source ~/.local/python/python3.7/bin/activate'
+alias pp='source ~/.local/python/python3.9/bin/activate'
 
 ## This are old... should I keep them?
 alias resume='cd ~/Dropbox/Documents/Professional/resume_latex'
 alias ytlink='~/Dropbox/scripts/youtube/youtube_link.py'
 alias tvim="tmux new-session \; split-window -l 10"
-# alias vn="vim +NERDTree"
-# alias m='mplayer -ontop -geometry 600x450-100+150'
-
-alias m='cd $HOME/remote/media/Movies'
-alias s='cd $HOME/remote/media/Shows'
-alias y='cd $HOME/remote/media/youtube'
-alias a='cd $HOME/remote/media/Music'
-alias d='cd $HOME/remote/deluge'
 
 alias eb='vim $HOME/.bash_aliases'
 alias sb='source $HOME/.bash_aliases'
 alias es='vim $HOME/.ssh/config'
 alias ev='vim $HOME/.vimrc'
 
-alias f='firefox https://www.facebook.com'
-alias h='firefox https://hangouts.google.com'
+# alias f='firefox https://www.facebook.com'
+alias f='feh -.'
+# alias h='firefox https://hangouts.google.com'
 alias yt='firefox https://www.youtube.com'
 
 alias nb='newsboat'
-
 alias kas="killall ssh"
-
 alias pm='sudo /home/james/.local/bin/pmode'
 
-function fu {
-    if [ -z "$(mount |grep /home/james/mnt)" ]
-    then
-        echo mounting
-        sshfs hv2:tmp ~/mnt
-    else
-        echo un-mounting
-        fusermount -u $HOME/mnt
-    fi
-}
+alias cm="ssh email ~/scripts/cmail.sh"
+alias cf="hv2 sh -c '~/tmp/check_feeds.sh' | tee .cf"
 
+today() {
+    BASEPATH="${HOME}/Dropbox/Documents/notes/logging"
+    TODAY=`date "+%Y%m%d"`
+    JOURNAL_FILE=${HOME}/Dropbox/Documents/notes/logging/daily/${TODAY}.tex
+    pushd "${BASEPATH}"
+    vim "${JOURNAL_FILE}"
+    popd
+}
