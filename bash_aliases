@@ -2,9 +2,11 @@
 alias pylab='ipython --pylab'
 
 alias fpg='gpg-connect-agent updatestartuptty /bye'
+alias kap="killall pinentry"
 
 alias hv='sudo ~/.local/bin/homevpn'
 alias vim='nvim'
+alias v='nvim'
 
 ## Mounting
 alias ec='vim /usr/local/src/dwm/dwm-6.2/config.h'
@@ -75,6 +77,7 @@ alias procmail="vim scp://email/.procmailrc"
 ## Email
 alias mutt="MUTT_CONFIG=fetchmail /usr/bin/mutt"
 alias gmutt="MUTT_CONFIG=gmail /usr/bin/mutt"
+alias mmutt="zless /usr/share/doc/mutt/manual.txt.gz"
 
 alias pp='source ~/.local/python/python3.9/bin/activate'
 
