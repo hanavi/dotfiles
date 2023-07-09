@@ -11,7 +11,7 @@
     excludesfile = ~/.gitignore
 	editor = /usr/bin/vim
 [commit]
-	gpgsign = true
+	gpgsign = false
 [gpg]
 	program = /usr/bin/gpg
 

@@ -67,6 +67,9 @@ alias topic='hl scripts/topic.sh'
 alias mentions='hl scripts/mentions.sh'
 
 alias c='ssh homelocal /home/james/.local/bin/crypto'
+alias mm='ssh -X -t pi6 "/usr/bin/mutt"'
+alias kp='killall pinentry'
+
 alias rmutt='ssh -X -t email "env LC_ALL=C.UTF-8 MUTT_CONFIG=fetchmail /usr/bin/mutt"'
 alias rrmutt='ssh -X -t remail "env LC_ALL=C.UTF-8 MUTT_CONFIG=fetchmail /usr/bin/mutt"'
 alias amutt='ssh -X -t email "env LC_ALL=C.UTF-8 MUTT_CONFIG=aol /usr/bin/mutt"'
@@ -90,12 +93,14 @@ alias eb='vim $HOME/.bash_aliases'
 alias sb='source $HOME/.bash_aliases'
 alias es='vim $HOME/.ssh/config'
 alias ev='vim $HOME/.vimrc'
+alias et='vim $HOME/.tmux.conf'
 
 # alias f='firefox https://www.facebook.com'
 alias f='feh -.'
 # alias h='firefox https://hangouts.google.com'
 alias yt='firefox https://www.youtube.com'
 
+alias we='curl wttr.in'
 alias nb='newsboat'
 alias kas="killall ssh"
 alias pm='sudo /home/james/.local/bin/pmode'
