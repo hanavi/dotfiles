@@ -9,11 +9,16 @@ alias vim='nvim'
 alias v='nvim'
 
 ## Mounting
-alias ec='vim /usr/local/src/dwm/dwm-6.2/config.h'
-alias src='cd /usr/local/src/dwm/dwm-6.2/'
+# alias ec='vim /usr/local/src/dwm/dwm-6.2/config.h'
+alias src='cd /usr/local/src/'
 alias notes='cd ${HOME}/Dropbox/Documents/notes'
 alias food='cd ${HOME}/Dropbox/Documents/notes/food'
 alias en='vim ${HOME}/Dropbox/Documents/notes/notes.tex'
+alias tmp='cd ~/tmp'
+alias ndir="cd ~/.config/nvim/"
+
+alias ds="ps aux | grep -i dropbox |grep -v grep"
+alias dr="ps aux | grep -i redshift |grep -v grep"
 
 alias rs="$HOME/scripts/run_redshift.sh &; disown"
 
@@ -68,6 +73,7 @@ alias mentions='hl scripts/mentions.sh'
 
 alias c='ssh homelocal /home/james/.local/bin/crypto'
 alias mm='ssh -X -t pi6 "/usr/bin/mutt"'
+alias rmm='ssh -J homeremote -X -t pi6 "/usr/bin/mutt"'
 alias kp='killall pinentry'
 
 alias rmutt='ssh -X -t email "env LC_ALL=C.UTF-8 MUTT_CONFIG=fetchmail /usr/bin/mutt"'
@@ -92,7 +98,7 @@ alias tvim="tmux new-session \; split-window -l 10"
 alias eb='vim $HOME/.bash_aliases'
 alias sb='source $HOME/.bash_aliases'
 alias es='vim $HOME/.ssh/config'
-alias ev='vim $HOME/.vimrc'
+alias ev='vim $HOME/.config/nvim/init.lua'
 alias et='vim $HOME/.tmux.conf'
 
 # alias f='firefox https://www.facebook.com'
@@ -103,7 +109,7 @@ alias yt='firefox https://www.youtube.com'
 alias we='curl wttr.in'
 alias nb='newsboat'
 alias kas="killall ssh"
-alias pm='sudo /home/james/.local/bin/pmode'
+alias pm='/home/james/.local/bin/pmode'
 
 alias cm="ssh email ~/scripts/cmail.sh"
 alias cf="hv2 sh -c '~/tmp/check_feeds.sh' | tee .cf"

@@ -1,14 +1,24 @@
+-- print('loading keybindings')
+
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true }
-vim.cmd('let mapleader=" "')
+-- vim.cmd('let mapleader=" "')
+vim.g.mapleader = " "
 
 keymap('i', 'jk', '<esc>', opts)
 
 keymap("n", "<leader>ev", ":edit $MYVIMRC<cr>", opts)
+keymap("n", "<leader>es", ":edit ~/.vim/scripts/test.vim<cr>", opts)
 keymap("n", "<leader>sv", ":source $MYVIMRC<cr>", opts)
 keymap("n", "<leader>p", ":set paste!<CR>", opts)
+keymap("n", "<leader>j", ":bn<CR>", opts)
+keymap("n", "<leader>k", ":bp<CR>", opts)
+keymap("n", "<c-u>", "<c-u>zz", opts)
+keymap("n", "<c-d>", "<c-d>zz", opts)
 
 keymap("n",  "<leader>u", ":UltiSnipsEdit!<CR>", { noremap=true, silent=true })
+keymap("n",  "<leader>ff", ":Telescope find_files<CR>", { noremap=true, silent=true })
+keymap("n",  "<leader>bb", ":Telescope buffers<CR>", { noremap=true, silent=true })
 
 -- Error console
 keymap("n", "<leader>lo", ":lopen<CR>", { noremap=true, silent=true })
