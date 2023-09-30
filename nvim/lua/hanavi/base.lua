@@ -3,9 +3,9 @@
 -- package.path = package.path .. ";~/.config/nvim/lua"
 -- print('loading base')
 
-require("packages")
-require("functions")
-require("keybindings")
+require("hanavi.packages")
+require("hanavi.functions")
+require("hanavi.keybindings")
 
 -- Allow moving around buffers w/o saving
 vim.opt.hidden = true
