@@ -1,1 +1,1 @@
-require("hanavi.base")
+require("hanavi")
