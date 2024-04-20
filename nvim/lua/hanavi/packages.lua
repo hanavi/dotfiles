@@ -2,6 +2,7 @@
 
 -- Load vim-plug
 
+
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
@@ -59,6 +60,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 
+Plug 'davidhalter/jedi-vim'
+
 -- Old...
 -- Plug 'takac/vim-hardtime'
 -- Plug 'ycm-core/YouCompleteMe'
@@ -69,7 +72,6 @@ Plug 'nvim-treesitter/nvim-treesitter'
 -- Plug 'mattn/webapi-vim'
 -- Plug 'christoomey/vim-quicklink'
 -- Plug 'vim-syntastic/syntastic'
--- Plug 'davidhalter/jedi-vim'
 -- Plug 'tmhedberg/SimpylFold'
 -- Plug 'nvie/vim-flake8'
 -- Plug 'hynek/vim-python-pep8-indent'
@@ -77,6 +79,39 @@ Plug 'nvim-treesitter/nvim-treesitter'
 -- Plug 'scrooloose/nerdtree'
 
 vim.call('plug#end')
+
+-- temp fix ?
+-- vim.cmd([[let g:airline#extensions#disable_rtp_load=1]])
+-- vim.cmd([[let g:airline#extensions#virtualenv#enabled = 1]])
+
+vim.cmd([[
+let g:airline_extensions = [
+    \'ale',
+    \'branch',
+    \'coc',
+    \'ctrlp',
+    \'ctrlspace',
+    \'cursormode',
+    \'fugitiveline',
+    \'keymap',
+    \'languageclient',
+    \'netrw',
+    \'nvimlsp',
+    \'po',
+    \'quickfix',
+    \'searchcount',
+    \'tabline',
+    \'tagbar',
+    \'term',
+    \'vimtex',
+    \'virtualenv',
+    \'whitespace',
+    \'wordcount']
+]])
+
+
+-- whitespace
+-- wordcount
 
 -- UltiSnips triggering
 vim.g.UltiSnipsExpandTrigger = "<c-j>"

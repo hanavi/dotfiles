@@ -59,7 +59,7 @@ vim.fn.matchadd('MyWarn', "[^\\s],[^ ]", 100)
 -- Buffer setup settings
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.sh",
-    command = ":call SetUpdatedTime()",
+    callback = SetUpdatedTime,
 })
 
 -- command = ":call SetUpdatedTime()",

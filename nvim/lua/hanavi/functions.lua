@@ -23,7 +23,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     callback = StripTrailingWhitespaces,
 })
 
-
 vim.cmd([[
 function! FixCommas()
   let save_cursor = getpos(".")
@@ -66,6 +65,17 @@ function(opts)
     end
     vim.fn.append(2, "# Author: James Casey <hanavi@gmail.com>")
     vim.fn.append(3, "# Last Updated: __")
+end,
+{
+    nargs = 0
+})
+
+vim.api.nvim_create_user_command("InsertDate",
+function(opts)
+  local cur = vim.fn.line('.')
+  local date = vim.fn.strftime("%F")
+  -- date = " " .. date
+  vim.cmd("normal a" .. date)
 end,
 {
     nargs = 0

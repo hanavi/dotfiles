@@ -2,23 +2,33 @@
 
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true }
--- vim.cmd('let mapleader=" "')
 vim.g.mapleader = " "
 
 keymap('i', 'jk', '<esc>', opts)
 
-keymap("n", "<leader>ev", ":edit $MYVIMRC<cr>", opts)
+keymap("n", "<leader>sv", ":vs<cr>", opts)
+keymap("n", "<leader>sh", ":split<cr>", opts)
+keymap("n", "<leader>sx", ":close<cr>", opts)
+
+keymap("n", "<leader>ev", ":edit ~/.config/nvim/lua/hanavi/init.lua<cr>", opts)
 keymap("n", "<leader>es", ":edit ~/.vim/scripts/test.vim<cr>", opts)
-keymap("n", "<leader>sv", ":source $MYVIMRC<cr>", opts)
 keymap("n", "<leader>p", ":set paste!<CR>", opts)
-keymap("n", "<leader>j", ":bn<CR>", opts)
-keymap("n", "<leader>k", ":bp<CR>", opts)
+keymap("n", "L", ":bn<CR>", opts)
+keymap("n", "H", ":bp<CR>", opts)
 keymap("n", "<c-u>", "<c-u>zz", opts)
 keymap("n", "<c-d>", "<c-d>zz", opts)
+keymap("n", "<leader>nh", ":noh<cr>", opts)
 
+keymap("n", "n", "nzz", opts)
+keymap("n", "N", "Nzz", opts)
+
+-- TODO: move these to the "after" folder?
 keymap("n",  "<leader>u", ":UltiSnipsEdit!<CR>", { noremap=true, silent=true })
 keymap("n",  "<leader>ff", ":Telescope find_files<CR>", { noremap=true, silent=true })
 keymap("n",  "<leader>bb", ":Telescope buffers<CR>", { noremap=true, silent=true })
+keymap("n",  "<leader>gg", ":Telescope live_grep<CR>", { noremap=true, silent=true })
+keymap("n",  "<leader>s", ":ALEToggleBuffer<CR>", { noremap=true, silent=true })
+keymap("n",  "<leader>tt", ":exe 'norm a' . strftime('%F') . ' '<CR>", { noremap=true, silent=true })
 
 -- Error console
 keymap("n", "<leader>lo", ":lopen<CR>", { noremap=true, silent=true })
