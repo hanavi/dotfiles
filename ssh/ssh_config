@@ -10,13 +10,9 @@ Host *
     ChallengeResponseAuthentication no
     Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
     MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,umac-128@openssh.com
+
 Host *.onion
     ProxyCommand socat - SOCKS4A:localhost:%h:%p,socksport=9150
-
-Host freeshell
-    User hanavi
-    HostName meta.sdf.org
-    ForwardX11 yes
 
 # Github needs diffie-hellman-group-exchange-sha1 some of the time but not always.
 #Host github.com

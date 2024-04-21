@@ -1,3 +1,6 @@
+" This file is a fairly out of date since on my systems I have mosltly moved
+" to Neovim
+
 " Set up a better encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -24,8 +27,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Python
-" Plug 'davidhalter/jedi-vim'
-Plug 'tmhedberg/SimpylFold'
+Plug 'davidhalter/jedi-vim'
+" Plug 'tmhedberg/SimpylFold'
 " Plug 'nvie/vim-flake8'
 " Plug 'hynek/vim-python-pep8-indent'
 
@@ -56,20 +59,16 @@ Plug 'tpope/vim-surround'
 
 " Fancy colors
 Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
-Plug 'jnurmine/Zenburn'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'jnurmine/Zenburn'
 
 " I don't know what this does but some kind of highlighting
-Plug 'octol/vim-cpp-enhanced-highlight'
+" Plug 'octol/vim-cpp-enhanced-highlight'
 
 " Extra panels to improve productivity
 " Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-vinegar'
-
-" Harmode... just for the fun of it...
-" Plug 'takac/vim-hardtime'
-
 
 " Return to last edit position
 Plug 'farmergreg/vim-lastplace'
@@ -297,7 +296,6 @@ set completeopt-=preview
 set path+=**
 
 au FileType tex set spell
-
 
 " inoremap ' ''<ESC>i
 " inoremap " ""<ESC>i
