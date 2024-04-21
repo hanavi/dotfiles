@@ -1,15 +1,19 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# coding: utf-8
+# Author: James Casey <hanavi@gmail.com>
+# Last Updated: __DATE__
+"""<++>"""
 
-import logging
+import os
+import sys
+import pathlib
 
-logging.basicConfig(level=logging.WARNING)
-logger = logging.getLogger("working")
+import click
+import numpy as np
 
 
 def main():
-    """ Main code block """
-    pass
+    """<++>"""
 
 
 if __name__ == "__main__":
