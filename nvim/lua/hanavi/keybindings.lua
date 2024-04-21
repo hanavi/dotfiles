@@ -19,6 +19,7 @@ keymap("n", "<c-u>", "<c-u>zz", opts)
 keymap("n", "<c-d>", "<c-d>zz", opts)
 keymap("n", "<leader>nh", ":noh<cr>", opts)
 
+
 keymap("n", "n", "nzz", opts)
 keymap("n", "N", "Nzz", opts)
 
@@ -31,6 +32,11 @@ keymap("n",  "<leader>s", ":ALEToggleBuffer<CR>", { noremap=true, silent=true })
 keymap("n",  "<leader>tt", ":exe 'norm a' . strftime('%F') . ' '<CR>", { noremap=true, silent=true })
 
 -- Error console
+keymap("n", "<leader>co", ":copen<cr>", opts)
+keymap("n", "<leader>cc", ":ccl<cr>", opts)
+keymap("n", "<leader>cp", ":cp<cr>", opts)
+keymap("n", "<leader>cn", ":cn<cr>", opts)
+
 keymap("n", "<leader>lo", ":lopen<CR>", { noremap=true, silent=true })
 keymap("n", "<leader>lc", ":lclose<CR>", { noremap=true, silent=true })
 keymap("n", "<leader>ll", ":ll<CR>", { noremap=true, silent=true })
