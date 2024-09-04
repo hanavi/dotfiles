@@ -2,6 +2,7 @@
 
 -- package.path = package.path .. ";~/.config/nvim/lua"
 -- print('loading base')
+vim.g.python3_host_prog = '~/.local/python/nvim/bin/python'
 
 require("hanavi.packages")
 require("hanavi.functions")
@@ -48,6 +49,7 @@ vim.opt.hlsearch = true
 -- vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.path = vim.o.path .. ",**"
+vim.opt.signcolumn = "yes"
 
 vim.opt.colorcolumn = "80,100"
 vim.opt.foldmethod = "expr"
@@ -64,7 +66,7 @@ vim.api.nvim_create_augroup("new_tex_file", { clear = true })
 vim.api.nvim_create_autocmd("BufNewFile", {
     group = "new_tex_file",
     pattern = "*.tex",
-    command = "0r ~/.vim/templates/skeleton.tex",
+    command = "0r ~/.config/nvim/templates/skeleton.tex",
 })
 vim.api.nvim_create_autocmd("BufNewFile", {
     group = "new_tex_file",
@@ -76,7 +78,7 @@ vim.api.nvim_create_augroup("new_arduino_file", { clear = true })
 vim.api.nvim_create_autocmd("BufNewFile", {
     group = "new_arduino_file",
     pattern = "*.ino",
-    command = "0r ~/.vim/templates/skeleton.ino",
+    command = "0r ~/.config/nvim/templates/skeleton.ino",
 })
 
 vim.cmd([[

@@ -3,7 +3,7 @@ vim.api.nvim_create_augroup("new_python_file", { clear = true })
 vim.api.nvim_create_autocmd("BufNewFile", {
     group = "new_python_file",
     pattern = "*.py",
-    command = "0r ~/.vim/templates/skeleton.py",
+    command = "0r ~/.config/nvim/templates/skeleton.py",
 })
 
 vim.api.nvim_create_autocmd("BufNewFile", {

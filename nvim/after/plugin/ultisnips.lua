@@ -1,3 +1,4 @@
 -- UltiSnips settings
 
-vim.g["UltiSnipsSnippetsDir"] = '~/.config/nvim/UltiSnips'
+vim.cmd([[ let g:UltiSnipsSnippetsDir = $HOME.'/.vim/UltiSnips' ]])
+
