@@ -10,11 +10,14 @@ let mapleader = "\<Space>"
 source ~/.vim/custom/plugins.vim
 source ~/.vim/custom/keybindings.vim
 source ~/.vim/custom/functions.vim
-source ~/.vim/custom/python.vim
 source ~/.vim/custom/shell.vim
 source ~/.vim/custom/c.vim
 source ~/.vim/custom/dropbox.vim
 source ~/.vim/custom/tex.vim
+
+if has("python3")
+    source ~/.vim/custom/python.vim
+endif
 
 "------------------------------------------------------------------------------
 " General Settings

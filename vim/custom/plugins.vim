@@ -47,16 +47,17 @@ Plug 'majutsushi/tagbar'
 " Return to last edit position
 Plug 'farmergreg/vim-lastplace'
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
 
 " Searching
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
 
-" Python
-Plug 'davidhalter/jedi-vim'
+if has("python3")
+  Plug 'davidhalter/jedi-vim'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+endif
 
 call plug#end()
 
@@ -82,12 +83,14 @@ let g:airline_extensions = [
     \'whitespace',
     \'wordcount' ]
 
-" UltiSnips settings
-" For some reason these have to be loaded earlier rather than later (ie in
-" after)
-let g:UltiSnipsSnippetsDir = $HOME.'/.vim/UltiSnips'
+if has("python3")
+  " UltiSnips settings
+  " For some reason these have to be loaded earlier rather than later (ie in
+  " after)
+  let g:UltiSnipsSnippetsDir = $HOME.'/.vim/UltiSnips'
 
-" UltiSnips triggering
-let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+  " UltiSnips triggering
+  let g:UltiSnipsExpandTrigger = '<C-j>'
+  let g:UltiSnipsJumpForwardTrigger="<c-j>"
+  let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+endif
