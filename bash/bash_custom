@@ -1,6 +1,6 @@
 # Config editing stuff
-alias eb='vim $HOME/.bash_aliases'
-alias sb='source $HOME/.bash_aliases'
+alias eb='vim $HOME/.bash_custom'
+alias sb='source $HOME/.bash_custom'
 alias es='vim $HOME/.ssh/config'
 alias ev='vim $HOME/.config/nvim/lua/hanavi/init.lua'
 alias et='vim $HOME/.tmux.conf'
@@ -30,6 +30,7 @@ alias m='mplayer'
 alias src='cd /usr/local/src/'
 alias tmp='cd ~/tmp'
 alias ndir="cd ~/.config/nvim/lua/hanavi"
+alias dfd="cd ~/files/dotfiles/"
 
 # dropbox
 alias ds="ps aux | grep -i dropbox |grep -v grep"
