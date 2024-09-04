@@ -124,7 +124,7 @@ function fu {
         fusermount -u $HOME/mnt
     fi
 }
-#
+
 # GPG stuff
 GPG_TTY=$(tty)
 export GPG_TTY
