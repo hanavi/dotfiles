@@ -14,10 +14,7 @@ source ~/.vim/custom/shell.vim
 source ~/.vim/custom/c.vim
 source ~/.vim/custom/dropbox.vim
 source ~/.vim/custom/tex.vim
-
-if has("python3")
-    source ~/.vim/custom/python.vim
-endif
+source ~/.vim/custom/python.vim
 
 "------------------------------------------------------------------------------
 " General Settings
