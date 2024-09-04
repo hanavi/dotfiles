@@ -1,6 +1,6 @@
 # Config editing stuff
-alias eb='vim $HOME/.bash_custom'
-alias sb='source $HOME/.bash_custom'
+alias eb='vim $HOME/.bash_aliases'
+alias sb='source $HOME/.bash_aliases'
 alias es='vim $HOME/.ssh/config'
 alias ev='vim $HOME/.config/nvim/lua/hanavi/init.lua'
 alias et='vim $HOME/.tmux.conf'
@@ -77,6 +77,7 @@ alias xkcd='python -m webbrowser xkcd.com'
 alias g=git
 alias ga='git add'
 alias gcmsg='git commit --message'
+alias gst='git status'
 alias gd='git diff'
 alias gl='git pull'
 alias gp='git push'
