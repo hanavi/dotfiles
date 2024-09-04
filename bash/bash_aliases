@@ -15,13 +15,22 @@ if command -v nvim &> /dev/null; then
     alias vim='nvim'
     alias v='nvim'
     alias vd='nvim -d'
+    alias ev='vim $HOME/.config/nvim/lua/hanavi/init.lua'
+    alias vv='/usr/bin/vim'
 else
     alias v='vim'
     alias vd='vimdiff'
+    alias ev='vim $HOME/.vim/vimrc'
 fi
 
-alias f='feh -.'
-alias z="zathura"
+if command -v feh &> /dev/null; then
+    alias f='feh -.'
+fi
+
+if command -v zathura &> /dev/null; then
+    alias z="zathura"
+fi
+
 alias dh="du -hs"
 alias ipy="ipython"
 alias m='mplayer'
@@ -33,12 +42,16 @@ alias ndir="cd ~/.config/nvim/lua/hanavi"
 alias dfd="cd ~/files/dotfiles/"
 
 # dropbox
-alias ds="ps aux | grep -i dropbox |grep -v grep"
-alias dr="ps aux | grep -i redshift |grep -v grep"
-alias db="/home/james/.dropbox-dist/dropbox-lnx.x86_64-193.4.5594/dropbox &; disown"
+if [ -d ~/.dropbox-dist ]; then
+    alias db="~/.dropbox-dist/dropboxd &; disown"
+    alias ds="ps aux | grep -i dropbox |grep -v grep"
+fi
 
 # redshift
-alias rs="$HOME/scripts/run_redshift.sh &; disown"
+if [ -x $HOME/scripts/run_redshift.sh ]; then
+    alias rs="$HOME/scripts/run_redshift.sh &; disown"
+    alias dr="ps aux | grep -i redshift |grep -v grep"
+fi
 
 ## ls stuff
 alias ll='ls -l'
@@ -72,6 +85,24 @@ alias gnews='firefox --private-window -- http://news.google.com'
 alias gmail='python -m webbrowser gmail.com'
 alias xkcd='python -m webbrowser xkcd.com'
 
+
+# Check for up ssh systems
+up() {
+    nmap -n -oG - --open 192.168.1.0/24 -p 22 |grep Up | awk '{print $2}'
+}
+
+resetcard() {
+    rm -r ~/.gnupg/private-keys-v1.d
+    gpgconf --kill gpg-agent
+    gpg --card-status
+}
+
+[ $TERM == "st-256color" ] && transset-df --id "$WINDOWID" .75 >/dev/null
+
+export PATH=$PATH:$HOME/.local/bin
+export EDITOR=vim
+export FCEDITOR=vim
+
 # git
 
 alias g=git
@@ -94,96 +125,3 @@ alias gloga='git log --oneline --decorate --graph --all'
 alias glol='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"'
 alias glola='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all'
 alias glols='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat'
-
-# Check for up ssh systems
-up() {
-    nmap -n -oG - --open 192.168.1.0/24 -p 22 |grep Up | awk '{print $2}'
-}
-
-resetcard() {
-    rm -r ~/.gnupg/private-keys-v1.d
-    gpgconf --kill gpg-agent
-    gpg --card-status
-}
-
-# Load yubikey
-function lg
-{
-
-read -d '' DATA << __EOF__
-
------BEGIN PGP MESSAGE-----
-Comment: GPGTools - https://gpgtools.org
-
-hQIMA33dgLuA5dX+AQ//eQq+/Mt33EtvY+i+ne6lQdEjRs4xtNDDb6gz6b4DThoB
-a3JKM2EtBoRSpe6s1/t2vbJA1oqbYmGrbPfjR+rCY2gN/sBJ/0XxYGs9rHarwtqD
-89TVMYPefmB3U3fW6tNyuXrzZP4z8KkjmUGAXQtF2lR2jqo+FaZjbiD7x44C92KR
-AVaAvGuRQqrABN1RTkDnHwOuERHrHiQwOL0V0k8UlqyQ/R75yhH4lHPr+YoWiGVo
-+PeMK6Sj6+EoshlL0HnrAB67qrbzYGP9ra2rJKtDRz0+JV5MP3N/2VOYA+dRt8Q/
-c1/luPgmpGbLIJAvEGT02xpb8UCgoucEHdmDU/psBIZr5eB8Ztxz1oUEupmm4QNN
-EkxadzqLXVnILWdie3g2lzTgT7lRhJlWd8gVsO/bOM3kbiU+WzPHSUeBPdGaBf4m
-feifjG8VM5fW9KRLEFTITTo3V4PUxOYVL/Imw29UPpFtH/UEknFiPCBa/8C167gj
-ppXm35g18IncZ9V/V0dgMbe+Y46+aU7hKAM8rxl1KWv9uFR5ZTcQ8+1O9Qk9HbfN
-d6igpmzLqq9f5V4v9ZnkmCH9HmODDtiry4jU9fVu2zT28SRm2kpwqh7gfwLMCnLa
-poD8SX8dVKKkOxVCrJYBdS+8JFoCrxIsqIBLc7Nmwik1DQ/jNejxUBthvyGMX+nS
-SgF5S+kIS52oEBTkyoWdBav6X5OzPP/AFBO0vzRxW7Rn/CswENDK3WcSke0076Js
-i/y6aXbYatU7HgtfXsq77mTTLrMgu5iLrb6L
-=Vyo3
------END PGP MESSAGE-----
-
-__EOF__
-
-gpg --card-status >/dev/null
-gpg -d <(echo $DATA) 2> /dev/null
-
-}
-
-function fu {
-    if [ -z "$(mount |grep /home/james/mnt)" ]
-    then
-        echo mounting
-        sshfs pi6:/media/james ~/mnt
-    else
-        echo un-mounting
-        fusermount -u $HOME/mnt
-    fi
-}
-
-#SSH_ENV="$HOME/.ssh/environment"
-#function start_agent {
-#     echo "Initialising new SSH agent..."
-#     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-#     echo succeeded
-#     chmod 600 "${SSH_ENV}"
-#     . "${SSH_ENV}" > /dev/null
-#     /usr/bin/ssh-add;
-#}
-#if [ -f "${SSH_ENV}" ]; then
-#     . "${SSH_ENV}" > /dev/null
-#     #ps ${SSH_AGENT_PID} doesn't work under cywgin
-#     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-#         start_agent;
-#     }
-#else
-#     start_agent;
-#fi
-
-[ $TERM == "st-256color" ] && transset-df --id "$WINDOWID" .75 >/dev/null
-
-# GPG stuff
-GPG_TTY=$(tty)
-export GPG_TTY
-
-gpg-connect-agent updatestartuptty /bye >/dev/null
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-export PATH=$PATH:/home/james/.gem/ruby/2.7.0/bin
-
-# python
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-if [ -f /home/james/.local/python/python3.11/bin/activate ]; then
-    . /home/james/.local/python/python3.11/bin/activate
-fi
-
-export PATH=$PATH:$HOME/.local/bin
-export EDITOR=vim
-export FCEDITOR=vim
