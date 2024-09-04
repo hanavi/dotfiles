@@ -41,8 +41,13 @@ alias m='mplayer'
 # Moving around
 alias src='cd /usr/local/src/'
 alias tmp='cd ~/tmp'
-alias ndir="cd ~/.config/nvim/lua/hanavi"
 alias dfd="cd ~/files/dotfiles/"
+
+if [ -d ~/.config/nvim/lua/hanavi ]; then
+    alias ndir="cd ~/.config/nvim/lua/hanavi"
+else
+    alias ndir="cd ~/.vim/"
+fi
 
 # dropbox
 if [ -d ~/.dropbox-dist ]; then
