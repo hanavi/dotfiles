@@ -1,0 +1,21 @@
+# Path to your oh-my-zsh installation.
+export ZSH="/home/james/.oh-my-zsh"
+
+ZSH_THEME="hanavi"
+
+plugins=(
+    git
+    git-extras
+    pyenv
+    gitignore
+    python
+    cp
+    colorize
+    safe-paste
+    zsh-autosuggestions
+    common-aliases
+)
+
+source $ZSH/oh-my-zsh.sh
+
+[ -f ~/.zsh_custom ] && . ~/.zsh_custom
