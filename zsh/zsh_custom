@@ -37,7 +37,13 @@ alias m='mplayer'
 
 # Moving around
 [ -d /usr/local/src ] && alias src='cd /usr/local/src/'
-[ -d ~/.config/nvim/lua/hanavi ] && alias ndir="cd ~/.config/nvim/lua/hanavi"
+
+if [ -d ~/.config/nvim/lua/hanavi ]; then
+    alias ndir="cd ~/.config/nvim/lua/hanavi"
+else
+    alias ndir="cd ~/.vim/"
+fi
+
 alias tmp='cd ~/tmp'
 alias dfd='cd ~/files/dotfiles/'
 
@@ -130,7 +136,7 @@ gpg -d <(echo $DATA) 2> /dev/null
 }
 
 function fu {
-    if [ -z "$(mount |grep /home/james/mnt)" ]
+    if [ -z "$(mount |grep $HOME/mnt)" ]
     then
         echo mounting
         sshfs pi6:/media/james ~/mnt
@@ -146,14 +152,14 @@ export GPG_TTY
 
 gpg-connect-agent updatestartuptty /bye >/dev/null
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-export PATH=$PATH:/home/james/.gem/ruby/2.7.0/bin
 
 # python
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-if [ -f /home/james/.local/python/python3.11/bin/activate ]; then
-    . /home/james/.local/python/python3.11/bin/activate
+if [ -f ~/.local/python/python3.11/bin/activate ]; then
+    export VIRTUAL_ENV_DISABLE_PROMPT=1
+    . ~/.local/python/python3.11/bin/activate
 fi
 
+[ -d ~/.gem/ruby/2.7.0/bin ] && export PATH=$PATH:~/.gem/ruby/2.7.0/bin
 export PATH=$PATH:$HOME/.local/bin
 export EDITOR=vim
 export FCEDITOR=vim
