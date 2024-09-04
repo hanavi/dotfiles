@@ -1,9 +1,11 @@
 # Config editing stuff
 alias eb='vim $HOME/.bash_aliases'
 alias sb='source $HOME/.bash_aliases'
+
 alias es='vim $HOME/.ssh/config'
-alias ev='vim $HOME/.config/nvim/lua/hanavi/init.lua'
 alias et='vim $HOME/.tmux.conf'
+
+shopt -s autocd
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -85,7 +87,6 @@ alias gnews='firefox --private-window -- http://news.google.com'
 alias gmail='python -m webbrowser gmail.com'
 alias xkcd='python -m webbrowser xkcd.com'
 
-
 # Check for up ssh systems
 up() {
     nmap -n -oG - --open 192.168.1.0/24 -p 22 |grep Up | awk '{print $2}'
@@ -125,3 +126,4 @@ alias gloga='git log --oneline --decorate --graph --all'
 alias glol='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"'
 alias glola='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all'
 alias glols='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat'
+

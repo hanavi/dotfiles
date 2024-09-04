@@ -57,7 +57,7 @@ function! GetArgs()
   :normal maK2jf(v/)y:bdg_p
 endfunction
 
-nnoremap <silent> <leader>ff :call GetArgs()<CR>
+" nnoremap <silent> <leader>ff :call GetArgs()<CR>
 
 function! SplitArgs()
   :normal! yi)

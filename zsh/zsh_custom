@@ -1,6 +1,7 @@
 # Config editing stuff
 alias eb='vim $HOME/.zsh_custom'
 alias sb='source $HOME/.zsh_custom'
+
 alias es='vim $HOME/.ssh/config'
 alias et='vim $HOME/.tmux.conf'
 
@@ -84,11 +85,12 @@ alias gnews='firefox --private-window -- http://news.google.com'
 alias gmail='python -m webbrowser gmail.com'
 alias xkcd='python -m webbrowser xkcd.com'
 
-# Check for up ssh systems
+# Check for local running ssh systems
 up() {
     nmap -n -oG - --open 192.168.1.0/24 -p 22 |grep Up | awk '{print $2}'
 }
 
+# reset yubikey encryption when using a different key
 resetcard() {
     rm -r ~/.gnupg/private-keys-v1.d
     gpgconf --kill gpg-agent
