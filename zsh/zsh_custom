@@ -1,8 +1,7 @@
 # Config editing stuff
-alias eb='vim $HOME/.bash_aliases'
-alias sb='source $HOME/.bash_aliases'
+alias eb='vim $HOME/.zsh_custom'
+alias sb='source $HOME/.zsh_custom'
 alias es='vim $HOME/.ssh/config'
-alias ev='vim $HOME/.config/nvim/lua/hanavi/init.lua'
 alias et='vim $HOME/.tmux.conf'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -15,29 +14,42 @@ if command -v nvim &> /dev/null; then
     alias vim='nvim'
     alias v='nvim'
     alias vd='nvim -d'
+    alias ev='vim $HOME/.config/nvim/lua/hanavi/init.lua'
 else
     alias v='vim'
     alias vd='vimdiff'
+    alias ev='vim $HOME/.vim/vimrc'
 fi
 
-alias f='feh -.'
-alias z="zathura"
+if command -v feh &> /dev/null; then
+    alias f='feh -.'
+fi
+
+if command -v zathura &> /dev/null; then
+    alias z="zathura"
+fi
+
 alias dh="du -hs"
 alias ipy="ipython"
 alias m='mplayer'
 
 # Moving around
-alias src='cd /usr/local/src/'
+[ -d /usr/local/src ] && alias src='cd /usr/local/src/'
+[ -d ~/.config/nvim/lua/hanavi ] && alias ndir="cd ~/.config/nvim/lua/hanavi"
 alias tmp='cd ~/tmp'
-alias ndir="cd ~/.config/nvim/lua/hanavi"
+alias dfd='cd ~/files/dotfiles/'
 
 # dropbox
-alias ds="ps aux | grep -i dropbox |grep -v grep"
-alias dr="ps aux | grep -i redshift |grep -v grep"
-alias db="/home/james/.dropbox-dist/dropbox-lnx.x86_64-193.4.5594/dropbox &; disown"
+if [ -d ~/.dropbox-dist ]; then
+    alias db="~/.dropbox-dist/dropboxd &; disown"
+    alias ds="ps aux | grep -i dropbox |grep -v grep"
+fi
 
 # redshift
-alias rs="$HOME/scripts/run_redshift.sh &; disown"
+if [ -x $HOME/scripts/run_redshift.sh ]; then
+    alias rs="$HOME/scripts/run_redshift.sh &; disown"
+    alias dr="ps aux | grep -i redshift |grep -v grep"
+fi
 
 ## ls stuff
 alias ll='ls -l'

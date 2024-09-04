@@ -1,72 +1,67 @@
--- print('loading plugins')
+" Plugins
 
--- Load vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
 
+call plug#begin()
 
-local Plug = vim.fn['plug#']
-
-vim.call('plug#begin', '~/.config/nvim/plugged')
-
--- Lightweight Markup Languages
+" Lightweight Markup Languages
 Plug 'vimwiki/vimwiki'
 
--- This helps deal with some syntax stuff
-Plug 'dense-analysis/ale'
+" This helps deal with some syntax stuff
+Plug 'vim-syntastic/syntastic'
 
--- Fancy Bar at the bottom of the screen
+" Fancy Bar at the bottom of the screen
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
--- Tab formatting stuff
+" Tab formatting stuff
 Plug 'godlygeek/tabular'
 
-Plug 'lukas-reineke/indent-blankline.nvim'
-
--- Git
+" Git
 Plug 'tpope/vim-fugitive'
 
--- Generic
+" Generic
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
 
--- Do I need this?
+" Do I need this?
 Plug 'tpope/vim-dispatch'
 
--- Add stuff around blocks of text
+" Add stuff around blocks of text
 Plug 'tpope/vim-surround'
 
--- Fancy colors
+" Fancy colors
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'jnurmine/Zenburn'
 
--- Extra panels to improve productivity (meh?)
+" Extra panels to improve productivity
 Plug 'majutsushi/tagbar'
 
--- Return to last edit position
+" Return to last edit position
 Plug 'farmergreg/vim-lastplace'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
 
--- Searching
+" Searching
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
 
+" Python
 Plug 'davidhalter/jedi-vim'
 
-vim.call('plug#end')
+call plug#end()
 
-vim.cmd([[
+" Fix airline bug
 let g:airline_extensions = [
-    \'ale',
     \'branch',
     \'coc',
     \'ctrlp',
@@ -76,7 +71,6 @@ let g:airline_extensions = [
     \'keymap',
     \'languageclient',
     \'netrw',
-    \'nvimlsp',
     \'po',
     \'quickfix',
     \'searchcount',
@@ -86,14 +80,14 @@ let g:airline_extensions = [
     \'vimtex',
     \'virtualenv',
     \'whitespace',
-    \'wordcount']
-]])
+    \'wordcount' ]
 
+" UltiSnips settings
+" For some reason these have to be loaded earlier rather than later (ie in
+" after)
+let g:UltiSnipsSnippetsDir = $HOME.'/.vim/UltiSnips'
 
--- whitespace
--- wordcount
-
--- UltiSnips triggering
-vim.g.UltiSnipsExpandTrigger = "<c-j>"
-vim.g.UltiSnipsJumpForwardTrigger = "<c-j>"
-vim.g.UltiSnipsJumpBackwardTrigger = "<c-k>"
+" UltiSnips triggering
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
