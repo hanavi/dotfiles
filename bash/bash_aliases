@@ -66,10 +66,12 @@ alias lh='ls -alh'
 
 ## SSH
 alias sa='ssh-add'
-alias hl='ssh homelocal'
-alias hv1='ssh hv1'
-alias hv2='ssh hv2'
-alias pi7='ssh pi7'
+if [ "`hostname`" = "thinkpad" ]; then
+    alias hl='ssh homelocal'
+    alias hv1='ssh hv1'
+    alias hv2='ssh hv2'
+    alias pi7='ssh pi7'
+fi
 
 ## Misc
 alias tl='tmux ls'
