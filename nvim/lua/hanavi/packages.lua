@@ -75,7 +75,12 @@ vim.g["airline_extensions"] = {
 vim.g["airline#extensions#tabline#enabled"] = 1
 vim.g["airline#extensions#tabline#fnamemod"] = ':t'
 vim.g["airline_theme"] = 'dark'
-vim.g["airline_powerline_fonts"] = 1
+
+if os.getenv("DISABLE_POWERLINE_FONTS") == "1" then
+    vim.g["airline_powerline_fonts"] = 0
+else
+    vim.g["airline_powerline_fonts"] = 1
+end
 
 -- UltiSnips triggering
 vim.g.UltiSnipsExpandTrigger = "<c-j>"

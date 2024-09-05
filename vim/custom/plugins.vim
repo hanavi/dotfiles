@@ -71,7 +71,12 @@ let g:airline_extensions = [
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_theme='dark'
-let g:airline_powerline_fonts = 1
+
+if $DISABLE_POWERLINE_FONTS == 1
+  let g:airline_powerline_fonts = 0
+else
+  let g:airline_powerline_fonts = 1
+end
 
 if has("python3")
   " UltiSnips settings

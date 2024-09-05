@@ -7,6 +7,9 @@ alias et='vim $HOME/.tmux.conf'
 
 shopt -s autocd
 
+# This has to be set early...
+export PATH=$PATH:$HOME/.local/bin
+
 [ -f ~/.ps1.env ] && source ~/.ps1.env
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -14,7 +17,7 @@ if command -v exa &> /dev/null; then
     alias ls='exa'
 fi
 
-if command -v batchat &> /dev/null; then
+if command -v batcat &> /dev/null; then
     alias cat='batcat'
 fi
 
@@ -99,6 +102,9 @@ alias gnews='firefox --private-window -- http://news.google.com'
 alias gmail='python -m webbrowser gmail.com'
 alias xkcd='python -m webbrowser xkcd.com'
 
+# docker
+alias dr='docker run --rm -it'
+
 # Check for up ssh systems
 up() {
     nmap -n -oG - --open 192.168.1.0/24 -p 22 |grep Up | awk '{print $2}'
@@ -112,7 +118,6 @@ resetcard() {
 
 [ $TERM == "st-256color" ] && transset-df --id "$WINDOWID" .75 >/dev/null
 
-export PATH=$PATH:$HOME/.local/bin
 export EDITOR=vim
 export FCEDITOR=vim
 
