@@ -64,34 +64,18 @@ Plug 'davidhalter/jedi-vim'
 
 vim.call('plug#end')
 
-vim.cmd([[
-let g:airline_extensions = [
-    \'ale',
-    \'branch',
-    \'coc',
-    \'ctrlp',
-    \'ctrlspace',
-    \'cursormode',
-    \'fugitiveline',
-    \'keymap',
-    \'languageclient',
-    \'netrw',
-    \'nvimlsp',
-    \'po',
-    \'quickfix',
-    \'searchcount',
-    \'tabline',
-    \'tagbar',
-    \'term',
-    \'vimtex',
-    \'virtualenv',
-    \'whitespace',
-    \'wordcount']
-]])
+vim.g["airline_extensions"] = {
+    'ale', 'branch', 'coc', 'ctrlp', 'ctrlspace', 'cursormode', 'fugitiveline',
+    'keymap', 'languageclient', 'netrw', 'nvimlsp', 'po', 'quickfix',
+    'searchcount', 'tabline', 'tagbar', 'term', 'vimtex', 'virtualenv',
+    'whitespace', 'wordcount'
+}
 
-
--- whitespace
--- wordcount
+-- Airline settings
+vim.g["airline#extensions#tabline#enabled"] = 1
+vim.g["airline#extensions#tabline#fnamemod"] = ':t'
+vim.g["airline_theme"] = 'dark'
+vim.g["airline_powerline_fonts"] = 1
 
 -- UltiSnips triggering
 vim.g.UltiSnipsExpandTrigger = "<c-j>"

@@ -23,7 +23,7 @@ source ~/.vim/custom/python.vim
 let g:solarized_termcolors=256
 let g:solarized_degraded=2
 let g:solarized_termtrans=1
-"
+
 if has('gui_running')
     set lines=50 columns=100
 endif

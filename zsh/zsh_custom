@@ -8,7 +8,11 @@ alias et='vim $HOME/.tmux.conf'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if command -v batchat &> /dev/null; then
-    alias cat=batcat
+    alias cat='batcat'
+fi
+
+if command -v exa &> /dev/null; then
+    alias ls='exa'
 fi
 
 if command -v nvim &> /dev/null; then

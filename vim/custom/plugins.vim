@@ -63,25 +63,15 @@ call plug#end()
 
 " Fix airline bug
 let g:airline_extensions = [
-    \'branch',
-    \'coc',
-    \'ctrlp',
-    \'ctrlspace',
-    \'cursormode',
-    \'fugitiveline',
-    \'keymap',
-    \'languageclient',
-    \'netrw',
-    \'po',
-    \'quickfix',
-    \'searchcount',
-    \'tabline',
-    \'tagbar',
-    \'term',
-    \'vimtex',
-    \'virtualenv',
-    \'whitespace',
+    \'branch', 'coc', 'ctrlp', 'ctrlspace', 'cursormode', 'fugitiveline',
+    \'keymap', 'languageclient', 'netrw', 'po', 'quickfix', 'searchcount',
+    \'tabline', 'tagbar', 'term', 'vimtex', 'virtualenv', 'whitespace',
     \'wordcount' ]
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_theme='dark'
+let g:airline_powerline_fonts = 1
 
 if has("python3")
   " UltiSnips settings
