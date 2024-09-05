@@ -6,12 +6,16 @@ alias es='vim $HOME/.ssh/config'
 alias et='vim $HOME/.tmux.conf'
 
 shopt -s autocd
-[ -f ~/.ps1.env ] && source ~/.ps1.env
 
+[ -f ~/.ps1.env ] && source ~/.ps1.env
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+if command -v exa &> /dev/null; then
+    alias ls='exa'
+fi
+
 if command -v batchat &> /dev/null; then
-    alias cat=batcat
+    alias cat='batcat'
 fi
 
 if command -v nvim &> /dev/null; then
