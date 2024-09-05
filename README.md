@@ -24,43 +24,43 @@ ln -s ~/files/dotfiles/nvim ~/.config/nvim
 ## batcat
 
 ```
-$ sudo apt install bat
+sudo apt install bat
 ```
 
 ## fzf
 https://github.com/junegunn/fzf/releases
 
 ```
-$ fzf --bash > ~/.fzf.bash
+fzf --bash > ~/.fzf.bash
 ```
 
 ## neovim
 
 
 ```
-$ mkdir -p ~/.local/bin
-$ wget https://github.com/neovim/neovim/releases/download/v0.10.1/nvim.appimage -O ~/.local/bin/nvim
-$ chmod +x ~/.local/bin/nvim
+mkdir -p ~/.local/bin
+wget https://github.com/neovim/neovim/releases/download/v0.10.1/nvim.appimage -O ~/.local/bin/nvim
+chmod +x ~/.local/bin/nvim
 ```
 
 This is apparently need right now until I can get the powerline fonts running
 in WSL
 
 ```
-$ printf "\nexport DISABLE_POWERLINE_FONTS=1\n" >> ~/.bashrc
+printf "\nexport DISABLE_POWERLINE_FONTS=1\n" >> ~/.bashrc
 ```
 
 
 ## python (ubuntu 22)
 
 ```
-$ sudo apt install python-is-python3
-$ sudo apt install python-pip3
-$ sudo apt install python3.10-venv
-$ mkdir -p ~/.local/python
-$ python -m venv ~/.local/python/nvim
-$ source ~/.local/python/nvim/bin/activate
-$ pip install pynvim black ruff pylint mypy
+sudo apt install python-is-python3
+sudo apt install python-pip3
+sudo apt install python3.10-venv
+mkdir -p ~/.local/python
+python -m venv ~/.local/python/nvim
+source ~/.local/python/nvim/bin/activate
+pip install pynvim black ruff pylint mypy
 ```
 
 ## Windows
