@@ -7,7 +7,7 @@ alias et='vim $HOME/.tmux.conf'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if command -v batchat &> /dev/null; then
+if command -v batcat &> /dev/null; then
     alias cat='batcat'
 fi
 
@@ -38,6 +38,15 @@ fi
 alias dh="du -hs"
 alias ipy="ipython"
 alias m='mplayer'
+alias dr='docker run --rm -it'
+
+# Conda
+caw() {
+    conda deactivate
+    conda activate working
+}
+alias ci='conda install'
+alias ca='conda activate'
 
 # Moving around
 [ -d /usr/local/src ] && alias src='cd /usr/local/src/'
@@ -59,8 +68,8 @@ fi
 
 # redshift
 if [ -x $HOME/scripts/run_redshift.sh ]; then
-    alias rs="$HOME/scripts/run_redshift.sh &; disown"
-    alias dr="ps aux | grep -i redshift |grep -v grep"
+    alias rr="$HOME/scripts/run_redshift.sh &; disown"
+    alias rs="ps aux | grep -i redshift |grep -v grep"
 fi
 
 ## ls stuff

@@ -11,7 +11,8 @@ call plug#begin()
 Plug 'vimwiki/vimwiki'
 
 " This helps deal with some syntax stuff
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
 
 " Fancy Bar at the bottom of the screen
 Plug 'vim-airline/vim-airline'
