@@ -1,3 +1,10 @@
+# Bash ps1
+
+# Don't rerun if this has been set to avoid problems with conda
+[ ! -z "_PS1_SET" ] && return
+
+export _PS1_SET=1
+
 LGREEN='\[\033[01;92m\]'
 GREEN='\[\033[01;32m\]'
 WHITE='\[\033[00m\]'

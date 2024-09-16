@@ -1,4 +1,6 @@
 # Config editing stuff
+[[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && export PATH=$PATH:$HOME/.local/bin
+
 alias eb='vim $HOME/.zsh_custom'
 alias sb='source $HOME/.zsh_custom'
 
@@ -7,13 +9,10 @@ alias et='vim $HOME/.tmux.conf'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if command -v batcat &> /dev/null; then
-    alias cat='batcat'
-fi
-
-if command -v exa &> /dev/null; then
-    alias ls='exa'
-fi
+command -v batcat &> /dev/null && alias cat='batcat'
+command -v exa &> /dev/null && alias ls='exa'
+command -v feh &> /dev/null && alias f='feh -.'
+command -v zathura &> /dev/null && alias z='zathura'
 
 if command -v nvim &> /dev/null; then
     alias vim='nvim'
@@ -27,16 +26,12 @@ else
     alias ev='vim $HOME/.vim/vimrc'
 fi
 
-if command -v feh &> /dev/null; then
-    alias f='feh -.'
-fi
-
-if command -v zathura &> /dev/null; then
-    alias z="zathura"
-fi
+function ipy {
+    [ "$CONDA_DEFAULT_ENV" = "base" ] && conda deactivate && conda activate working
+    ipython "$@"
+}
 
 alias dh="du -hs"
-alias ipy="ipython"
 alias m='mplayer'
 alias dr='docker run --rm -it'
 
@@ -166,13 +161,13 @@ export GPG_TTY
 gpg-connect-agent updatestartuptty /bye >/dev/null
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
-# python
-if [ -f ~/.local/python/python3.11/bin/activate ]; then
-    export VIRTUAL_ENV_DISABLE_PROMPT=1
-    . ~/.local/python/python3.11/bin/activate
-fi
+# # python
+# if [ -f ~/.local/python/python3.11/bin/activate ]; then
+#     export VIRTUAL_ENV_DISABLE_PROMPT=1
+#     . ~/.local/python/python3.11/bin/activate
+# fi
 
 [ -d ~/.gem/ruby/2.7.0/bin ] && export PATH=$PATH:~/.gem/ruby/2.7.0/bin
-export PATH=$PATH:$HOME/.local/bin
+
 export EDITOR=vim
 export FCEDITOR=vim
