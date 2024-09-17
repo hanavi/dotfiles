@@ -1,9 +1,7 @@
-# Bash ps1
+[ ! -z "$_BASH_DEBUG" ] && echo "loading ps1 plugin"
 
-# Don't rerun if this has been set to avoid problems with conda
-[ ! -z "_PS1_SET" ] && return
-
-export _PS1_SET=1
+# [ ! -z "$_PS1_SET" ] && return
+# export _PS1_SET=1
 
 LGREEN='\[\033[01;92m\]'
 GREEN='\[\033[01;32m\]'
