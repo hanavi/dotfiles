@@ -1,4 +1,4 @@
-[ ! -z "$_BASH_DEBUG" ] && echo "loading vim plugin"
+[ -n "$_BASH_DEBUG" ] && echo "loading vim plugin"
 
 if command -v nvim &> /dev/null; then
 

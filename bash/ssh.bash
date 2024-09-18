@@ -1,4 +1,4 @@
-[ ! -z "$_BASH_DEBUG" ] && echo "loading ssh plugin"
+[ -n "$_BASH_DEBUG" ] && echo "loading ssh plugin"
 
 ## SSH
 alias sa='ssh-add'

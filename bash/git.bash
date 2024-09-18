@@ -1,4 +1,4 @@
-[ ! -z "$_BASH_DEBUG" ] && echo "loading git plugin"
+[ -n "$_BASH_DEBUG" ] && echo "loading git plugin"
 
 alias g=git
 alias ga='git add'

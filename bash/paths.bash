@@ -1,4 +1,4 @@
-[ ! -z "$_BASH_DEBUG" ] && echo "loading paths plugin"
+[ -n "$_BASH_DEBUG" ] && echo "loading paths plugin"
 
 # Moving around
 alias dfd="cd ~/files/dotfiles/"
