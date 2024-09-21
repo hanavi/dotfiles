@@ -1,11 +1,14 @@
 # Config editing stuff
 [[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && export PATH=$PATH:$HOME/.local/bin
 
-alias eb='vim $HOME/.zsh_custom'
-alias sb='source $HOME/.zsh_custom'
+alias eb='vim $HOME/files/dotfiles/zsh/plugins/hanavi/hanavi.plugin.zsh'
+alias sb='exec zsh'
 
 alias es='vim $HOME/.ssh/config'
 alias et='vim $HOME/.tmux.conf'
+
+alias aps='apt search'
+alias api='sudo apt install'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -57,14 +60,28 @@ alias dfd='cd ~/files/dotfiles/'
 
 # dropbox
 if [ -d ~/.dropbox-dist ]; then
-    alias db="~/.dropbox-dist/dropboxd &; disown"
-    alias ds="ps aux | grep -i dropbox |grep -v grep"
+    db() {
+        if pgrep -f "dropbox" > /dev/null; then
+            echo 'dropbox already running!'
+        else
+            echo "starting dropbox..."
+            ~/.dropbox-dist/dropboxd &> /dev/null &
+            disown
+        fi
+    }
 fi
 
 # redshift
 if [ -x $HOME/scripts/run_redshift.sh ]; then
-    alias rr="$HOME/scripts/run_redshift.sh &; disown"
-    alias rs="ps aux | grep -i redshift |grep -v grep"
+    rs() {
+        if pgrep -f "redshift" > /dev/null; then
+            echo 'redshift already running!'
+        else
+            echo "starting redshift"
+            $HOME/scripts/run_redshift.sh &> /dev/null &
+            disown
+        fi
+    }
 fi
 
 ## ls stuff
