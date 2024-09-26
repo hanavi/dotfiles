@@ -3,9 +3,9 @@
 ## bash
 
 ```
-ln -s ~/files/dotfiles/bash/bash_aliases ~/.bash_aliases
-ln -s ~/files/dotfiles/bash/inputrc ~/.inputrc
-ln -s ~/files/dotfiles/bash/ps1.env ~/.ps1.env
+ln -s ~/files/dotfiles/bash_aliases ~/.bash_aliases
+ln -s ~/files/dotfiles/inputrc ~/.inputrc
+ln -s ~/files/dotfiles/bash ~/.config/bash
 ```
 
 ## tmux

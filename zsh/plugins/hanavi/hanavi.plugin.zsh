@@ -1,9 +1,11 @@
 # Init and misc stuff
+# export _HANAVI_DEBUG=1
 
 [[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && export PATH=$PATH:$HOME/.local/bin
 [ -d ~/.gem/ruby/2.7.0/bin ] && export PATH=$PATH:~/.gem/ruby/2.7.0/bin
 
-export _HANAVI_PLUG_PATH=${HOME}/.oh-my-zsh/custom/plugins/hanavi/includes/
+# export _HANAVI_PLUG_PATH=${HOME}/.oh-my-zsh/custom/plugins/hanavi/includes/
+export _HANAVI_PLUG_PATH=${0:a:h}/includes
 
 alias eb="vim $HOME/files/dotfiles/zsh/plugins/hanavi/hanavi.plugin.zsh ${_HANAVI_PLUG_PATH}/*.zsh"
 alias sb='exec zsh'
