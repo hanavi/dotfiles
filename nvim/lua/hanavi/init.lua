@@ -10,6 +10,7 @@ require("hanavi.keybindings")
 require("hanavi.python_files")
 require("hanavi.shell_files")
 require("hanavi.log_files")
+require("hanavi.wiki")
 
 -- Allow moving around buffers w/o saving
 vim.opt.hidden = true

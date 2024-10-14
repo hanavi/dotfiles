@@ -26,6 +26,20 @@ command -v zathura &> /dev/null && alias z='zathura'
 command -v batcat &> /dev/null && alias cat='batcat'
 command -v fdfind &>/dev/null && alias fd='fdfind'
 
+function notes {
+
+    YEAR=$(date "+%Y")
+    MONTH=$(date "+%m")
+    DATE=$(date "+%Y%m%d")
+    NOTESDIR="${HOME}/Dropbox/Documents/notes/logs/${YEAR}/${MONTH}"
+    NOTEFILE="${NOTESDIR}/log_${DATE}.wiki"
+
+    [[ ! -d "${NOTESDIR}" ]] && mkdir -p "${NOTESDIR}"
+    pushd "$NOTESDIR"
+        vim "${NOTEFILE}"
+    popd
+}
+
 # custom sub-plugin stuff
 for fn in ${_HANAVI_PLUG_PATH}/*.zsh; do
     source $fn

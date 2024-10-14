@@ -1,5 +1,17 @@
 -- print('loading functions')
 
+function SetWikiDate()
+  local pos = vim.fn.getpos('.')
+  local line = 1
+  local date = vim.fn.strftime('%F')
+  while line < 7 do
+    vim.fn.setline(line, vim.fn.substitute(vim.fn.getline(line), "__DATE__",  date, ""))
+    line = line + 1
+  end
+  vim.fn.histdel('search', -1)
+  vim.fn.setpos('.', pos)
+end
+
 function SetUpdatedTime()
   local pos = vim.fn.getpos('.')
   local line = 1

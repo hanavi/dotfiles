@@ -62,6 +62,8 @@ Plug 'nvim-treesitter/nvim-treesitter'
 
 Plug 'davidhalter/jedi-vim'
 
+Plug 'ray-x/go.nvim'
+
 vim.call('plug#end')
 
 vim.g["airline_extensions"] = {

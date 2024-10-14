@@ -7,6 +7,7 @@ caw() {
     conda activate working
 }
 
+alias c='conda'
 alias ci='conda install'
 alias ca='conda activate'
 
