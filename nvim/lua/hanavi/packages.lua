@@ -62,7 +62,8 @@ Plug 'nvim-treesitter/nvim-treesitter'
 
 Plug 'davidhalter/jedi-vim'
 
-Plug 'ray-x/go.nvim'
+-- Plug 'ray-x/go.nvim'
+Plug 'fatih/vim-go'
 
 vim.call('plug#end')
 

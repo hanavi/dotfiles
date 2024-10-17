@@ -14,7 +14,7 @@ if command -v nvim &> /dev/null; then
     }
 
     alias vd='nvim -d'
-    alias ev='vim $HOME/.config/nvim/lua/hanavi/init.lua'
+    alias ev='vim $HOME/.config/nvim/lua/hanavi/*.lua'
     alias vv='/usr/bin/vim'
     alias ndir="cd ~/.config/nvim/lua/hanavi"
 else

@@ -2,6 +2,7 @@
 # export _HANAVI_DEBUG=1
 
 [[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && export PATH=$PATH:$HOME/.local/bin
+[[ ":$PATH:" != *":$HOME/go/bin:"* ]] && export PATH=$PATH:$HOME/go/bin
 [ -d ~/.gem/ruby/2.7.0/bin ] && export PATH=$PATH:~/.gem/ruby/2.7.0/bin
 
 # export _HANAVI_PLUG_PATH=${HOME}/.oh-my-zsh/custom/plugins/hanavi/includes/
