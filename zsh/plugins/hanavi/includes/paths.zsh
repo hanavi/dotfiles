@@ -6,5 +6,6 @@
 
 alias tmp='cd ~/tmp'
 alias dfd='cd ~/files/dotfiles/'
+alias ddir='cd ~/files/projects/docker/'
 
 alias p="cd ~/projects"
