@@ -3,6 +3,27 @@
 ## SSH
 alias sa='ssh-add'
 
+check-ssh-agent() {
+    [ -f ~/.ssh/agent ] && . ~/.ssh/agent
+
+    for pid in $(pgrep ssh-agent); do
+        [ $pid -eq $SSH_AGENT_PID ] && return 0
+    done
+    return 1
+}
+
+start-ssh-agent() {
+
+    check-ssh-agent && return 0
+    echo "Starting ssh agent"
+    ssh-agent | sed 's/^echo Agent/# &/' > ~/.ssh/agent
+    check-ssh-agent && echo "Agent running" && return 0
+    echo "Failed to start ssh agent"
+    return 1
+}
+
+start-ssh-agent
+
 # Only run this on my "thinkpad"
 [ ! "`hostname`" = "thinkpad" ] && return
 
