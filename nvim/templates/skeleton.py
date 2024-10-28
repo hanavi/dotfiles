@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# coding: utf-8
 # Author: James Casey <hanavi@gmail.com>
 # Last Updated: __DATE__
 """<++>"""
