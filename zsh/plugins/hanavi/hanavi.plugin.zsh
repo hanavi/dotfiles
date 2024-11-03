@@ -3,7 +3,9 @@
 
 [[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && export PATH=$PATH:$HOME/.local/bin
 [[ ":$PATH:" != *":$HOME/go/bin:"* ]] && export PATH=$PATH:$HOME/go/bin
-[ -d ~/.gem/ruby/2.7.0/bin ] && export PATH=$PATH:~/.gem/ruby/2.7.0/bin
+[[ -d ~/.gem/ruby/2.7.0/bin ]] && export PATH=$PATH:~/.gem/ruby/2.7.0/bin
+
+[[ $TERM == "st-256color" ]] && transset --id "$WINDOWID" .80 > /dev/null
 
 # export _HANAVI_PLUG_PATH=${HOME}/.oh-my-zsh/custom/plugins/hanavi/includes/
 export _HANAVI_PLUG_PATH=${0:a:h}/includes

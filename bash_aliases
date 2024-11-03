@@ -42,9 +42,6 @@ alias tl='tmux ls'
 alias ta='tmux attach'
 alias kap="killall pinentry"
 
-# docker
-alias dr='docker run --rm -it'
-
 # Check for up ssh systems
 up() {
     nmap -n -oG - --open 192.168.1.0/24 -p 22 |grep Up | awk '{print $2}'
@@ -56,8 +53,8 @@ resetcard() {
     gpg --card-status
 }
 
-# I don't remember what this is for...
-[ $TERM == "st-256color" ] && transset-df --id "$WINDOWID" .75 >/dev/null
+# set transparency for terminal... disabled for now?
+# [ $TERM == "st-256color" ] && transset-df --id "$WINDOWID" .75 >/dev/null
 
 export EDITOR=vim
 export FCEDIT=vim
