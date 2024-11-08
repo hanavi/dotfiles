@@ -10,7 +10,7 @@ keymap("n", "<leader>sv", ":vs<cr>", opts)
 keymap("n", "<leader>sh", ":split<cr>", opts)
 keymap("n", "<leader>sx", ":close<cr>", opts)
 
-keymap("n", "<leader>ev", ":edit ~/.config/nvim/lua/hanavi/init.lua<cr>", opts)
+keymap("n", "<leader>ev", ":n ~/.config/nvim/lua/hanavi/*.lua<cr>", opts)
 keymap("n", "<leader>es", ":edit ~/.vim/scripts/test.vim<cr>", opts)
 keymap("n", "<leader>p", ":set paste!<CR>", opts)
 keymap("n", "L", ":bn<CR>", opts)
@@ -66,3 +66,6 @@ keymap("n", "<c-h>", "<c-w>h", { noremap=true, silent=true })
 keymap("n", "<c-l>", "<c-w>l", { noremap=true, silent=true })
 keymap("n", "<c-j>", "<c-w>j", { noremap=true, silent=true })
 keymap("n", "<c-k>", "<c-w>k", { noremap=true, silent=true })
+
+
+keymap("c", "w!!", "%!sudo tee > /dev/null %", {})
