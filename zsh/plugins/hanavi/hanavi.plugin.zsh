@@ -50,7 +50,6 @@ done
 
 alias dh="du -hs"
 alias m='mplayer'
-alias dr='docker run --rm -it'
 
 ## Misc
 alias tl='tmux ls'

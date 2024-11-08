@@ -2,16 +2,20 @@
 
 [ -n "$_HANAVI_DEBUG" ] && echo "loading conda config"
 
+alias c='conda'
+alias ci='conda install'
+
 caw() {
     conda deactivate
     conda activate working
 }
 
-alias c='conda'
-alias ci='conda install'
-alias ca='conda activate'
+ca() {
+    conda deactivate
+    conda activate "$@"
+}
 
-function ipy {
+ipy() {
     [ "$CONDA_DEFAULT_ENV" = "base" ] && conda deactivate && conda activate working
     ipython "$@"
 }
