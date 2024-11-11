@@ -2,7 +2,6 @@
 
 command docker -v &> /dev/null || return
 
-
 alias d='docker'
 alias dil='docker image ls'
 alias dcl='docker container ls'
