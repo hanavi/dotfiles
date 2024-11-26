@@ -49,7 +49,22 @@ for fn in ${_HANAVI_PLUG_PATH}/*.zsh; do
 done
 
 alias dh="du -hs"
+alias fr="free -h"
 alias m='mplayer'
+
+now() {
+    case "$1" in
+        -)
+            date "+%Y%m%d-%H%M%S"
+            ;;
+        -n)
+            date "+%Y%m%d%H%M%S"
+            ;;
+        *)
+            date "+%Y%m%d_%H%M%S"
+            ;;
+    esac
+}
 
 ## Misc
 alias tl='tmux ls'
