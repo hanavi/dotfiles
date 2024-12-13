@@ -20,4 +20,4 @@ ZSH_THEME_RUBY_PROMPT_SUFFIX="]%{$reset_color%}"
 # Combine it all into a final right-side prompt
 RPS1='$(git_custom_status)$(ruby_prompt_info) $EPS1'
 
-PROMPT='%{$fg[red]%}[%{$fg[cyan]%}%m %~% %{$fg[red]%}]%(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
+PROMPT='%{$fg[red]%}[%{$fg[cyan]%}%m %1~% %{$fg[red]%}]%(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
