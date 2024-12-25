@@ -1,3 +1,5 @@
+au BufWritePre *.sh :call SetUpdatedTime()
+
 augroup new_shell_file
   autocmd!
   au BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh

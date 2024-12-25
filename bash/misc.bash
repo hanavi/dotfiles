@@ -3,6 +3,9 @@
 # special case...
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
+# set transparency for terminal... disabled for now?
+# [[ $TERM == "st-256color" ]] && transset-df --id "$WINDOWID" .75 >/dev/null
+
 command -v exa &> /dev/null && alias ls='exa'
 command -v batcat &> /dev/null && alias cat='batcat'
 command -v feh &> /dev/null && alias f='feh -.'
@@ -37,5 +40,21 @@ resetcard() {
     gpg --card-status
 }
 
-# set transparency for terminal... disabled for now?
-# [[ $TERM == "st-256color" ]] && transset-df --id "$WINDOWID" .75 >/dev/null
+
+now() {
+    case "$1" in
+        -)
+            date "+%Y%m%d-%H%M%S"
+            ;;
+        -n)
+            date "+%Y%m%d%H%M%S"
+            ;;
+        *)
+            date "+%Y%m%d_%H%M%S"
+            ;;
+    esac
+}
+
+field() {
+    awk -F "${2:- }" "{ print \$${1:-1} }"
+}
