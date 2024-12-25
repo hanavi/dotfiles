@@ -1,6 +1,6 @@
 # GPG/Yubikey stuff
 
-[ -n "$_HANAVI_DEBUG" ] && echo "loading gpg/yubikey config"
+[[ -n "$_HANAVI_DEBUG" ]] && echo "loading gpg/yubikey config"
 
 # reset yubikey encryption when using a different key
 resetcard() {
@@ -10,8 +10,7 @@ resetcard() {
 }
 
 # Load yubikey
-function lg
-{
+lg() {
 
 read -d '' DATA << __EOF__
 

@@ -1,6 +1,6 @@
 ## Email
 
-[ -n "$_HANAVI_DEBUG" ] && echo "loading email config"
+[[ -n "$_HANAVI_DEBUG" ]] && echo "loading email config"
 
 
 alias mmutt="zless /usr/share/doc/mutt/manual.txt.gz"

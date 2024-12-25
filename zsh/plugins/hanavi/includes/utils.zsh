@@ -1,6 +1,6 @@
 # misc utils...
 
-[ -n "$_HANAVI_DEBUG" ] && echo "loading utils config"
+[[ -n "$_HANAVI_DEBUG" ]] && echo "loading utils config"
 
 # Check for local running ssh systems
 up() {
@@ -8,7 +8,7 @@ up() {
 }
 
 # dropbox
-if [ -d ~/.dropbox-dist ]; then
+if [[ -d ~/.dropbox-dist ]]; then
     db() {
         if pgrep -f "dropbox" > /dev/null; then
             echo 'dropbox already running!'
@@ -21,7 +21,7 @@ if [ -d ~/.dropbox-dist ]; then
 fi
 
 # redshift
-if [ -x $HOME/scripts/run_redshift.sh ]; then
+if [[ -x $HOME/scripts/run_redshift.sh ]]; then
     rs() {
         if pgrep -f "redshift" > /dev/null; then
             echo 'redshift already running!'

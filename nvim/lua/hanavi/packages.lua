@@ -64,6 +64,9 @@ Plug 'davidhalter/jedi-vim'
 
 -- Plug 'ray-x/go.nvim'
 Plug 'fatih/vim-go'
+Plug 'crispgm/nvim-go'
+Plug 'rcarriga/nvim-notify'
+Plug 'neovim/nvim-lspconfig'
 
 vim.call('plug#end')
 

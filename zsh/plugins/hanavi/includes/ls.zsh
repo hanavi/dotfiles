@@ -1,6 +1,6 @@
 # ls stuff
 
-[ -n "$_HANAVI_DEBUG" ] && echo "loading ls config"
+[[ -n "$_HANAVI_DEBUG" ]] && echo "loading ls config"
 
 alias ll='ls -l'
 alias la='ls -A'

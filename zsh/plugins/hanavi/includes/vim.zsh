@@ -1,20 +1,20 @@
 # vim/nvim
 
-[ -n "$_HANAVI_DEBUG" ] && echo "loading vim/nvim config"
+[[ -n "$_HANAVI_DEBUG" ]] && echo "loading vim/nvim config"
 
 
 if command -v nvim &> /dev/null; then
 
-    function vim {
+    vim() {
         nvim "$@"
     }
 
-    function v {
+    v() {
         nvim "$@"
     }
 
     alias vd='nvim -d'
-    alias ev='vim $HOME/.config/nvim/lua/hanavi/*.lua'
+    alias ev='vim $HOME/.config/nvim/lua/hanavi/*.lua $HOME/.config/nvim/after/plugin/*.lua'
     alias vv='/usr/bin/vim'
     alias ndir="cd ~/.config/nvim/lua/hanavi"
 else
