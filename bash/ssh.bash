@@ -22,7 +22,9 @@ start-ssh-agent() {
     return 1
 }
 
-start-ssh-agent
+if command -v ssh-agent &>/dev/null && [[ ! -f ~/.ssh/noagent ]]; then
+    start-ssh-agent
+fi
 
 # Only run this on my "thinkpad"
 [ ! "`hostname`" = "thinkpad" ] && return

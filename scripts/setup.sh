@@ -1,11 +1,9 @@
-#!/bin/bash
-# Last Updated: 2024-12-03
-
-# set -eo pipefail
+#!/usr/bin/env bash
+# Last Updated: 2024-12-25
 
 REPO_DIR="${HOME}/files/dotfiles"
 
-if [ -t 2 ]; then
+if [[ -t 2 ]]; then
     RESET='\033[0m'
     CYAN='\033[01;36m'
     GREEN='\033[01;32m'
@@ -32,7 +30,7 @@ error() { printf "$(timestamp) ${RED}[ERROR]${RESET} $*\n"      >&2; }
 setup_nvim() {
   info "configuring neovim"
 
-  if [ -e ~/.config/nvim ]; then
+  if [[ -e ~/.config/nvim ]]; then
     warn "~/.config/nvim already exists! Skipping..."
     return
   fi
@@ -49,7 +47,7 @@ setup_nvim() {
 setup_vim() {
   info "configuring vim"
 
-  if [ -e ~/.vim ]; then
+  if [[ -e ~/.vim ]]; then
     warn "~/.vim already exists! Skipping..."
     return
   fi
@@ -59,14 +57,16 @@ setup_vim() {
 }
 
 create_link() {
+
   local src="${REPO_DIR}/$1"
   local dst=$2
-  if [ -e "${dst}" ]; then
+
+  if [[ -e "${dst}" ]]; then
     warn "Path ${dst} already exists! Skipping..."
     return
   else
     info "creating link ${dst}"
-    # ln -s "${src}" "${dst}"
+    ln -s "${src}" "${dst}"
   fi
 }
 
@@ -74,11 +74,11 @@ setup_bash() {
   info "configuring bash"
 
   if ! grep -q bash_aliases ~/.bashrc &>/dev/null; then
-    printf "[ -f ~/.bash_aliases ] && . ~/.bash_aliases ]\n" >> ~/.bashrc
+    printf "[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases \n" >> ~/.bashrc
   fi
 
   if ! grep -q bashrc ~/.bash_profile &>/dev/null; then
-    printf "[ -f ~/.bashrc ] && . ~/.bashrc ]\n" >> ~/.bash_profile
+    printf "[[ -f ~/.bashrc ]] && . ~/.bashrc \n" >> ~/.bash_profile
   fi
 
   create_link bash_aliases ~/.bash_aliases
@@ -88,7 +88,7 @@ setup_bash() {
 setup_zsh() {
   info "configuring zsh"
 
-  if [ ! -d ~/.oh-my-zsh/custom/plugins/ ]; then
+  if [[ ! -d ~/.oh-my-zsh/custom/plugins/ ]]; then
     warn "oh-my-zsh directory not found! Skipping"
     return
   fi
@@ -106,6 +106,14 @@ setup_directories() {
 
 }
 
+clone-repo() {
+  if [[ -f ${HOME}/files/dotfiles/scripts/setup.sh ]]; then
+    echo "dotfiles exists! skipping..."
+    return 1
+  fi
+  git clone https://github.com/hanavi/dotfiles ${HOME}/files/dotfiles
+}
+
 setup_misc() {
   info "creating misc links"
 
@@ -114,6 +122,7 @@ setup_misc() {
   create_link gitconfig ~/.gitconfig
 }
 
+clone-repo
 setup_directories
 setup_bash
 setup_zsh
