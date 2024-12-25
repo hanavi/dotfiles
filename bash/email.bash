@@ -1,4 +1,4 @@
-[ -n "$_BASH_DEBUG" ] && echo "loading email plugin"
+[[ -n "$_BASH_DEBUG" ]] && echo "loading email plugin"
 
 ## Email
 alias mmutt="zless /usr/share/doc/mutt/manual.txt.gz"

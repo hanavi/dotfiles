@@ -11,3 +11,5 @@ for fn in ${_HANAVI_PLUG_PATH}/*.zsh; do
     source $fn
 done
 
+export EDITOR=vim
+export FCEDIT=vim

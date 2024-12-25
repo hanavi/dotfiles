@@ -1,6 +1,4 @@
-# tmux stuff
-
-[[ -n "$_HANAVI_DEBUG" ]] && echo "loading tmux config"
+[[ -n "$_BASH_DEBUG" ]] && echo "loading tmux plugin"
 
 alias tl='tmux ls'
 

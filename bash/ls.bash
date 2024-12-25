@@ -1,4 +1,4 @@
-[ -n "$_BASH_DEBUG" ] && echo "loading ls plugin"
+[[ -n "$_BASH_DEBUG" ]] && echo "loading ls plugin"
 
 ## ls stuff
 alias ll='ls -l'

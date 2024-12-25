@@ -1,6 +1,6 @@
-[ -n "$_BASH_DEBUG" ] && echo "loading ps1 plugin"
+[[ -n "$_BASH_DEBUG" ]] && echo "loading ps1 plugin"
 
-# [ -n "$_PS1_SET" ] && return
+# [[ -n "$_PS1_SET" ]] && return
 # export _PS1_SET=1
 
 LGREEN='\[\033[01;92m\]'

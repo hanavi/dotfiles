@@ -1,13 +1,13 @@
-[ -n "$_BASH_DEBUG" ] && echo "loading ssh plugin"
+[[ -n "$_BASH_DEBUG" ]] && echo "loading ssh plugin"
 
 ## SSH
 alias sa='ssh-add'
 
 check-ssh-agent() {
-    [ -f ~/.ssh/agent ] && . ~/.ssh/agent
+    [[ -f ~/.ssh/agent ]] && . ~/.ssh/agent
 
     for pid in $(pgrep ssh-agent); do
-        [ $pid -eq $SSH_AGENT_PID ] && return 0
+        [[ $pid -eq $SSH_AGENT_PID ]] && return 0
     done
     return 1
 }
@@ -27,7 +27,7 @@ if command -v ssh-agent &>/dev/null && [[ ! -f ~/.ssh/noagent ]]; then
 fi
 
 # Only run this on my "thinkpad"
-[ ! "`hostname`" = "thinkpad" ] && return
+[[ ! "$(hostname)" = "thinkpad" ]] && return
 
 alias hl='ssh homelocal'
 alias hv1='ssh hv1'

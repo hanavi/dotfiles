@@ -1,4 +1,4 @@
-[ -n "$_BASH_DEBUG" ] && echo "loading webbrowser plugin"
+[[ -n "$_BASH_DEBUG" ]] && echo "loading webbrowser plugin"
 
 # webbrowser stuff
 alias web="python -m webbrowser"

@@ -1,4 +1,4 @@
-[ -n "$_BASH_DEBUG" ] && echo "loading docker plugin"
+[[ -n "$_BASH_DEBUG" ]] && echo "loading docker plugin"
 
 command docker -v &> /dev/null || return
 

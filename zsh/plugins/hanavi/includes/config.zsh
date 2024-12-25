@@ -7,6 +7,3 @@ alias sb='exec zsh'
 
 alias es='vim $HOME/.ssh/config'
 alias et='vim $HOME/.tmux.conf'
-
-export EDITOR=vim
-export FCEDIT=vim

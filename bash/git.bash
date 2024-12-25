@@ -1,7 +1,8 @@
-[ -n "$_BASH_DEBUG" ] && echo "loading git plugin"
+[[ -n "$_BASH_DEBUG" ]] && echo "loading git plugin"
 
 alias g=git
 alias ga='git add'
+alias gau='git add -u'
 alias gcmsg='git commit --message'
 alias gst='git status'
 alias gd='git diff'
