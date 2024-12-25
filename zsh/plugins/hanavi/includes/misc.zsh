@@ -16,8 +16,6 @@ alias dh="du -hs"
 alias fr="free -h"
 alias m='mplayer'
 
-alias tl='tmux ls'
-alias ta='tmux attach'
 alias kap="killall pinentry"
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
