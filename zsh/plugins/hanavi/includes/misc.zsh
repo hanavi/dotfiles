@@ -26,6 +26,12 @@ command -v zathura &> /dev/null && alias z='zathura'
 command -v batcat &> /dev/null && alias cat='batcat'
 command -v fdfind &>/dev/null && alias fd='fdfind'
 
+if command -v xsel &> /dev/null; then
+    clip() {
+        xsel -b
+    }
+fi
+
 notes() {
 
     YEAR=$(date "+%Y")
