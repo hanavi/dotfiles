@@ -19,6 +19,7 @@ keymap("n", "<c-u>", "<c-u>zz", opts)
 keymap("n", "<c-d>", "<c-d>zz", opts)
 keymap("n", "<leader>nh", ":noh<cr>", opts)
 
+keymap("n", "<leader>sa", ":call SplitArgs()<cr>", opts)
 
 keymap("n", "n", "nzz", opts)
 keymap("n", "N", "Nzz", opts)

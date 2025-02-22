@@ -9,8 +9,7 @@ alias hv2='ssh hv2'
 alias pi7='ssh pi7'
 
 fu() {
-    if [ -z "$(mount |grep $HOME/mnt)" ]
-    then
+    if [[ -z "$(mount |grep $HOME/mnt)" ]]; then
         echo mounting
         sshfs pi6:/media/james ~/mnt
     else

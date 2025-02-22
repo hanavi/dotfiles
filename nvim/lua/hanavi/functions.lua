@@ -1,5 +1,19 @@
 -- print('loading functions')
 
+
+vim.cmd([[
+function! SplitArgs()
+    let pos = line('.') + 1
+    s#\v^(\s*)(.*\()(.*)(\).*)$#\1\2\r\1    \3\r\1\4#
+    call cursor(pos, 1)
+    let cline = getline('.')
+    let padding = substitute(cline, '^\(\s*\).*', '\=submatch(1)    ', '')
+    exec 's/, \?/,\r' . padding . '/g'
+    s/\(.*\),\?/\1,/
+endfunction
+]])
+
+
 function SetWikiDate()
   local pos = vim.fn.getpos('.')
   local line = 1
@@ -20,7 +34,7 @@ function SetUpdatedTime()
     vim.fn.setline(line, vim.fn.substitute(vim.fn.getline(line), "^# Last Updated:.*", "# Last Updated: " .. date, ""))
     line = line + 1
   end
-  vim.fn.histdel('search', -1)
+  -- vim.fn.histdel('search', -1)
   vim.fn.setpos('.', pos)
 end
 
