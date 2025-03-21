@@ -12,9 +12,17 @@ command -v feh &> /dev/null && alias f='feh -.'
 command -v zathura &> /dev/null && alias z="zathura"
 
 alias dh="du -hs"
-alias ipy="ipython"
 alias m='mplayer'
 alias kap="killall pinentry"
+
+ipy() {
+    if ! command -v ipython &> /dev/null; then
+        printf "\nSwitching to 'working' environment\n\n"
+        conda deactivate
+        conda activate working
+    fi
+    ipython "$@"
+}
 
 # dropbox
 if [[ -d ~/.dropbox-dist ]]; then
@@ -40,21 +48,24 @@ resetcard() {
     gpg --card-status
 }
 
-
-now() {
+timestamp() {
     case "$1" in
-        -)
-            date "+%Y%m%d-%H%M%S"
+        _)
+            date "+%Y%m%d_%H%M%S"
             ;;
         -n)
             date "+%Y%m%d%H%M%S"
             ;;
         *)
-            date "+%Y%m%d_%H%M%S"
+            date "+%Y%m%d-%H%M%S"
             ;;
     esac
 }
 
 field() {
     awk -F "${2:- }" "{ print \$${1:-1} }"
+}
+
+ipaddr() {
+    ip route get 1 | sed -n 1p | field 7
 }

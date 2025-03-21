@@ -48,6 +48,8 @@ nnoremap <silent> <leader>bb :CtrlPBuffer<CR>
 nnoremap <silent> <leader>gg :CtrlPLine<CR>
 nnoremap <silent> <leader>ff :CtrlP<CR>
 
+nnoremap <silent> <leader>qq :qa<CR>
+
 nnoremap <silent> <leader>u :UltiSnipsEdit<CR>
 nnoremap <silent> <leader>l :SyntasticCheck<CR>
 

@@ -13,4 +13,4 @@ LCYAN='\[\033[01;96m\]'
 RED='\[\033[01;31m\]'
 LMAGENTA='\[\033[01;95m\]'
 
-PS1="${RED}[${CYAN}\h ${LGREEN}\w${RED}]${GREEN}\$ ${WHITE}"
+PS1="${RED}[${CYAN}\h ${LGREEN}\W${RED}]${GREEN}\$ ${WHITE}"
