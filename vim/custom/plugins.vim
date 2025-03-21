@@ -54,6 +54,9 @@ Plug 'ervandew/supertab'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
 
+" Python
+Plug 'tmhedberg/SimpylFold'
+
 if has("python3")
   Plug 'davidhalter/jedi-vim'
   Plug 'SirVer/ultisnips'

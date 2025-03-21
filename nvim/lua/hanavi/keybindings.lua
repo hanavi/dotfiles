@@ -5,6 +5,8 @@ local opts = { noremap = true }
 vim.g.mapleader = " "
 
 keymap('i', 'jk', '<esc>', opts)
+keymap("i", "<c-L>", "<c-o>$", opts)
+keymap("i", "<c-H>", "<c-o>0", opts)
 
 keymap("n", "<leader>sv", ":vs<cr>", opts)
 keymap("n", "<leader>sh", ":split<cr>", opts)
@@ -17,9 +19,10 @@ keymap("n", "L", ":bn<CR>", opts)
 keymap("n", "H", ":bp<CR>", opts)
 keymap("n", "<c-u>", "<c-u>zz", opts)
 keymap("n", "<c-d>", "<c-d>zz", opts)
-keymap("n", "<leader>nh", ":noh<cr>", opts)
+keymap("n", "<leader>nn", ":noh<cr>", opts)
 
 keymap("n", "<leader>sa", ":call SplitArgs()<cr>", opts)
+keymap("n", "<leader>qq", ":qa<cr>", opts)
 
 keymap("n", "n", "nzz", opts)
 keymap("n", "N", "Nzz", opts)

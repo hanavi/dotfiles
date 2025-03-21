@@ -22,6 +22,9 @@ Plug 'godlygeek/tabular'
 
 Plug 'lukas-reineke/indent-blankline.nvim'
 
+-- Python
+Plug 'tmhedberg/simpylfold'
+
 -- Git
 Plug 'tpope/vim-fugitive'
 

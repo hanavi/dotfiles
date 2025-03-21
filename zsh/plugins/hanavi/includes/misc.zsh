@@ -46,16 +46,16 @@ notes() {
     popd
 }
 
-now() {
+timestamp() {
     case "$1" in
-        -)
-            date "+%Y%m%d-%H%M%S"
+        _)
+            date "+%Y%m%d_%H%M%S"
             ;;
         -n)
             date "+%Y%m%d%H%M%S"
             ;;
         *)
-            date "+%Y%m%d_%H%M%S"
+            date "+%Y%m%d-%H%M%S"
             ;;
     esac
 }
@@ -64,3 +64,6 @@ field() {
     awk -F "${2:- }" "{ print \$${1:-1} }"
 }
 
+ipaddr() {
+    ip route get 1 | sed -n 1p | field 7
+}
