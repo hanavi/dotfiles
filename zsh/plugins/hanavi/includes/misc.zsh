@@ -67,3 +67,30 @@ field() {
 ipaddr() {
     ip route get 1 | sed -n 1p | field 7
 }
+
+fcopy() {
+    local now=$(date "+%Y%m%d-%H%M%S")
+    local clip_board_file=${HOME}/.clipboard/${now}.txt
+    tee "$clip_board_file"
+}
+
+fpaste() {
+
+    local _FZF_OPTS=(
+        --preview='/usr/bin/batcat {}'
+        --no-sort
+    )
+    [[ -n $TMUX ]] && _FZF_OPTS+=--tmux=80%
+
+    local cfile
+
+    for fn in $HOME/.clipboard/*.txt; do
+        printf "%s\n" "$fn"
+    done | sort -r | fzf "${_FZF_OPTS[@]}" | read cfile
+
+    cat "$cfile"
+}
+
+fclean() {
+    rm $HOME/.clipboard/*.txt
+}

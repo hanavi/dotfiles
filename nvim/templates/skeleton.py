@@ -5,13 +5,13 @@
 
 import os
 import sys
-import pathlib
+from pathlib import Path
 
 import click
 import numpy as np
 
 
-def main():
+def main() -> None:
     """<++>"""
 
 
