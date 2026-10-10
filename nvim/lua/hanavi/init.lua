@@ -2,7 +2,7 @@
 
 -- package.path = package.path .. ";~/.config/nvim/lua"
 -- print('loading base')
-vim.g.python3_host_prog = '~/.local/python/nvim/bin/python'
+vim.g.python3_host_prog = '~/.local/venv/bin/python'
 
 require("hanavi.packages")
 require("hanavi.functions")

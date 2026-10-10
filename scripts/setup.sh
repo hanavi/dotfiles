@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Last Updated: 2024-12-25
+# Last Updated: 2026-10-10
 
-REPO_DIR="${HOME}/files/dotfiles"
+REPO_DIR="${HOME}/.local/dotfiles"
 
 if [[ -t 2 ]]; then
     RESET='\033[0m'
@@ -100,18 +100,20 @@ setup_zsh() {
 setup_directories() {
   info "Setting up directories"
 
-  [[ ! -d ~/files ]] && mkdir ~/files
+  # [[ ! -d ~/files ]] && mkdir ~/files
   [[ ! -d ~/.config ]] && mkdir ~/.config
   [[ ! -d ~/.local/bin ]] && mkdir -p ~/.local/bin
 
 }
 
 clone-repo() {
-  if [[ -f ${HOME}/files/dotfiles/scripts/setup.sh ]]; then
+
+  if [[ -f ${REPO_DIR}/scripts/setup.sh ]]; then
     echo "dotfiles exists! skipping..."
     return 1
   fi
-  git clone https://github.com/hanavi/dotfiles ${HOME}/files/dotfiles
+
+  git clone https://github.com/hanavi/dotfiles.git ${REPO_DIR}
 }
 
 setup_misc() {

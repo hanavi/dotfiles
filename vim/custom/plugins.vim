@@ -68,7 +68,7 @@ call plug#end()
 " Fix airline bug
 let g:airline_extensions = [
     \'branch', 'coc', 'ctrlp', 'ctrlspace', 'cursormode', 'fugitiveline',
-    \'keymap', 'languageclient', 'netrw', 'po', 'quickfix', 'searchcount',
+    \'languageclient', 'po', 'quickfix', 'searchcount',
     \'tabline', 'tagbar', 'term', 'vimtex', 'virtualenv', 'whitespace',
     \'wordcount' ]
 

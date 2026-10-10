@@ -36,4 +36,4 @@ require('go').setup({
 })
 
 -- setup lsp client
-require('lspconfig').gopls.setup({})
+-- require('lspconfig').gopls.setup({})

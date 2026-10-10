@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/home/james/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="hanavi"
 
@@ -14,8 +14,14 @@ plugins=(
     safe-paste
     zsh-autosuggestions
     common-aliases
+    hanavi
 )
 
 source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.zsh_custom ] && . ~/.zsh_custom
+
+source ~/.local/venv/bin/activate
+
+# opencode
+export PATH=/Users/james/.opencode/bin:$PATH

@@ -75,7 +75,7 @@ vim.call('plug#end')
 
 vim.g["airline_extensions"] = {
     'ale', 'branch', 'coc', 'ctrlp', 'ctrlspace', 'cursormode', 'fugitiveline',
-    'keymap', 'languageclient', 'netrw', 'nvimlsp', 'po', 'quickfix',
+    'keymap', 'languageclient', 'nvimlsp', 'po', 'quickfix',
     'searchcount', 'tabline', 'tagbar', 'term', 'vimtex', 'virtualenv',
     'whitespace', 'wordcount'
 }

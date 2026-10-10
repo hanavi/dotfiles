@@ -1,5 +1,7 @@
 # GPG/Yubikey stuff
 
+return
+
 [[ -n "$_HANAVI_DEBUG" ]] && echo "loading gpg/yubikey config"
 
 # reset yubikey encryption when using a different key

@@ -23,7 +23,7 @@ alias kap="killall pinentry"
 command -v exa &> /dev/null && alias ls='exa'
 command -v feh &> /dev/null && alias f='feh -.'
 command -v zathura &> /dev/null && alias z='zathura'
-command -v batcat &> /dev/null && alias cat='batcat'
+command -v bat &> /dev/null && alias cat='bat'
 command -v fdfind &>/dev/null && alias fd='fdfind'
 
 if command -v xsel &> /dev/null; then
