@@ -27,7 +27,7 @@ info()  { printf "$(timestamp) ${GREEN}[INFO]${RESET} $*\n"     >&2; }
 warn()  { printf "$(timestamp) ${YELLOW}[WARNING]${RESET} $*\n" >&2; }
 error() { printf "$(timestamp) ${RED}[ERROR]${RESET} $*\n"      >&2; }
 
-setup_nvim() {
+setup-nvim() {
   info "configuring neovim"
 
   if [[ -e ~/.config/nvim ]]; then
@@ -40,11 +40,11 @@ setup_nvim() {
     return
   fi
 
-  create_link nvim ~/.config/nvim
+  create-link nvim ~/.config/nvim
   # command -v nvim &>/dev/null && nvim -c "PlugInstall | q | q"
 }
 
-setup_vim() {
+setup-vim() {
   info "configuring vim"
 
   if [[ -e ~/.vim ]]; then
@@ -52,11 +52,11 @@ setup_vim() {
     return
   fi
 
-  create_link vim ~/.vim
+  create-link vim ~/.vim
   # vim -c "PlugInstall | q | q"
 }
 
-create_link() {
+create-link() {
 
   local src="${REPO_DIR}/$1"
   local dst=$2
@@ -70,7 +70,7 @@ create_link() {
   fi
 }
 
-setup_bash() {
+setup-bash() {
   info "configuring bash"
 
   if ! grep -q bash_aliases ~/.bashrc &>/dev/null; then
@@ -81,11 +81,11 @@ setup_bash() {
     printf "[[ -f ~/.bashrc ]] && . ~/.bashrc \n" >> ~/.bash_profile
   fi
 
-  create_link bash_aliases ~/.bash_aliases
-  create_link bash ~/.config/bash
+  create-link bash_aliases ~/.bash_aliases
+  create-link bash ~/.config/bash
 }
 
-setup_zsh() {
+setup-zsh() {
   info "configuring zsh"
 
   if [[ ! -d ~/.oh-my-zsh/custom/plugins/ ]]; then
@@ -93,11 +93,11 @@ setup_zsh() {
     return
   fi
 
-  create_link zsh/plugins/hanavi ~/.oh-my-zsh/custom/plugins/
+  create-link zsh/plugins/hanavi ~/.oh-my-zsh/custom/plugins/
   # error "zsh not configured!"
 }
 
-setup_directories() {
+setup-directories() {
   info "Setting up directories"
 
   [[ ! -d ~/.local ]] && mkdir ~/.local
@@ -116,19 +116,26 @@ clone-repo() {
   git clone https://github.com/hanavi/dotfiles.git ${REPO_DIR}
 }
 
-setup_misc() {
+setup-misc() {
   info "creating misc links"
 
-  create_link inputrc ~/.inputrc
-  create_link tmux.conf ~/.tmux.conf
-  create_link gitconfig ~/.gitconfig
+  create-link inputrc ~/.inputrc
+  create-link tmux.conf ~/.tmux.conf
+  create-link gitconfig ~/.gitconfig
+}
+
+disable-sshagent-docker() {
+  if [[ -f /.dockerenv ]]; then
+    mkdir -p ~/.ssh &>/dev/null
+    touch ~/.ssh/noagent
+  fi
 }
 
 clone-repo
-setup_directories
-setup_bash
-setup_zsh
-setup_vim
-setup_nvim
-setup_misc
-
+setup-directories
+setup-bash
+setup-zsh
+setup-vim
+setup-nvim
+setup-misc
+disable-sshagent-docker
