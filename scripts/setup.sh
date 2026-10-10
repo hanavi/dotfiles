@@ -109,7 +109,7 @@ setup-directories() {
 clone-repo() {
 
   if [[ -f ${REPO_DIR}/scripts/setup.sh ]]; then
-    echo "dotfiles exists! skipping..."
+    warn "dotfiles exists! skipping..."
     return 1
   fi
 
@@ -125,10 +125,10 @@ setup-misc() {
 }
 
 disable-sshagent-docker() {
-  if [[ -f /.dockerenv ]]; then
-    mkdir -p ~/.ssh &>/dev/null
-    touch ~/.ssh/noagent
-  fi
+  [[ ! -f /.dockerenv ]] && return
+  info "Docker env detected... disabling ssh agent"
+  mkdir -p ~/.ssh &>/dev/null
+  touch ~/.ssh/noagent
 }
 
 clone-repo
