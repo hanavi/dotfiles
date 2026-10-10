@@ -100,7 +100,7 @@ setup_zsh() {
 setup_directories() {
   info "Setting up directories"
 
-  # [[ ! -d ~/files ]] && mkdir ~/files
+  [[ ! -d ~/.local ]] && mkdir ~/.local
   [[ ! -d ~/.config ]] && mkdir ~/.config
   [[ ! -d ~/.local/bin ]] && mkdir -p ~/.local/bin
 
